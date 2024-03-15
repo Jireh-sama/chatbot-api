@@ -1,0 +1,21 @@
+[
+  {
+    "intent": "greetings",
+    "documents": ["Hello there", "Hi, How are you", "greetings"],
+    "answer": "Hello my name is Botty how can i assist you today?"
+  },
+  { 
+    "intent": "asking_for_fabila",
+    "documents": [
+      "Who is Fabila", "Who is Jonvic", "Do you know who is Jonvic P. Fabila"
+    ],
+    "answer": "Jonvic Fabila is an estemmed student in the CVSU Bacoor Campus Cavite, he is notoriously know for his ability to quickly and effeciently detect pretty weomen in his vicinity"
+  },
+  { 
+    "intent": "asking_for_fabila_status",
+    "documents": [
+      "is Fabila currently single", "does fabila have a girlfriend"
+    ],
+    "answer": "As of my current knowledge Fabila is currently single and is very much ready to mingle"
+  }
+]
