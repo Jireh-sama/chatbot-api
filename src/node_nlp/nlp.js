@@ -24,12 +24,15 @@ async function loadOrCreateModel() {
 // Load training data from JSON file
 const trainingData = require("../knowledge/greetings_data.json");
 
+let incrementingId = 1;
+
 // Add training data to the manager
 trainingData.forEach((data) => {
   data.documents.forEach((document) => {
     manager.addDocument("en", document, data.intent);
   });
-  manager.addAnswer("en", data.intent, data.answer);
+  manager.addAnswer("en", data.intent, data.answer, { id: incrementingId });
+  incrementingId++;
 });
 
 async function trainModel() {
