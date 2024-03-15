@@ -23,10 +23,8 @@ app.get("/bot", async (req, res) => {
     }
 
     processMessage(message)
-        .then(result => {
-          console.log(result);
-          res.send(result.answer);
-          // res.json(result.answer);
+        .then(response => {
+          res.json(response);
         })
         .catch(error => {
           res.status(500).json({ error: 'Error processing message' });
