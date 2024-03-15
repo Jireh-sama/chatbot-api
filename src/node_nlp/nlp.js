@@ -44,11 +44,8 @@ async function trainModel() {
 
 // Process a message using the NLP manager
 async function processMessage(message) {
-  const result = await manager.process("en", message);
-  if (!result.answer) {
-    result.answer = "mah nigga";
-  }
-  return result;
+  const response = await manager.process("en", message);
+  return response;
 }
 
 module.exports = {
