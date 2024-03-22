@@ -1,5 +1,6 @@
 const { NlpManager } = require("node-nlp");
 const {
+  readJSONFile,
   updateJSONFile,
   getObjectFromMatchingValue,
 } = require("../jsonReader");
@@ -95,10 +96,18 @@ const processMessage = async (message) => {
 }
 
 const getFrequentlyAskedQuestion = () => {
+  const questionsFrequencyList = readJSONFile('./question_frequency.json');
+
+  // Sort the array in descending order
+  questionsFrequencyList.sort((a, b) => b.frequency - a.frequency);
+  // Get the top 5 questions in the array
+  const top5Questions = questionsFrequencyList.slice(0, 5);
   
+  return top5Questions;
 }
 
 module.exports = {
+  getFrequentlyAskedQuestion,
   loadOrCreateModel,
   processMessage,
 };
