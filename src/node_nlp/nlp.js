@@ -1,6 +1,5 @@
 const { NlpManager } = require("node-nlp");
 const {
-  readJSONFile,
   updateJSONFile,
   getObjectFromMatchingValue,
 } = require("../jsonReader");
@@ -58,37 +57,45 @@ const trainModel = async () => {
   console.log("Model saved successfully!");
 }
 
+const matchQuestionToObject = (searchValue) => {
+  const knowledgesFilePathArray = ["./knowledge/greetings_data.json", "./knowledge/questions_data.json"];
+  for (let filePath of knowledgesFilePathArray){
+    const foundObject = getObjectFromMatchingValue(
+      filePath,
+      searchValue
+    );
+    if (foundObject) {
+      return foundObject;
+    }
+  }
+}
+
 // Process a message using the NLP manager
 const processMessage = async (message) => {
   const response = await manager.process("en", message);
-
   const searchValue = response.answer;
-
-  const jsonKnowledgeFilePath = "./knowledge/greetings_data.json";
-
-  const foundObject = getObjectFromMatchingValue(
-    jsonKnowledgeFilePath,
-    searchValue
-  );
-
-  const jsonFAQFilePath = "frequently_asked_question.json";
-
-  const newData = {
-    questions: [...foundObject.documents],
-    answer: foundObject.answer,
-    frequency: 1,
-  };
-
-  console.log(newData);
-
-  updateJSONFile(jsonFAQFilePath, newData);
-
+  const foundObject = matchQuestionToObject(searchValue);
+  const jsonFAQFilePath = "question_frequency.json";
+  let newData = {};
+  if (foundObject) {
+    newData = {
+      questions: [...foundObject.documents],
+      answer: foundObject.answer,
+      frequency: 1,
+    };
+    updateJSONFile(jsonFAQFilePath, newData);
+  }
+  
   // Fallback Answer
   if (!response.answer) {
     response.answer =
       "I'm sorry, I'm still learning and may not have the answer to that question just yet. Is there anything else I can assist you with?";
   }
-  return response;
+  return response.answer;
+}
+
+const getFrequentlyAskedQuestion = () => {
+  
 }
 
 module.exports = {
