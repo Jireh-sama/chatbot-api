@@ -27,12 +27,22 @@ const loadOrCreateModel = async () => {
 }
 
 // Load training data from JSON file
-const trainingData = require("../knowledge/greetings_data.json");
-
+// add more if needed...
+const greetingsData = require("../knowledge/greetings_data.json");
+const questionData = require("../knowledge/questions_data.json");
 let incrementingId = 1;
 
-// Add training data to the manager
-trainingData.forEach((data) => {
+// Add Greetings Data to Model
+greetingsData.forEach((data) => {
+  data.documents.forEach((document) => {
+    manager.addDocument("en", document, data.intent);
+  });
+  manager.addAnswer("en", data.intent, data.answer, { id: incrementingId });
+  incrementingId++;
+});
+
+// Add Question Data to Model
+questionData.forEach((data) => {
   data.documents.forEach((document) => {
     manager.addDocument("en", document, data.intent);
   });
