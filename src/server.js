@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-const { processMessage } = require('./node_nlp/nlp');
+const { processMessage, getFrequentlyAskedQuestion } = require('./node_nlp/nlp');
 
 const app = express();
 const port = 3001;
@@ -35,7 +35,8 @@ app.get("/bot", async (req, res) => {
   }
 });
 app.get('/bot/faq', (req, res) => {
-  res.send('FAQ')
+  const faq = getFrequentlyAskedQuestion();
+  res.send(faq);
 })
 
 // Start server
