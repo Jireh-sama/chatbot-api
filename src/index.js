@@ -1,7 +1,7 @@
 const startServer = require('./server');
 const { loadOrCreateModel } = require('./node_nlp/nlp');
 
-async function initialize() {
+const initialize = async () => {
     await loadOrCreateModel();
     startServer();
 }
