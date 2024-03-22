@@ -16,7 +16,7 @@ const manager = new NlpManager({
 });
 
 // Load existing model if available, otherwise train a new one
-async function loadOrCreateModel() {
+const loadOrCreateModel = async () => {
   try {
     await manager.load();
     console.log("Model loaded successfully!");
@@ -40,7 +40,8 @@ trainingData.forEach((data) => {
   incrementingId++;
 });
 
-async function trainModel() {
+
+const trainModel = async () => {
   await manager.train();
   console.log("Model trained successfully!");
   await manager.save();
@@ -48,7 +49,7 @@ async function trainModel() {
 }
 
 // Process a message using the NLP manager
-async function processMessage(message) {
+const processMessage = async (message) => {
   const response = await manager.process("en", message);
 
   const searchValue = response.answer;
