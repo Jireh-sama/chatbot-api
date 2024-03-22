@@ -14,7 +14,6 @@ app.use(
 
 // Server route and handler
 app.get("/bot", async (req, res) => {
-
   try {
     const { message } = req.query;
     
@@ -40,7 +39,7 @@ app.get('/bot/faq', (req, res) => {
 })
 
 // Start server
-function startServer() {
+const startServer = () => {
   app.listen(port, () => {
     console.log(`Server is listening at http://localhost:${port}`);
   });
