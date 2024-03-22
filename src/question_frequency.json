@@ -1,36 +1,47 @@
 [
   {
     "questions": [
-      "Who is Fabila",
-      "Who is Jonvic",
-      "Do you know who is Jonvic P. Fabila"
-    ],
-    "answer": "Jonvic Fabila is an estemmed student in the CVSU Bacoor Campus Cavite, he is notoriously know for his ability to quickly and effeciently detect pretty weomen in his vicinity",
-    "frequency": 4
-  },
-  {
-    "questions": [
       "Hello there",
       "Hi, How are you",
       "greetings"
     ],
-    "answer": "Hello my name is Botty how can i assist you today?",
-    "frequency": 15
+    "answer": "Hello my name is Botty 😊 how can i assist you today?",
+    "frequency": 2
   },
   {
     "questions": [
-      "is Fabila currently single",
-      "does fabila have a girlfriend"
+      "who is the current leading mayor of bacoor, cavite"
     ],
-    "answer": "As of my current knowledge Fabila is currently single and is very much ready to mingle",
-    "frequency": 10
+    "answer": "The current mayor of Bacoor, Cavite is Strike Bautista Revilla.",
+    "frequency": 4
   },
   {
     "questions": [
-      "what is the difference between SAP of last year and the Ayuda?",
-      "What distinguishes the Ayuda from SAP from the previous year?"
+      "How can I pay my real property tax?"
     ],
-    "answer": "the SAP last year was for low-income families belonging to the informal sector. The Ayuda, on the other hand, is for low-income individuals and not families. Meaning, the basis of the Ayuda is no longer per family but per individual. Moreover, the requirement of informal sector has been removed.",
+    "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department.",
     "frequency": 1
+  },
+  {
+    "questions": [
+      "What are the requirements for applying for a business permit?",
+      "how can i apply for a business permit"
+    ],
+    "answer": "To apply for a business permit in Bacoor City Hall, you typically need to submit various documents such as valid identification, barangay clearance, DTI or SEC registration, proof of ownership or lease of business premises, and other relevant permits or clearances depending on the nature of your business. It's best to inquire directly at the Business Permit and Licensing Office for the specific requirements applicable to your business.",
+    "frequency": 2
+  },
+  {
+    "questions": [
+      "How can I apply for a building permit?"
+    ],
+    "answer": "To apply for a building permit in Bacoor City Hall, you need to prepare and submit several documents including building plans and specifications, barangay clearance, tax declaration, and other necessary permits or clearances. You must also comply with the building code and other relevant regulations. It's recommended to visit the Office of the Building Official for detailed guidance and assistance in the application process.",
+    "frequency": 1
+  },
+  {
+    "questions": [
+      "What are the steps to register a birth?"
+    ],
+    "answer": "To register a birth in Bacoor City Hall, you need to submit an accomplished birth registration form, valid identification of the parents, and the original copy of the child's birth certificate issued by the hospital or midwife. If the birth occurred at home, you may need to provide an affidavit of two disinterested persons who witnessed the birth. It's advisable to visit the Civil Registry Department for proper guidance and assistance in completing the registration process.",
+    "frequency": 3
   }
 ]
