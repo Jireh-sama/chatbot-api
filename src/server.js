@@ -35,6 +35,9 @@ app.get("/bot", async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 });
+app.get('/bot/faq', (req, res) => {
+  res.send('FAQ')
+})
 
 // Start server
 function startServer() {
