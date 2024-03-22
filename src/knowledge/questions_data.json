@@ -1,0 +1,17 @@
+[
+  {
+    "intent": "question.sample",
+    "documents": ["sample"],
+    "answer": "sample"
+  },
+  {
+    "intent": "question.sap.difference_between_sap_and_ayuda",
+    "documents": ["what is the difference between SAP of last year and the Ayuda?", "What distinguishes the Ayuda from SAP from the previous year?"],
+    "answer": "the SAP last year was for low-income families belonging to the informal sector. The Ayuda, on the other hand, is for low-income individuals and not families. Meaning, the basis of the Ayuda is no longer per family but per individual. Moreover, the requirement of informal sector has been removed."
+  },
+  {
+    "intent": "question.sap.sap_and_ayuda_different_program",
+    "documents": ["So the SAP and the Ayuda are 2 different goverment programs?"],
+    "answer": "Yes, the 2 assistance program are different."
+  }
+]
