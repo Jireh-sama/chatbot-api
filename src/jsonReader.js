@@ -29,7 +29,7 @@ const updateJSONFile = (filePath, newData) => {
         console.error("Error writing file:", err);
         return;
       }
-      console.log("Attendance updated successfully.");
+      console.log("Frequency has been updated");
     });
     
   } catch (error) {
@@ -38,32 +38,6 @@ const updateJSONFile = (filePath, newData) => {
 
 };
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 const getObjectFromMatchingValue = (filePath, searchValue) => {
   const jsonData = readJSONFile(filePath);
 
@@ -71,15 +45,17 @@ const getObjectFromMatchingValue = (filePath, searchValue) => {
     console.error("Unable to read JSON file");
     return;
   }
-
+  
   const foundObject = jsonData.find((obj) => obj.answer === searchValue);
 
   if (!foundObject) {
     console.log("No matching object Found");
-    return;
+    return null;
   }
-
-  return foundObject;
+  if (foundObject) {
+    console.log("Found matching Object");
+    return foundObject;
+  }
 };
 
 module.exports = {
