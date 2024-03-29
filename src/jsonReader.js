@@ -1,11 +1,12 @@
 const fs = require("fs");
+const { red } = require('colorette');
 
 const readJSONFile = (filePath) => {
   try {
     const data = fs.readFileSync(filePath, "utf8");
     return JSON.parse(data);
   } catch (err) {
-    console.error("Error reading json file:", err);
+    console.error(red("⚠️ Error reading json file:"), err);
     return null;
   }
 };
@@ -23,13 +24,11 @@ const updateJSONFile = (filePath, newData) => {
     } else {
       existingData.frequency++;
     }
-  
     fs.writeFile(filePath, JSON.stringify(prevData, null, 2), (err) => {
       if (err) {
         console.error("Error writing file:", err);
         return;
       }
-      console.log("Frequency has been updated");
     });
     
   } catch (error) {
@@ -39,22 +38,23 @@ const updateJSONFile = (filePath, newData) => {
 };
 
 const getObjectFromMatchingValue = (filePath, searchValue) => {
-  const jsonData = readJSONFile(filePath);
+  try {
+    const jsonData = readJSONFile(filePath);
 
-  if (!jsonData) {
-    console.error("Unable to read JSON file");
-    return;
-  }
-  
-  const foundObject = jsonData.find((obj) => obj.answer === searchValue);
+    if (!jsonData) {
+      throw new Error("Unable to read JSON file");
+    }
+    
+    const foundObject = jsonData.find((obj) => obj.answer === searchValue);
 
-  if (!foundObject) {
-    console.log("No matching object Found");
-    return null;
-  }
-  if (foundObject) {
-    console.log("Found matching Object");
+    if (!foundObject) {
+      // console.log(red("No matching object found in: "),filePath);
+      return null;
+    }
     return foundObject;
+  } catch (error) {
+    console.error(error.message);
+    return null;
   }
 };
 
