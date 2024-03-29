@@ -1,3 +1,4 @@
+const { green, yellow } = require('colorette');
 const { NlpManager } = require("node-nlp");
 const {
   readJSONFile,
@@ -5,8 +6,10 @@ const {
   getObjectFromMatchingValue,
 } = require("../jsonReader");
 const path = require("path");
-
+const { insertData } = require("../firebase/firebase-config");
 const modelPath = path.join(__dirname, "model");
+const trainDataToModel = require('./feats/trainDataToModel');
+const { updateFrequency } = require('./feats/manageFAQs');
 
 const manager = new NlpManager({
   languages: ["en"],
@@ -15,61 +18,43 @@ const manager = new NlpManager({
   modelFileName: modelPath,
 });
 
+
 // Load existing model if available, otherwise train a new one
 const loadOrCreateModel = async () => {
   try {
     await manager.load();
-    console.log("Model loaded successfully!");
+    console.log(green("Model loaded successfully!"));
   } catch (err) {
-    console.log("No existing model found, training a new one...");
+    console.log(yellow("No existing model found, training a new one..."));
     await trainModel();
   }
-}
-
-// Load training data from JSON file
-// add more if needed...
-const greetingsData = require("../knowledge/greetings_data.json");
-const questionData = require("../knowledge/questions_data.json");
-let incrementingId = 1;
-
-// Add Greetings Data to Model
-greetingsData.forEach((data) => {
-  data.documents.forEach((document) => {
-    manager.addDocument("en", document, data.intent);
-  });
-  manager.addAnswer("en", data.intent, data.answer, { id: incrementingId });
-  incrementingId++;
-});
-
-// Add Question Data to Model
-questionData.forEach((data) => {
-  data.documents.forEach((document) => {
-    manager.addDocument("en", document, data.intent);
-  });
-  manager.addAnswer("en", data.intent, data.answer, { id: incrementingId });
-  incrementingId++;
-});
-
+};
 
 const trainModel = async () => {
+  trainDataToModel(manager);
   await manager.train();
-  console.log("Model trained successfully!");
+  console.log(green("✅ Model trained successfully!"));
   await manager.save();
-  console.log("Model saved successfully!");
-}
-
+  console.log(green("✅ Model saved successfully!"));
+};
+// This fn finds and returns the matching
+// search value object from the knowledge base
 const matchQuestionToObject = (searchValue) => {
-  const knowledgesFilePathArray = ["./knowledge/greetings_data.json", "./knowledge/questions_data.json"];
-  for (let filePath of knowledgesFilePathArray){
-    const foundObject = getObjectFromMatchingValue(
-      filePath,
-      searchValue
-    );
-    if (foundObject) {
-      return foundObject;
+  try {
+    const knowledgesFilePathArray = [
+      "./knowledge/greetings_data.json",
+      "./knowledge/questions_data.json",
+    ];
+    for (let filePath of knowledgesFilePathArray) {
+      const foundObject = getObjectFromMatchingValue(filePath, searchValue);
+      if (foundObject) {
+        return foundObject;
+      }
     }
+  } catch (error) {
+    console.error("Error occured when Matching value", error);
   }
-}
+};
 
 const getBaseIntent = (fullIntent) => {
   const baseIntent = fullIntent.split(".")[0];
@@ -79,18 +64,10 @@ const getBaseIntent = (fullIntent) => {
 const processMessage = async (message) => {
   const response = await manager.process("en", message);
   const searchValue = response.answer;
-  const foundObject = matchQuestionToObject(searchValue);
-  const jsonFAQFilePath = "question_frequency.json";
-  let newData = {};
-  if (foundObject) {
-    newData = {
-      questions: [...foundObject.documents],
-      answer: foundObject.answer,
-      frequency: 1,
-    };
-    updateJSONFile(jsonFAQFilePath, newData);
-  }
-  
+
+  updateFrequency(searchValue);
+ 
+
   // Fallback Answer
   if (!response.answer) {
     response.answer =
@@ -148,12 +125,13 @@ const interpolateResponse = (template, data) => {
   });
 };
 
-  questionsFrequencyList.sort((a, b) => b.frequency - a.frequency);
-  // Get the top 5 questions in the array
-  const top5Questions = questionsFrequencyList.slice(0, 5);
-  
-  return top5Questions;
-}
+
+// Fn to get the top 5 highest frequency
+const getFrequentlyAskedQuestion = () => {
+
+  // insertFAQsToDatabase();
+
+};
 
 module.exports = {
   getFrequentlyAskedQuestion,
