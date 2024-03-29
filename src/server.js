@@ -1,6 +1,7 @@
 const express = require("express");
 const cron = require('node-cron');
 const cors = require("cors");
+const { insertFAQsToDatabase } = require('./node_nlp/feats/manageFAQs');
 const { processMessage, getFrequentlyAskedQuestion } = require('./node_nlp/nlp');
 
 const app = express();
@@ -27,12 +28,12 @@ app.get("/bot", async (req, res) => {
           res.json(response);
         })
         .catch(error => {
-          res.status(500).json({ error: 'Error processing message' });
+          res.status(500).json({ error: '⚠️ Error encountered while processing message' });
         });
   } 
   catch (error) {
     console.error("Error processing message:", error);
-    return res.status(500).json({ error: "Internal server error" });
+    return res.status(500).json({ error: "⚠️ Internal server error" });
   }
 });
 app.get('/bot/faq', (req, res) => {
@@ -53,7 +54,7 @@ cron.schedule('*/5 * * * *', () => {
 // Start server
 const startServer = () => {
   app.listen(port, () => {
-    console.log(`Server is listening at http://localhost:${port}`);
+    console.log(`🚀 Server is listening at http://localhost:${port}`);
   });
 }
 
