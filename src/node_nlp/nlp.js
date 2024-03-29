@@ -96,6 +96,18 @@ const processMessage = async (message) => {
     response.answer =
       "I'm sorry, I'm still learning and may not have the answer to that question just yet. Is there anything else I can assist you with?";
   }
+  // console.log(response);
+
+  const intent = getBaseIntent(response.intent);
+  const template = getResponseTemplate(intent);
+  const data = {
+    answer: response.answer,
+  };
+  const interpolatedResponse = interpolateResponse(template, data);
+
+  return interpolatedResponse;
+};
+
 // This fn returns a template string
 // based on the provided intent
 const getResponseTemplate = (intent) => {
