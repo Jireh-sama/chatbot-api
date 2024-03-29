@@ -8,6 +8,11 @@
   },
   "author": "",
   "license": "ISC",
+  "nodemonConfig": {
+    "ignore": [
+      "./src/question_frequency.json"
+    ]
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "express": "^4.18.3",
