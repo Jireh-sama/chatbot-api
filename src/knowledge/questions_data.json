@@ -7,12 +7,12 @@
   {
     "intent": "question.sap_and_ayuda_different_program",
     "documents": ["So the SAP and the Ayuda are 2 different goverment programs?"],
-    "answer": "Yes, the 2 assistance program are different."
+    "answer": "yes, the two assistance program are different."
   },
   {
     "intent": "question.who_is_bacoor_mayor",
     "documents": ["who is the current leading mayor of bacoor, cavite"],
-    "answer": "The current mayor of Bacoor, Cavite is Strike Bautista Revilla."
+    "answer": "the current mayor of Bacoor, Cavite, is Strike Bautista Revilla."
   },
   {
     "intent": "question.business_permit_requirements",
@@ -33,5 +33,15 @@
     "intent": "question.real_property_tax_payment",
     "documents": ["How can I pay my real property tax?"],
     "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department."
+  },
+  {
+    "intent": "question.real_property_tax_payment",
+    "documents": ["Where is the City Hall of Bacoor, Cavite?", "Where can i find the City hall of Bacoor Cavite?"],
+    "answer": "The City of Bacoor Government Center, formerly Bacoor Government Center or Bacoor City Government Center, is a complex that serves as the seat of government of Bacoor City, Cavite, Philippines. It is where its city hall is located."
+  },
+  {
+    "intent": "question.required_to_bir",
+    "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "Why does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?"],
+    "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes."
   }
 ]
