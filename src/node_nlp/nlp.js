@@ -92,11 +92,39 @@ const processMessage = async (message) => {
     response.answer =
       "I'm sorry, I'm still learning and may not have the answer to that question just yet. Is there anything else I can assist you with?";
   }
-  return response.answer;
-}
+// This fn returns a template string
+// based on the provided intent
+const getResponseTemplate = (intent) => {
+  let responseTemplate = "";
 
-const getFrequentlyAskedQuestion = () => {
-  const questionsFrequencyList = readJSONFile('./question_frequency.json');
+  switch (intent) {
+    case "question":
+      const questionResponses = [
+        "As of my latest knowledge, {{answer}}",
+        "Here's what I know: {{answer}}",
+        "Based on what I've learned, {{answer}}",
+      ];
+      responseTemplate =
+        questionResponses[Math.floor(Math.random() * questionResponses.length)];
+      break;
+
+    case "request":
+      const requestResponses = [
+        "Certainly, if you are looking for {{answer}}",
+        "Sure, I can help with {{answer}}",
+        "I'll do my best to assist you with {{answer}}",
+      ];
+      responseTemplate =
+        requestResponses[Math.floor(Math.random() * requestResponses.length)];
+      break;
+
+    default:
+      responseTemplate = "{{answer}}";
+      break;
+  }
+  return responseTemplate;
+};
+
 
   // Sort the array in descending order
   questionsFrequencyList.sort((a, b) => b.frequency - a.frequency);
