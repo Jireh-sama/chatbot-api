@@ -71,6 +71,10 @@ const matchQuestionToObject = (searchValue) => {
   }
 }
 
+const getBaseIntent = (fullIntent) => {
+  const baseIntent = fullIntent.split(".")[0];
+  return baseIntent;
+};
 // Process a message using the NLP manager
 const processMessage = async (message) => {
   const response = await manager.process("en", message);
