@@ -129,8 +129,13 @@ const getResponseTemplate = (intent) => {
   return responseTemplate;
 };
 
+// Function to interpolate dynamic content into response template
+const interpolateResponse = (template, data) => {
+  return template.replace(/{{(\w+)}}/g, (match, key) => {
+    return data[key] || match;
+  });
+};
 
-  // Sort the array in descending order
   questionsFrequencyList.sort((a, b) => b.frequency - a.frequency);
   // Get the top 5 questions in the array
   const top5Questions = questionsFrequencyList.slice(0, 5);
