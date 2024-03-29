@@ -1,4 +1,5 @@
 const express = require("express");
+const cron = require('node-cron');
 const cors = require("cors");
 const { processMessage, getFrequentlyAskedQuestion } = require('./node_nlp/nlp');
 
@@ -38,6 +39,16 @@ app.get('/bot/faq', (req, res) => {
   const faq = getFrequentlyAskedQuestion();
   res.send(faq);
 })
+
+// CRON TASKS
+/* 
+! NOT SURE YET IF THIS 100% WORKS
+! BUT SO FAR IT DOES THE JOB, IT UPDATES THE DB EVERY 5 MINS
+! CONFIGURE THE FORMAT AS YOU FIT SINCE WE ARE STILL IN DEV
+*/ 
+cron.schedule('*/5 * * * *', () => {
+  insertFAQsToDatabase();
+});
 
 // Start server
 const startServer = () => {
