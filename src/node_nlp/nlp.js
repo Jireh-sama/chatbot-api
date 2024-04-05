@@ -103,6 +103,11 @@ const processMessage = async (message) => {
   const data = {
     answer: response.answer,
   };
+  const dynamicResponse = generateDynamicResponse(response.intent, responseData);
+  response.answer = dynamicResponse;
+
+  return response;
+  };
 
 const guessLanguage = (text) => {
   const language = new Language();
