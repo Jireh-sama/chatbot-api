@@ -13,8 +13,7 @@ const updateFrequency = (searchValue) => {
       throw new Error('Search value does not exist');
     }
     const knowledgeFilePaths = [
-      './knowledge/greetings_data.json',
-      './knowledge/questions_data.json'
+      './knowledge/questions_data.json',
     ]
     const foundObject = matchQuestionToObject(searchValue, knowledgeFilePaths);
     if (!foundObject) {
