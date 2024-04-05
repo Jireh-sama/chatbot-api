@@ -12,8 +12,11 @@ const updateFrequency = (searchValue) => {
     if (!searchValue) {
       throw new Error('Search value does not exist');
     }
+    // * Add file paths that are to be included in frequency tracking
     const knowledgeFilePaths = [
       './knowledge/questions_data.json',
+      './knowledge/navigation_data.json',
+      './knowledge/request.json',
     ]
     const foundObject = matchQuestionToObject(searchValue, knowledgeFilePaths);
     if (!foundObject) {
