@@ -31,17 +31,17 @@
   },
   {
     "intent": "question.real_property_tax_payment",
-    "documents": ["How can I pay my real property tax?"],
+    "documents": ["How can I pay my real property tax?", "how to pay taxes"],
     "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department."
   },
   {
-    "intent": "question.real_property_tax_payment",
-    "documents": ["Where is the City Hall of Bacoor, Cavite?", "Where can i find the City hall of Bacoor Cavite?"],
+    "intent": "question.bacoor_city_hall_location",
+    "documents": ["Where is the City Hall of Bacoor, Cavite located?", "Where can i find the City hall of Bacoor Cavite?", "can you tell me the currect location of the bacoor city hall?"],
     "answer": "The City of Bacoor Government Center, formerly Bacoor Government Center or Bacoor City Government Center, is a complex that serves as the seat of government of Bacoor City, Cavite, Philippines. It is where its city hall is located."
   },
   {
     "intent": "question.required_to_bir",
-    "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "Why does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?"],
-    "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes."
+    "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "Why does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?", "Why do i need to register to BIR"],
+    "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes.@=@ Additionally did you know that the BIR's efforts are pivotal in ensuring the smooth functioning of the Philippine economy? Feel free to ask if you have any questions or if there's anything specific you'd like to know about the BIR's role or tax-related matters!"
   }
 ]

@@ -1,0 +1,97 @@
+[
+  {
+    "intent": "salutation.greeting",
+    "documents": [
+      "Hello there",
+      "Hi, How are you",
+      "Greetings!",
+      "Hey!",
+      "Good morning!",
+      "Hi, what's up?",
+      "Hey, how's it going?",
+      "What's happening?",
+      "Hey, nice to see you!"
+    ],
+    "answer": "Hello! My name is Botty 😊 How can I assist you today?"
+  },
+  {
+    "intent": "salutation.greeting_time_based",
+    "documents": [
+      "Good morning",
+      "Good afternoon",
+      "Good evening",
+      "Good day",
+      "Greetings of the day",
+      "Hello, it's morning!",
+      "Hey, it's afternoon!",
+      "Evening!",
+      "Hey there, it's nighttime!",
+      "Greetings, it's dawn!"
+    ],
+    "answer": "Hey there! How can I help you? 🌞"
+  },
+  {
+    "intent": "salutation.thanks",
+    "documents": [
+      "Thank you",
+      "Thanks a lot",
+      "Much appreciated",
+      "Thanks!",
+      "Appreciate it!",
+      "Thank you very much!",
+      "Big thank you!",
+      "Thanks for your help!",
+      "Thanks for everything!",
+      "Thank you kindly!"
+    ],
+    "answer": "You're welcome! It's my pleasure to assist you. 😊"
+  },
+  {
+    "intent": "salutation.thanks_polite",
+    "documents": [
+      "Thank you very much",
+      "I'm grateful",
+      "Many thanks",
+      "I'm deeply thankful",
+      "Much obliged!",
+      "I truly appreciate it!",
+      "Thank you kindly!",
+      "I am thankful for your assistance",
+      "Thank you from the bottom of my heart",
+      "I want to express my gratitude"
+    ],
+    "answer": "You're very welcome! Let me know if there's anything else I can do for you."
+  },
+  {
+    "intent": "salutation.goodbye",
+    "documents": [
+      "Goodbye",
+      "See you later",
+      "Farewell",
+      "Bye!",
+      "Take care!",
+      "Until next time!",
+      "So long!",
+      "Catch you later!",
+      "Adios!",
+      "Bye for now!"
+    ],
+    "answer": "Goodbye! Take care and have a great day! 👋"
+  },
+  {
+    "intent": "salutation.goodbye_positive",
+    "documents": [
+      "Have a great day",
+      "Take care",
+      "Until next time",
+      "Enjoy your day!",
+      "Wishing you well!",
+      "Take it easy!",
+      "Have a fantastic day ahead!",
+      "Stay safe and well!",
+      "May your day be filled with joy!",
+      "Keep smiling!"
+    ],
+    "answer": "Thank you! You too have a fantastic day!"
+  }
+]
