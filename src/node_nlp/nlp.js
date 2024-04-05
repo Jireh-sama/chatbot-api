@@ -1,10 +1,5 @@
 const { green, yellow } = require('colorette');
-const { NlpManager } = require("node-nlp");
-const {
-  readJSONFile,
-  updateJSONFile,
-  getObjectFromMatchingValue,
-} = require("../jsonReader");
+const { NlpManager, Language } = require("node-nlp");
 const path = require("path");
 const { insertData } = require("../firebase/firebase-config");
 const modelPath = path.join(__dirname, "model");
@@ -108,58 +103,14 @@ const processMessage = async (message) => {
   const data = {
     answer: response.answer,
   };
-  const interpolatedResponse = interpolateResponse(template, data);
 
-  return interpolatedResponse;
-};
-
-// This fn returns a template string
-// based on the provided intent
-const getResponseTemplate = (intent) => {
-  let responseTemplate = "";
-
-  switch (intent) {
-    case "question":
-      const questionResponses = [
-        "As of my latest knowledge, {{answer}}",
-        "Here's what I know: {{answer}}",
-        "Based on what I've learned, {{answer}}",
-      ];
-      responseTemplate =
-        questionResponses[Math.floor(Math.random() * questionResponses.length)];
-      break;
-
-    case "request":
-      const requestResponses = [
-        "Certainly, if you are looking for {{answer}}",
-        "Sure, I can help with {{answer}}",
-        "I'll do my best to assist you with {{answer}}",
-      ];
-      responseTemplate =
-        requestResponses[Math.floor(Math.random() * requestResponses.length)];
-      break;
-
-    default:
-      responseTemplate = "{{answer}}";
-      break;
-  }
-  return responseTemplate;
-};
-
-// Function to interpolate dynamic content into response template
-const interpolateResponse = (template, data) => {
-  return template.replace(/{{(\w+)}}/g, (match, key) => {
-    return data[key] || match;
-  });
-};
-
-
-// Fn to get the top 5 highest frequency
-const getFrequentlyAskedQuestion = () => {
-
-  // insertFAQsToDatabase();
-
-};
+const guessLanguage = (text) => {
+  const language = new Language();
+  languageGuessLimit = 3;
+  const guess = language.guess(text, null, languageGuessLimit);
+  const guessedLanguage = guess[0].language.toLowerCase();
+  return guessedLanguage;
+}
 
 module.exports = {
   getFrequentlyAskedQuestion,
