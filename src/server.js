@@ -2,7 +2,7 @@ const express = require("express");
 const cron = require('node-cron');
 const cors = require("cors");
 const { insertFAQsToDatabase } = require('./node_nlp/feats/manageFAQs');
-const { processMessage, getFrequentlyAskedQuestion } = require('./node_nlp/nlp');
+const { processMessage, getFrequentlyAskedQuestion, trainModel } = require('./node_nlp/nlp');
 
 const app = express();
 const port = 3001;
@@ -40,14 +40,20 @@ app.get('/bot/faq', (req, res) => {
   const faq = getFrequentlyAskedQuestion();
   res.send(faq);
 })
+app.get('/bot/train', async (req, res) => {
+  const status = await trainModel();
+  console.log(status);
+  res.send(status);
+}); 
 
 // CRON TASKS
 /* 
 ! NOT SURE YET IF THIS 100% WORKS
-! BUT SO FAR IT DOES THE JOB, IT UPDATES THE DB EVERY 5 MINS
+! BUT SO FAR IT DOES THE JOB, IT UPDATES THE DB EVERY 10 MINS
 ! CONFIGURE THE FORMAT AS YOU FIT SINCE WE ARE STILL IN DEV
 */ 
-cron.schedule('*/5 * * * *', () => {
+cron.schedule('*/10 * * * *', () => {
+  // console.log('Dev mode no fetching to DB!');
   insertFAQsToDatabase();
 });
 
