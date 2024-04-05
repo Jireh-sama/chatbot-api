@@ -1,18 +1,16 @@
 const { green, yellow } = require('colorette');
 const { NlpManager, Language } = require("node-nlp");
 const path = require("path");
-const { insertData } = require("../firebase/firebase-config");
 const modelPath = path.join(__dirname, "model");
 const trainDataToModel = require('./feats/trainDataToModel');
 const { updateFrequency } = require('./feats/manageFAQs');
-
+const generateDynamicResponse = require('./feats/responseGenerator');
 const manager = new NlpManager({
   languages: ["en"],
   nlu: { log: true, useNoneFeature: true },
   forceNER: true,
   modelFileName: modelPath,
 });
-
 
 // Load existing model if available, otherwise train a new one
 const loadOrCreateModel = async () => {
@@ -22,39 +20,23 @@ const loadOrCreateModel = async () => {
   } catch (err) {
     console.log(yellow("No existing model found, training a new one..."));
     await trainModel();
-  }
+  } 
 };
 
 const trainModel = async () => {
-  trainDataToModel(manager);
-  await manager.train();
-  console.log(green("✅ Model trained successfully!"));
-  await manager.save();
-  console.log(green("✅ Model saved successfully!"));
-};
-// This fn finds and returns the matching
-// search value object from the knowledge base
-const matchQuestionToObject = (searchValue) => {
   try {
-    const knowledgesFilePathArray = [
-      "./knowledge/greetings_data.json",
-      "./knowledge/questions_data.json",
-    ];
-    for (let filePath of knowledgesFilePathArray) {
-      const foundObject = getObjectFromMatchingValue(filePath, searchValue);
-      if (foundObject) {
-        return foundObject;
-      }
-    }
+    trainDataToModel(manager);
+    await manager.train();
+    console.log(green("✅ Model trained successfully!"));
+    await manager.save();
+    console.log(green("✅ Model saved successfully!"));
+    return 'Model Trained Succesfully';
   } catch (error) {
-    console.error("Error occured when Matching value", error);
+    console.log('Error occured during training ', error);
+    return 'Unable To Train Model';
   }
 };
 
-const getBaseIntent = (fullIntent) => {
-  const baseIntent = fullIntent.split(".")[0];
-  return baseIntent;
-};
 // Process a message using the NLP manager
 const processMessage = async (message) => {
   const response = await manager.process("en", message);
@@ -87,27 +69,15 @@ const processMessage = async (message) => {
   }
 
   const searchValue = response.answer;
-
   updateFrequency(searchValue);
- 
-
-  // Fallback Answer
-  if (!response.answer) {
-    response.answer =
-      "I'm sorry, I'm still learning and may not have the answer to that question just yet. Is there anything else I can assist you with?";
-  }
-  // console.log(response);
-
-  const intent = getBaseIntent(response.intent);
-  const template = getResponseTemplate(intent);
-  const data = {
+  const responseData = {
     answer: response.answer,
   };
   const dynamicResponse = generateDynamicResponse(response.intent, responseData);
   response.answer = dynamicResponse;
 
   return response;
-  };
+};
 
 const guessLanguage = (text) => {
   const language = new Language();
@@ -118,7 +88,7 @@ const guessLanguage = (text) => {
 }
 
 module.exports = {
-  getFrequentlyAskedQuestion,
   loadOrCreateModel,
   processMessage,
+  trainModel
 };
