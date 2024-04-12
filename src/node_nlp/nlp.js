@@ -41,6 +41,8 @@ const trainModel = async () => {
 const processMessage = async (message) => {
   const response = await manager.process("en", message);
 
+  // console.log(response);
+
   // ! Fallback Responses
   utteranceLanguage = guessLanguage(response.utterance);
   if (utteranceLanguage !== 'english' && utteranceLanguage !== 'tagalog') {

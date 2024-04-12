@@ -1,5 +1,5 @@
 const { green, red } = require('colorette');
-const { getObjectFromMatchingValue } = require("../../jsonReader");
+const { getObjectFromMatchingValue } = require("../../utils/jsonReader");
 
 const matchQuestionToObject = (searchValue, filePaths) => {
 

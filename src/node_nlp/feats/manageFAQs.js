@@ -1,6 +1,6 @@
-const { green, yellow } = require('colorette');
+const { yellow, red } = require('colorette');
 const { insertData } = require('../../firebase/firebase-config');
-const { readJSONFile, updateJSONFile } = require("../../jsonReader");
+const { readJSONFile, updateJSONFile } = require("../../utils/jsonReader");
 const matchQuestionToObject = require('./objectMatcher');
 
 /* 
@@ -14,13 +14,14 @@ const updateFrequency = (searchValue) => {
     }
     // * Add file paths that are to be included in frequency tracking
     const knowledgeFilePaths = [
-      './knowledge/questions_data.json',
+      './knowledge/question_data.json',
       './knowledge/navigation_data.json',
-      './knowledge/request.json',
+      './knowledge/request_data.json',
     ]
     const foundObject = matchQuestionToObject(searchValue, knowledgeFilePaths);
+
     if (!foundObject) {
-      console.log("Unable to update Frequency Object not found");
+      console.log(red("Failed to update Frequency Object was not found from the provided knowledge paths"));
       return;
     }
     const jsonFAQFilePath = "question_frequency.json";
@@ -30,9 +31,8 @@ const updateFrequency = (searchValue) => {
       answer: foundObject.answer,
       frequency: 1,
     };
-    updateJSONFile(jsonFAQFilePath, newData);
-    console.log(green("✅ Frequency has been updated"));
-    // insertFAQsToDatabase();
+    updateFrequencyData(jsonFAQFilePath, newData);
+    
   } catch (error) {
     console.log('An error occured', error.message);
   }
@@ -56,8 +56,8 @@ const updateFrequencyData = (filePath, newData) => {
 
 const insertFAQsToDatabase = () => {
   const top5Questions = getHighestFrequency();
-  console.log(yellow('Updating FAQs to Database...'));
-  insertData("FAQs", top5Questions, true);
+  console.log(yellow('Updating FAQs to Database...'), top5Questions);
+  // insertData("FAQs", top5Questions, true);
 };
 
 class MaxHeap {

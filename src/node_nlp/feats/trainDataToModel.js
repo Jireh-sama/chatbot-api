@@ -1,39 +1,30 @@
-const { yellow, red } = require('colorette');
-const salutationData = require('../../knowledge/salutation_data.json');
-const navigationData = require('../../knowledge/navigation_data.json');
-const questionData = require('../../knowledge/questions_data.json');
-const requestData = require('../../knowledge/request_data.json');
-const aboutBotData = require('../../knowledge/about_bot_data.json');
+const { getAllFilePaths, readJSONFile } = require('../../utils/jsonReader');
 
-
-let incrementingId = 1;
-
-const trainDataToModel = (manager) => {
-
-  const loadDataIntoModel = (manager, data, incrementingId) => {
+const trainDataToModel = (manager) => {  
+  const loadDataIntoModel = (manager, data) => {
     try {
       data.forEach((datum) => {
         datum.documents.forEach((document) => {
           manager.addDocument("en", document, datum.intent);
         });
-        manager.addAnswer("en", datum.intent, datum.answer, {
-          id: incrementingId++,
-        });
+        manager.addAnswer("en", datum.intent, datum.answer);
       });
     } catch (error) {
       console.error('An error occured while loading data into the Model: ', error.message);
     }
   };
-  const allData = [salutationData, questionData, navigationData, requestData, aboutBotData];
-  if (allData.every(data => data)) {
-    console.log(yellow('Loading data into the model...'));
-    loadDataIntoModel(manager, salutationData, incrementingId);
-    loadDataIntoModel(manager, questionData, incrementingId);
-    loadDataIntoModel(manager, navigationData, incrementingId);
-    loadDataIntoModel(manager, requestData, incrementingId);
-    loadDataIntoModel(manager, aboutBotData, incrementingId);
-  } else {
-    console.error(red("One or more Knowledge data does not exist"));
+
+  const knowledgePaths = getAllFilePaths('./knowledge')
+
+  for (const path of knowledgePaths) {
+    const knowledgeData = readJSONFile(path);
+    if (!knowledgeData) {
+      console.error('A knowledge data is falsy path: ', path);
+      continue;
+    }
+    loadDataIntoModel(manager, knowledgeData);
+    console.log('Finished training: ', path);
   }
 }
 module.exports = trainDataToModel;
+
