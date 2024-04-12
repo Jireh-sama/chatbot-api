@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd src && node index"
+    "start": "cd src && node index",
+    "dev": "cd src && npx nodemon index.js --ignore *.json"
   },
   "author": "",
   "license": "ISC",
