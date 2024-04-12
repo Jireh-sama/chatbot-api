@@ -1,4 +1,5 @@
 const express = require("express");
+const path = require('path');
 const cron = require('node-cron');
 const cors = require("cors");
 const { readJSONFile, getAllFilePaths, deleteJSONFile } = require('./utils/jsonReader');
@@ -9,6 +10,7 @@ const app = express();
 const port = 3001;
 
 // Server Middleware
+app.use('/admin', express.static(path.join(__dirname, '../admin')));
 app.use(
   cors({
     origin: "*",
