@@ -43,10 +43,15 @@ app.get('/bot/faq', (req, res) => {
   const faq = getFrequentlyAskedQuestion();
   res.send(faq);
 })
+// route to trigger training
 app.get('/bot/train', async (req, res) => {
-  const status = await trainModel();
+  await deleteJSONFile('./model.nlp');
+  setTimeout(async () => {
+  const status = await loadOrCreateModel();
   console.log(status);
   res.send(status);
+  }, 1000);
+}); 
 // route to get all knowledge data
 app.get('/bot/getKnowledge', async (req, res) => {
   try {
