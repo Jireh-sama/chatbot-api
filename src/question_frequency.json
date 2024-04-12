@@ -5,6 +5,59 @@
       "how to pay taxes"
     ],
     "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department.",
+    "frequency": 11
+  },
+  {
+    "questions": [
+      "Where is the CRD office located in Bacoor City Hall?",
+      "I need to visit the CRD office at Bacoor City Hall. Can you help me find it?",
+      "Excuse me, could you please tell me where the City Registry of Deeds office is located within the Bacoor City Hall?",
+      "Where exactly can I find the City Registry of Deeds in Bacoor City Hall?",
+      "I'm looking for the City registry of deeds office. Do you know where it is in Bacoor City Hall?"
+    ],
+    "answer": "The CRD (City Registry of Deeds) is located near the main entrance of the building. Upon entering from the main entrance, simply look to your right, and you will find the office.@=@Is there anything else i can assist you with?",
+    "frequency": 14
+  },
+  {
+    "questions": [
+      "who is the current leading mayor of bacoor, cavite"
+    ],
+    "answer": "the current mayor of Bacoor, Cavite, is Strike Bautista Revilla.",
+    "frequency": 3
+  },
+  {
+    "questions": [
+      "can you give me the BIR form for application of registration",
+      "send me the bir form for the Application of registration",
+      "do you have the application of registration form for the BIR"
+    ],
+    "answer": "here is the form that you are asking for https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/21151903.pdf?alt=media&token=ac859c38-6a4b-47db-ae3c-c3047b73a95c",
+    "frequency": 3
+  },
+  {
+    "questions": [
+      "Where can i find the engineering department in the bacoor city hall?",
+      "can you give me directions on how to get to the engineering department",
+      "where is the engineering department located?"
+    ],
+    "answer": "The engineering department at the Bacoor City Hall is conveniently located on the second floor of the main administrative building. Upon entering the City Hall premises, head towards the central lobby area where you'll find helpful signage directing you to various departments. Once you reach the second floor, follow the signs specifically indicating the direction to the engineering department. The department office is easily identifiable with its prominent signage and is situated in close proximity to the City Planning and Development Office. Upon arrival, you'll be warmly greeted by the department's receptionist who will assist you with any inquiries or transactions related to engineering services, permits, or consultations. Additionally, if you require further assistance, feel free to approach any of the courteous staff members who are readily available to provide guidance and support. We strive to ensure a seamless and efficient experience for all visitors seeking assistance from the engineering department at Bacoor City Hall.@=@Is there anything else i can assist you with?",
     "frequency": 1
+  },
+  {
+    "questions": [
+      "Where is the B.O.S.S office located in Bacoor City Hall?",
+      "where is the Business one stop shop located in the bacoor city hall?",
+      "can you tell me where i can find the B.O.S.S office?"
+    ],
+    "answer": "B.O.S.S, short for Business One Stop Shop, is situated on the first floor of the main building. Upon entering from the main entrance, simply look to your left, towards the west, and you will find the office there.@=@Is there anything else i can assist you with?",
+    "frequency": 2
+  },
+  {
+    "questions": [
+      "Where is the City Finance Department located in Bacoor City Hall?",
+      "can you tell me where i can find the City Finance Department?"
+    ],
+    "answer": "The CFD (City Finance Department) can be located near the main entrance of the building. Upon entering from the main entrance, proceed northwest, then take a left turn, and you will easily spot the department",
+    "frequency": 2
   }
 ]

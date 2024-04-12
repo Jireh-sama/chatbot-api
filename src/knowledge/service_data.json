@@ -1,0 +1,16 @@
+[
+  {
+    "intent": "service.sample_service",
+    "documents": [
+      "give me a sample service data"
+    ],
+    "answer": "Here is a sample service data."
+  },
+  {
+    "intent": "service.emergency_hotline",
+    "documents": [
+      "give me the emergency hotlinme"
+    ],
+    "answer": "The emergency hotline for Cavite is 911."
+  }
+]

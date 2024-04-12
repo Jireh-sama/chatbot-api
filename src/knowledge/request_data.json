@@ -1,8 +1,8 @@
 [
   {
     "intent": "request.form32",
-    "documents": ["can you give me the form or document of "],
-    "answer": "Sure! I'll get you a @size pizza with @toppings."
+    "documents": ["can you give me the BIR form for application of registration", "send me the bir form for the Application of registration", "do you have the application of registration form for the BIR"],
+    "answer": "here is the form that you are asking for https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/21151903.pdf?alt=media&token=ac859c38-6a4b-47db-ae3c-c3047b73a95c"
   },
   {
     "intent": "request.apply_process_bir",
