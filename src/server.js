@@ -4,20 +4,27 @@ const cron = require('node-cron');
 const cors = require("cors");
 const { readJSONFile, getAllFilePaths, deleteJSONFile } = require('./utils/jsonReader');
 const { insertFAQsToDatabase } = require('./node_nlp/feats/manageFAQs');
+const { processMessage, getFrequentlyAskedQuestion, loadOrCreateModel } = require('./node_nlp/nlp');
 const { createKnowledgeBase, insertKnowledgeTrainingData, deleteKnowledgeBase, deleteTrainingData } = require('./utils/knowledgeManager');
+const bodyParser = require('body-parser');
 
 const app = express();
 const port = 3001;
 
+
 // Server Middleware
 app.use('/admin', express.static(path.join(__dirname, '../admin')));
+
+app.use(bodyParser.json());
 app.use(
   cors({
     origin: "*",
   })
 );
 
-// Server route and handler
+// * Server route and handler
+
+// route to send a message
 app.get("/bot", async (req, res) => {
   try {
     const { message } = req.query;
@@ -25,7 +32,6 @@ app.get("/bot", async (req, res) => {
     if (!message) {
       return res.status(400).json({ error: 'Message is required' });
     }
-
     processMessage(message)
         .then(response => {
           res.json(response);
@@ -39,6 +45,7 @@ app.get("/bot", async (req, res) => {
     return res.status(500).json({ error: "⚠️ Internal server error" });
   }
 });
+// route to get faqs
 app.get('/bot/faq', (req, res) => {
   const faq = getFrequentlyAskedQuestion();
   res.send(faq);
@@ -132,8 +139,8 @@ app.delete('/bot/deleteTrainingData/',async (req, res) => {
 ! CONFIGURE THE FORMAT AS YOU FIT SINCE WE ARE STILL IN DEV
 */ 
 cron.schedule('*/10 * * * *', () => {
-  // console.log('Dev mode no fetching to DB!');
-  insertFAQsToDatabase();
+  console.log('Dev mode no fetching to DB!');
+  // insertFAQsToDatabase();
 });
 
 // Start server
