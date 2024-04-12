@@ -39,6 +39,21 @@ const updateFrequency = (searchValue) => {
   
 };
 
+const updateFrequencyData = (filePath, newData) => {
+  try {
+    const prevData = readJSONFile(filePath);
+    const existingDataIndex = prevData.findIndex(data => data.answer === newData.answer);
+    if (existingDataIndex === -1) {
+      prevData.push(newData)
+    } else {
+      prevData[existingDataIndex].frequency++;
+    }
+    updateJSONFile(filePath, prevData);
+  } catch (error) {
+    console.error('Failed updating file ', error)
+  }
+};
+
 const insertFAQsToDatabase = () => {
   const top5Questions = getHighestFrequency();
   console.log(yellow('Updating FAQs to Database...'));
