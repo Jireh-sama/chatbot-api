@@ -1,6 +1,6 @@
 [
   {
-    "intent": "city_officials.mayor",
+    "intent": "cityofficials.mayor",
     "documents": [
       "Who is the mayor",
       "Who is the current mayor of Bacoor?",
@@ -9,7 +9,7 @@
     "answer": "The Mayor of Bacoor is Strike B. Revilla."
   },
   {
-    "intent": "city_officials.vice_mayor",
+    "intent": "cityofficials.vice_mayor",
     "documents": [
       "Who is the vice mayor",
       "Who is the current vice mayor of Bacoor?",
@@ -27,7 +27,7 @@
     "answer": "The Congresswoman of Bacoor is Lani Mercado-Revilla. Revilla."
   },
   {
-    "intent": "city_officials.board_members",
+    "intent": "cityofficials.board_members",
     "documents": [
       "Who are the board members",
       "Who are the current board members of Bacoor?",
@@ -36,7 +36,7 @@
     "answer": "The Board Members of Bacoor are Ram Revilla Bautista, Edwin Malvar and Rafael Paterno III."
   },
   {
-    "intent": "city_officials.abc_president",
+    "intent": "cityofficials.abc_president",
     "documents": [
       "Who is the abc president",
       "Who is the current abc president of Bacoor?",
@@ -45,7 +45,7 @@
     "answer": "The ABC President of Bacoor is Rafael Paterno III."
   },
   {
-    "intent": "city_officials.district_i",
+    "intent": "cityofficials.district_i",
     "documents": [
       "Who are the councilors of district i",
       "Who are the current councilors of district i of Bacoor?",
@@ -54,7 +54,7 @@
     "answer": "The Councilor of District I of Bacoor are Karen Sarino Evaristo, Mike Solis, Adriel Gawaran, Alex Gutierrez and Levy Tela."
   },
   {
-    "intent": "city_officials.district_ii",
+    "intent": "cityofficials.district_ii",
     "documents": [
       "Who are the councilors of district ii",
       "Who are the current councilors of district ii of Bacoor?",
