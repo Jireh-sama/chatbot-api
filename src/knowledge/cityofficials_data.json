@@ -18,7 +18,7 @@
     "answer": "The Vice Mayor of Bacoor is Rowena Bautista Mendiola."
   },
   {
-    "intent": "city_officials.congresswoman",
+    "intent": "cityofficials.congresswoman",
     "documents": [
       "Who is the congresswoman",
       "Who is the current congresswoman of Bacoor?",
