@@ -39,9 +39,26 @@ const deleteTrainingData = (knowledgeDirectory, dataIndex) => {
     console.log('Error deleting training data: ', error);
   }
 }
+const updateTrainingData = (knowledgeDirectory, dataIndex, newData) => {
+  try {
+    const knowledgeBase = readJSONFile(knowledgeDirectory);
+    console.log(knowledgeBase[dataIndex]);
+    console.log();
+    knowledgeBase[dataIndex] = {
+      ...knowledgeBase[dataIndex],
+      ...newData,      
+    };
+    console.log('This is the updated: ', knowledgeBase[dataIndex]);
+    updateJSONFile(knowledgeDirectory, knowledgeBase);
+    console.log('Training has been updated');
+  } catch (error) {
+    console.error('Error updating training data: ', error)
+  }
+}
 module.exports = {
   createKnowledgeBase,
   insertKnowledgeTrainingData,
   deleteKnowledgeBase,
   deleteTrainingData,
+  updateTrainingData,
 }

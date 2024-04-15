@@ -5,7 +5,7 @@ const cors = require("cors");
 const { readJSONFile, getAllFilePaths, deleteJSONFile } = require('./utils/jsonReader');
 const { insertFAQsToDatabase } = require('./node_nlp/feats/manageFAQs');
 const { processMessage, getFrequentlyAskedQuestion, loadOrCreateModel } = require('./node_nlp/nlp');
-const { createKnowledgeBase, insertKnowledgeTrainingData, deleteKnowledgeBase, deleteTrainingData } = require('./utils/knowledgeManager');
+const { createKnowledgeBase, insertKnowledgeTrainingData, deleteKnowledgeBase, deleteTrainingData, updateTrainingData } = require('./utils/knowledgeManager');
 const bodyParser = require('body-parser');
 
 const app = express();
@@ -56,7 +56,7 @@ app.get('/bot/train', async (req, res) => {
   setTimeout(async () => {
   const status = await loadOrCreateModel();
   console.log(status);
-  res.send(status);
+  res.send('Model trained successfully');
   }, 1000);
 }); 
 // route to get all knowledge data
@@ -130,7 +130,34 @@ app.delete('/bot/deleteTrainingData/',async (req, res) => {
     res.status(404).json({ success: false, message: 'Failed deleting Knowledge Base' });
   }
 });
+app.put('/bot/updateTrainingData/',async (req, res) => {
+  try {
+    const {knowledgeBaseIndex, dataIndex, ...data} = req.body
+    const datum = data.newData;
+    
+    // console.log('Datum: ',datum);
 
+    Object.entries(datum).map(([objectKey, value], index) => {
+      if (!value){
+        delete datum[objectKey]
+      }
+    });
+    // console.log('Updated Datum: ', datum);
+    // const data = {
+    //   knowledgeBaseIndex: knowledgeBaseIndex,
+    //   dataIndex: dataIndex,
+    //   newData: dataIndex,
+    // }
+    // console.log(data);
+    const filePaths = await getAllFilePaths('./knowledge');
+    const knowledgePath = filePaths[knowledgeBaseIndex]
+    updateTrainingData(knowledgePath, dataIndex, datum)
+    res.status(200).json({ success: true, message: 'training data updated' });
+    
+  } catch (error) {
+    console.error('no update for u', error);
+  }
+});
 
 // CRON TASKS
 /* 
