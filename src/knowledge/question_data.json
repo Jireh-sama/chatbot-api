@@ -30,8 +30,40 @@
     "answer": "The City of Bacoor Government Center, formerly Bacoor Government Center or Bacoor City Government Center, is a complex that serves as the seat of government of Bacoor City, Cavite, Philippines. It is where its city hall is located."
   },
   {
+    "intent": "question.bacoor_city_hall_contact",
+    "documents": [
+      "What is the contact number for Bacoor City Hall?",
+      "How can I contact Bacoor City Hall?",
+      "Do you have the phone number for Bacoor City Hall?",
+      "What is the email address for Bacoor City Hall?",
+      "Can you provide the contact details for Bacoor City Hall?",
+      "How do I get in touch with Bacoor City Hall?",
+      "Is there a phone number I can call for Bacoor City Hall?",
+      "What contact information does Bacoor City Hall provide?",
+      "Where can I find the contact details for Bacoor City Hall?",
+      "How can I reach out to Bacoor City Hall for assistance?"
+    ],
+    "answer": "If you need to get in touch with Bacoor City Hall, I can provide you with their contact details. You can reach them at 📞 (046) 481 4100. Additionally, if you prefer another form of contact, you can email them at ✉️ bacoorcitygovernment@gmail.com. Whether you have questions about city services, need assistance with administrative matters, or have any other inquiries, feel free to ask me."
+  },
+  {
+    "intent": "question.bacoor_city_hall_schedule",
+    "documents": [
+      "What are the operating hours of Bacoor City Hall on weekdays?",
+      "When is Bacoor City Hall open from Monday to Friday?",
+      "Can you provide the weekday schedule for Bacoor City Hall?",
+      "What time does Bacoor City Hall close on weekdays?",
+      "Is Bacoor City Hall open on Saturdays and Sundays?",
+      "When can I visit Bacoor City Hall during the workweek?",
+      "What are the weekday office hours of Bacoor City Hall?",
+      "Does Bacoor City Hall have regular hours on weekdays?",
+      "Are there any specific weekdays when Bacoor City Hall is closed?",
+      "Can you tell me about the working days of Bacoor City Hall?"
+    ],
+    "answer": "Bacoor City Hall operates from Monday to Friday, with office hours from 8:00 AM to 5:00 PM. On Saturdays and Sundays, the City Hall is closed. This schedule ensures that visitors have access to administrative services throughout the workweek, allowing them to address any inquiries, process documents, or seek assistance from city officials during the specified hours.If you plan to visit Bacoor City Hall, please be mindful of the operating hours to ensure a smooth and efficient experience.@=@Should you have any questions or require further assistance, feel free to ask more questions."
+  },
+  {
     "intent": "question.required_to_bir",
-    "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "Why does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?", "Why do i need to register to BIR"],
+    "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?", "do i need to register to BIR"],
     "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes.@=@ Additionally did you know that the BIR's efforts are pivotal in ensuring the smooth functioning of the Philippine economy? Feel free to ask if you have any questions or if there's anything specific you'd like to know about the BIR's role or tax-related matters!"
   }
 ]

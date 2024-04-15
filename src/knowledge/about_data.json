@@ -3,7 +3,6 @@
     "intent": "about.creator",
     "documents": [
       "Who made you",
-      "Who created you",
       "Can you tell me who designed",
       "Do you know who programmed you?",
       "What is the name of your creator?"
@@ -18,5 +17,13 @@
       "what are you called?"
     ],
     "answer": "Hello, my name is Viviane and i am a chatbot that is designed to provide information that is related to the City Hall of Bacoor."
+  },
+  {
+    "intent": "about.arvie",
+    "documents": [
+      "who is arvie",
+      "talk to me about arvie"
+    ],
+    "answer": "arvie is the sole light of CVSU and is the most purest being on this planet"
   }
 ]
