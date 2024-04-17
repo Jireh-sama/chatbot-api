@@ -2,6 +2,11 @@
   {
     "intent": "link.cityhall_facebook_page",
     "documents": ["Does the city hall of bacoor have a facebook page"],
-    "answer": "this is the link for the official facebook page of the City Hall of Bacoor {=https://web.facebook.com/CityGovtBacoor=}"
+    "answer": "Here's the official Facebook page of the City Hall of Bacoor, {=https://web.facebook.com/CityGovtBacoor=}"
+  },
+  {
+    "intent": "link.bacoor_peso_facebook_page",
+    "documents": ["can you give me the link for the Bacoor Public Employment Service Office facebook page", "do you have the link for the bacoor peso facebook page"],
+    "answer": "Here's the official Facebook page of the City Hall of Bacoor, {=https://web.facebook.com/PESOBacoorOfficial=}"
   }
 ]

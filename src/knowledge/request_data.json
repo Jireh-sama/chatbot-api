@@ -1,10 +1,5 @@
 [
   {
-    "intent": "request.form32",
-    "documents": ["can you give me the BIR form for application of registration", "send me the bir form for the Application of registration", "do you have the application of registration form for the BIR"],
-    "answer": "here is the form that you are asking for https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/21151903.pdf?alt=media&token=ac859c38-6a4b-47db-ae3c-c3047b73a95c"
-  },
-  {
     "intent": "request.apply_process_bir",
     "documents": ["can you give me a step-by-step process of how i can register my business with the BIR"],
     "answer": "Depending on the business entity your company is registered under, you will have to undergo the following steps and secure the necessary documents to be legally allowed to operate in the Philippines.\n\nHere is a step-by-step process on how to register with the BIR:\n\nFor Corporations and Partnerships:\n\n 1. Accomplish BIR Form 1903 (Application for Registration for Corporations/Partnerships [Taxable/Non-Taxable]) and submit the same together with the required supporting documents to the Revenue District Office (RDO) that has jurisdiction over the location of your business. The supporting documents to be attached to Form 1903 are as follows:\n\n    a. SEC Certificate of Registration (or License to Do Business in the Philippines for resident foreign corporations)\n    b. Mayor’s Permit or application for Mayor’s Permit (must be submitted prior to the issuance of the BIR Certificate of Registration)\n    c. Contract of Lease\n    d. Other documents to be submitted if applicable:\n    e. Certificate of Authority (if Barangay Micro Business Enterprises (BMBE) registered entity)\n    f. Franchise Agreement\n    g. Proof of Registration/Permit to Operate with BOI, PEZA, SBMA, or BCDA"

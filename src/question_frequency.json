@@ -16,7 +16,7 @@
       "I'm looking for the City registry of deeds office. Do you know where it is in Bacoor City Hall?"
     ],
     "answer": "The CRD (City Registry of Deeds) is located near the main entrance of the building. Upon entering from the main entrance, simply look to your right, and you will find the office.@=@Is there anything else i can assist you with?",
-    "frequency": 18
+    "frequency": 19
   },
   {
     "questions": [
@@ -32,7 +32,7 @@
       "do you have the application of registration form for the BIR"
     ],
     "answer": "here is the form that you are asking for https://firebasestorage.googleapis.com/v0/b/cob-chatbot.appspot.com/o/21151903.pdf?alt=media&token=ac859c38-6a4b-47db-ae3c-c3047b73a95c",
-    "frequency": 5
+    "frequency": 9
   },
   {
     "questions": [
@@ -90,7 +90,7 @@
       "How can I reach out to Bacoor City Hall for assistance?"
     ],
     "answer": "If you need to get in touch with Bacoor City Hall, I can provide you with their contact details. You can reach them at 📞 (046) 481 4100. Additionally, if you prefer another form of contact, you can email them at ✉️ bacoorcitygovernment@gmail.com. Whether you have questions about city services, need assistance with administrative matters, or have any other inquiries, feel free to ask me.",
-    "frequency": 2
+    "frequency": 3
   },
   {
     "questions": [
@@ -106,7 +106,7 @@
       "Can you tell me about the working days of Bacoor City Hall?"
     ],
     "answer": "Bacoor City Hall operates from Monday to Friday, with office hours from 8:00 AM to 5:00 PM. On Saturdays and Sundays, the City Hall is closed. This schedule ensures that visitors have access to administrative services throughout the workweek, allowing them to address any inquiries, process documents, or seek assistance from city officials during the specified hours.If you plan to visit Bacoor City Hall, please be mindful of the operating hours to ensure a smooth and efficient experience.@=@Should you have any questions or require further assistance, feel free to ask more questions.",
-    "frequency": 1
+    "frequency": 3
   },
   {
     "questions": [
@@ -118,6 +118,22 @@
       "Why do i need to register to BIR"
     ],
     "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes.@=@ Additionally did you know that the BIR's efforts are pivotal in ensuring the smooth functioning of the Philippine economy? Feel free to ask if you have any questions or if there's anything specific you'd like to know about the BIR's role or tax-related matters!",
+    "frequency": 1
+  },
+  {
+    "questions": [
+      "can you give me a step-by-step process of how i can register my business with the BIR"
+    ],
+    "answer": "Depending on the business entity your company is registered under, you will have to undergo the following steps and secure the necessary documents to be legally allowed to operate in the Philippines.\n\nHere is a step-by-step process on how to register with the BIR:\n\nFor Corporations and Partnerships:\n\n 1. Accomplish BIR Form 1903 (Application for Registration for Corporations/Partnerships [Taxable/Non-Taxable]) and submit the same together with the required supporting documents to the Revenue District Office (RDO) that has jurisdiction over the location of your business. The supporting documents to be attached to Form 1903 are as follows:\n\n    a. SEC Certificate of Registration (or License to Do Business in the Philippines for resident foreign corporations)\n    b. Mayor’s Permit or application for Mayor’s Permit (must be submitted prior to the issuance of the BIR Certificate of Registration)\n    c. Contract of Lease\n    d. Other documents to be submitted if applicable:\n    e. Certificate of Authority (if Barangay Micro Business Enterprises (BMBE) registered entity)\n    f. Franchise Agreement\n    g. Proof of Registration/Permit to Operate with BOI, PEZA, SBMA, or BCDA",
+    "frequency": 1
+  },
+  {
+    "questions": [
+      "Where is the City Hall of Bacoor, Cavite located?",
+      "Where can i find the City hall of Bacoor Cavite?",
+      "can you tell me the currect location of the bacoor city hall?"
+    ],
+    "answer": "The City of Bacoor Government Center, formerly Bacoor Government Center or Bacoor City Government Center, is a complex that serves as the seat of government of Bacoor City, Cavite, Philippines. It is where its city hall is located.",
     "frequency": 1
   }
 ]

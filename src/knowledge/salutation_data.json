@@ -5,11 +5,6 @@
       "Hello there",
       "Hi, How are you",
       "Greetings!",
-      "Hey!",
-      "Good morning!",
-      "Hi, what's up?",
-      "Hey, how's it going?",
-      "What's happening?",
       "Hey, nice to see you!"
     ],
     "answer": "Hello! My name is Viviane 😊 How can I assist you today?"
@@ -30,13 +25,10 @@
       "Thank you",
       "Thanks a lot",
       "Much appreciated",
-      "Thanks!",
       "Appreciate it!",
-      "Thank you very much!",
       "Big thank you!",
       "Thanks for your help!",
-      "Thanks for everything!",
-      "Thank you kindly!"
+      "Thanks for everything!"
     ],
     "answer": "You're welcome! It's my pleasure to assist you. 😊"
   },
@@ -44,13 +36,10 @@
     "intent": "salutation.thanks_polite",
     "documents": [
       "Thank you very much",
-      "I'm grateful",
       "Many thanks",
-      "I'm deeply thankful",
       "Much obliged!",
       "I truly appreciate it!",
       "Thank you kindly!",
-      "I am thankful for your assistance",
       "Thank you from the bottom of my heart",
       "I want to express my gratitude"
     ],
@@ -67,25 +56,8 @@
       "Until next time!",
       "So long!",
       "Catch you later!",
-      "Adios!",
       "Bye for now!"
     ],
     "answer": "Goodbye! Take care and have a great day! 👋"
-  },
-  {
-    "intent": "salutation.goodbye_positive",
-    "documents": [
-      "Have a great day",
-      "Take care",
-      "Until next time",
-      "Enjoy your day!",
-      "Wishing you well!",
-      "Take it easy!",
-      "Have a fantastic day ahead!",
-      "Stay safe and well!",
-      "May your day be filled with joy!",
-      "Keep smiling!"
-    ],
-    "answer": "Thank you! You too have a fantastic day!"
   }
 ]
