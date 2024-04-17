@@ -46,6 +46,15 @@ const getResponseTemplate = (intent) => {
         requestResponses[Math.floor(Math.random() * requestResponses.length)];
       break;
     
+    // * Request Intent Formats
+    case "link":
+      const linkResponses = [
+        "Certainly! {{answer}}",
+        "Absolutely! {{answer}}",
+      ];
+      responseTemplate =
+        linkResponses[Math.floor(Math.random() * linkResponses.length)];
+      break;
 
     default:
       responseTemplate = "{{answer}}";
