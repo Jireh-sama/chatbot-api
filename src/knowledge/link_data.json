@@ -1,0 +1,7 @@
+[
+  {
+    "intent": "link.cityhall_facebook_page",
+    "documents": ["Does the city hall of bacoor have a facebook page"],
+    "answer": "this is the link for the official facebook page of the City Hall of Bacoor {=https://web.facebook.com/CityGovtBacoor=}"
+  }
+]

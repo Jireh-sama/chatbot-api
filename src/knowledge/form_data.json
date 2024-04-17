@@ -1,0 +1,7 @@
+[
+  {
+    "intent": "form.bir_application_for_registration",
+    "documents": ["can you give me the BIR form for application of registration", "send me the bir form for the Application of registration", "do you have the application of registration form for the BIR"],
+    "answer": "here is the form that you are asking for {=https://www.dropbox.com/scl/fi/arodmw7p1rgvmm283myto/BIR_application_of_registration.pdf?rlkey=tgl7hme01yy4nha0qfay00cnr&dl=1=}"
+  }
+]
