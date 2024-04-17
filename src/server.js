@@ -71,7 +71,7 @@ app.get('/bot/getKnowledge', async (req, res) => {
     }
     res.json(allKnowledgeData);
   } catch (error) {
-    console.log('Errpr occured when getting all knowledege ', error);
+    console.log('Error occured when getting all knowledege ', error);
   }
 });
 // route to add a training data
@@ -134,21 +134,12 @@ app.put('/bot/updateTrainingData/',async (req, res) => {
   try {
     const {knowledgeBaseIndex, dataIndex, ...data} = req.body
     const datum = data.newData;
-    
-    // console.log('Datum: ',datum);
-
+  
     Object.entries(datum).map(([objectKey, value], index) => {
       if (!value){
         delete datum[objectKey]
       }
     });
-    // console.log('Updated Datum: ', datum);
-    // const data = {
-    //   knowledgeBaseIndex: knowledgeBaseIndex,
-    //   dataIndex: dataIndex,
-    //   newData: dataIndex,
-    // }
-    // console.log(data);
     const filePaths = await getAllFilePaths('./knowledge');
     const knowledgePath = filePaths[knowledgeBaseIndex]
     updateTrainingData(knowledgePath, dataIndex, datum)

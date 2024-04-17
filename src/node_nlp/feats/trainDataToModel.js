@@ -3,6 +3,9 @@ const { getAllFilePaths, readJSONFile } = require('../../utils/jsonReader');
 const trainDataToModel = (manager) => {  
   const loadDataIntoModel = (manager, data) => {
     try {
+      if (!data) {
+        console.log('data is null');
+      };
       data.forEach((datum) => {
         datum.documents.forEach((document) => {
           manager.addDocument("en", document, datum.intent);
@@ -11,6 +14,7 @@ const trainDataToModel = (manager) => {
       });
     } catch (error) {
       console.error('An error occured while loading data into the Model: ', error.message);
+      console.error('Corrupt data: ', data);
     }
   };
 
