@@ -5,6 +5,7 @@ const modelPath = path.join(__dirname, "model");
 const trainDataToModel = require('./feats/trainDataToModel');
 const { updateFrequency } = require('./feats/manageFAQs');
 const generateDynamicResponse = require('./feats/responseGenerator');
+const { notEnglishAndTagalog, isTagalog, noAnswer, utteranceToShort } = require('./feats/fallbackResponse');
 const manager = new NlpManager({
   languages: ["en"],
   nlu: { log: true, useNoneFeature: true },
@@ -39,37 +40,26 @@ const trainModel = async () => {
 
 // Process a message using the NLP manager
 const processMessage = async (message) => {
-  const response = await manager.process("en", message);
+  let response = await manager.process("en", message);
 
-  // console.log(response);
+  console.log(response);
 
-  // ! Fallback Responses
-  utteranceLanguage = guessLanguage(response.utterance);
-  if (utteranceLanguage !== 'english' && utteranceLanguage !== 'tagalog') {
-    const fallbackResponses = [
-      "I'm sorry, I currently only support English. Can you please ask your question in English?",
-      "Apologies, my language skills are limited to English at the moment. Could you rephrase your question in English?",
-      "Unfortunately, I can only understand English right now. Could you please translate your query into English?",
-    ];
-    response.answer = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
-    return response;
-  } else if (utteranceLanguage === 'tagalog') {
-    // Do something specific for Tagalog language
-    response.answer = "Pasensya na, ngunit sa ngayon ay hindi ko pa kayang maunawaan ang Tagalog. Maaari mo bang itanong ang iyong katanungan sa Ingles?";
+  // ! Fallback Response
+  const utteranceLanguage = guessLanguage(response.utterance);
+  const responseIntent = response.intent.toLowerCase();
+  if (notEnglishAndTagalog(response, utteranceLanguage)) {
     return response;
   }
-  // ! Fallback Responses
-  responseIntent = response.intent.toLowerCase();
-  if (!response.answer || responseIntent === 'none') {
-    const fallbackResponses = [
-      "Oh, it seems I haven't quite gotten to that part in my learning journey yet! Is there something else I can help you with instead?",
-      "I'm sorry, I'm still learning and may not have the answer to that question just yet. Is there anything else I can assist you with?",
-      "Interesting! It seems I haven't learned about that just yet. What else can I assist you with?"
-    ]
-    response.answer = fallbackResponses[Math.floor(Math.random() * fallbackResponses.length)];
+  if (isTagalog(response, utteranceLanguage)) {
     return response;
   }
-
+  if (noAnswer(response, responseIntent)) {
+    return response;
+  }
+  if (utteranceToShort(response, responseIntent)) {
+    return response;
+  }
+  
   const searchValue = response.answer;
   updateFrequency(searchValue);
   const responseData = {
@@ -92,5 +82,5 @@ const guessLanguage = (text) => {
 module.exports = {
   loadOrCreateModel,
   processMessage,
-  trainModel
+  trainModel,
 };
