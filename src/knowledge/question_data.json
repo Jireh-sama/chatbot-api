@@ -1,8 +1,8 @@
 [
   {
     "intent": "question.who_is_bacoor_mayor",
-    "documents": ["who is the current leading mayor of bacoor, cavite"],
-    "answer": "the current mayor of Bacoor, Cavite, is Strike Bautista Revilla."
+    "documents": ["who is the current leading mayor of the city of bacoor?", "do you know who is the mayor of bacoor?", "tell me who is the mayor of bacoor city"],
+    "answer": "the current mayor of Bacoor, Cavite, is Strike Bautista Revilla also known as the 24/7 City Mayor."
   },
   {
     "intent": "question.business_permit_requirements",
@@ -65,5 +65,22 @@
     "intent": "question.required_to_bir",
     "documents": ["Why Am I Required To Register With BIR?", "What are the key reasons for the necessity of BIR registration?", "Can you explain the purpose behind BIR registration requirements?", "does BIR mandate registration for individuals and businesses?", "What drives the obligation to register with BIR?", "do i need to register to BIR"],
     "answer": "As the taxing authority in the Philippines, the BIR regulates finance, taxation, and monetary policy in the country and collects internal revenue taxes, fees, and charges. It also enforces all forfeitures, penalties, and fines to individuals/organizations that fail to file their taxes.@=@ Additionally did you know that the BIR's efforts are pivotal in ensuring the smooth functioning of the Philippine economy? Feel free to ask if you have any questions or if there's anything specific you'd like to know about the BIR's role or tax-related matters!"
+  },
+  {
+    "intent": "question.LTO",
+    "documents": [
+      "What is LTO? Land Transportation Office",
+      "can you give me information about LTO? Land Transportation Office"
+    ],
+    "answer": "The LTO is a government organization that is in charge of the land transportation system of the Philippines. Its various tasks include the inspection and registration of motor vehicles, issuing driver's licenses, and enforcing regulations and laws."
+  },
+  {
+    "intent": "question.LTO_purpose",
+    "documents": [
+      "What is the primary goal of LTO?",
+      "do you what's the purpose of LTO?",
+      "why was LTO created"
+    ],
+    "answer": "The primary goal of the LTO is to make land transportation facilities and services more efficient while reducing the complexity of its regulations and laws. It also believes that public servants must become more aware of their roles in developing the country's leadership. One of the agency's main commitments is to provide a safe and comfortable environment for land travel."
   }
 ]

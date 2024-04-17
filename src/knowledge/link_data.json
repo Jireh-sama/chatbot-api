@@ -8,5 +8,15 @@
     "intent": "link.bacoor_peso_facebook_page",
     "documents": ["can you give me the link for the Bacoor Public Employment Service Office facebook page", "do you have the link for the bacoor peso facebook page"],
     "answer": "Here's the official Facebook page of the City Hall of Bacoor, {=https://web.facebook.com/PESOBacoorOfficial=}"
+  },
+  {
+    "intent": "link.mayor_strike_facebook",
+    "documents": ["Does Mayor Strike B. Revilla have a facebook?"],
+    "answer": "Here's the official link to Mayor Strike's Facebook Profile, {=https://www.facebook.com/MayorStrikeRevilla=}"
+  },
+  {
+    "intent": "link.mayor_strike_linky",
+    "documents": ["Can you give me the linky page for Mayor Strike B. Revilla", "does mayor strike provide a linky?", "can you give me links or pages related to our mayor strike b. revilla"],
+    "answer": "Here's the linky.ph page for Mayor Strike, {=https://linky.ph/strikebrevilla=}. In there you can find a compilation of links related to Mayor Srike B. Revilla all in one place."
   }
 ]

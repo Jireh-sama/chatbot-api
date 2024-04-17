@@ -1,7 +1,38 @@
 [
   {
-    "intent": "service.emergency_hotline",
-    "documents": ["give me the emergency hotline"],
-    "answer": "The emergency hotline for Cavite is 911."
+    "intent": "service.BDRRMO_hotline",
+    "documents": [
+      "What's the emergency hotline for Bacoor Disaster Risk Reduction and Management Office?",
+      "Can you provide the emergency contact number for BDRRMO?",
+      "give me the hotline for Bacoor Disaster Risk Reduction and Management Office?"
+    ],
+    "answer": "The emergency hotline for the Bacoor Disaster Risk Reduction and Management Office (BDRRMO) is (046) 417-0727."
+  },
+  {
+    "intent": "service.PNP_hotline",
+    "documents": [
+      "What's the emergency hotline for Philippine National Police?",
+      "Can you provide the emergency contact number for PNP?",
+      "give me the hotline for Philippine National Police?"
+    ],
+    "answer": "The emergency hotline for the Philippine National Police-Bacoor City (PNP) is (046) 417-6366."
+  },
+  {
+    "intent": "service.BFP_hotline",
+    "documents": [
+      "What's the emergency hotline for Bureau of Fire Protection-Bacoor City?",
+      "Can you provide the emergency contact number for BFP?",
+      "give me the hotline for Bureau of Fire Protection-Bacoor City?"
+    ],
+    "answer": "The emergency hotline for the Bureau of Fire Protection-Bacoor City (BFP) is (046) 417-6060."
+  },
+  {
+    "intent": "service.CIO_hotline",
+    "documents": [
+      "What's the emergency hotline for City Information Office?",
+      "Can you provide the emergency contact number for CIO?",
+      "give me the hotline for City Information Office?"
+    ],
+    "answer": "The emergency hotline for the City Information Office (CIO) is (046) 481-4120."
   }
 ]

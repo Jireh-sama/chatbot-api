@@ -5,7 +5,7 @@
       "how to pay taxes"
     ],
     "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department.",
-    "frequency": 12
+    "frequency": 15
   },
   {
     "questions": [
@@ -16,14 +16,14 @@
       "I'm looking for the City registry of deeds office. Do you know where it is in Bacoor City Hall?"
     ],
     "answer": "The CRD (City Registry of Deeds) is located near the main entrance of the building. Upon entering from the main entrance, simply look to your right, and you will find the office.@=@Is there anything else i can assist you with?",
-    "frequency": 19
+    "frequency": 21
   },
   {
     "questions": [
       "who is the current leading mayor of bacoor, cavite"
     ],
     "answer": "the current mayor of Bacoor, Cavite, is Strike Bautista Revilla.",
-    "frequency": 5
+    "frequency": 6
   },
   {
     "questions": [
@@ -58,7 +58,7 @@
       "can you tell me where i can find the City Finance Department?"
     ],
     "answer": "The CFD (City Finance Department) can be located near the main entrance of the building. Upon entering from the main entrance, proceed northwest, then take a left turn, and you will easily spot the department",
-    "frequency": 3
+    "frequency": 5
   },
   {
     "questions": [
