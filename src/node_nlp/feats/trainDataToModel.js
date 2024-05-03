@@ -7,6 +7,10 @@ const trainDataToModel = (manager) => {
         console.log('data is null');
       };
       data.forEach((datum) => {
+        if (!(datum.documents instanceof Array)) {
+          corruptedData = datum.documents;
+          throw new Error("Expecting Array from Documents instead got a different data type");
+        }
         datum.documents.forEach((document) => {
           manager.addDocument("en", document, datum.intent);
         });
