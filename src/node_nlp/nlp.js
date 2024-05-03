@@ -1,4 +1,4 @@
-const { green, yellow } = require('colorette');
+const { green, yellow, red } = require('colorette');
 const { NlpManager, Language } = require("node-nlp");
 const path = require("path");
 const modelPath = path.join(__dirname, "model");
@@ -6,6 +6,7 @@ const trainDataToModel = require('./feats/trainDataToModel');
 const { updateFrequency } = require('./feats/manageFAQs');
 const generateDynamicResponse = require('./feats/responseGenerator');
 const { notEnglishAndTagalog, isTagalog, noAnswer, utteranceToShort } = require('./feats/fallbackResponse');
+
 const manager = new NlpManager({
   languages: ["en"],
   nlu: { log: true, useNoneFeature: true },
@@ -33,7 +34,7 @@ const trainModel = async () => {
     console.log(green("✅ Model saved successfully!"));
     return 'Model Trained Succesfully';
   } catch (error) {
-    console.log('Error occured during training ', error);
+    console.log(red(`Error occurred during training phase: ${error}`));
     return 'Unable To Train Model';
   }
 };

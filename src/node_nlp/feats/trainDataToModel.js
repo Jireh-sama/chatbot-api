@@ -1,7 +1,9 @@
 const { getAllFilePaths, readJSONFile } = require('../../utils/jsonReader');
-
+const { red } = require('colorette');
 const trainDataToModel = (manager) => {  
+  
   const loadDataIntoModel = (manager, data) => {
+    let corruptedData = null;
     try {
       if (!data) {
         console.log('data is null');
@@ -17,8 +19,8 @@ const trainDataToModel = (manager) => {
         manager.addAnswer("en", datum.intent, datum.answer);
       });
     } catch (error) {
-      console.error('An error occured while loading data into the Model: ', error.message);
-      console.error('Corrupt data: ', data);
+      console.error(red(`An error occured while loading data into the Model: ${error.message}`));
+      console.error(red(`Corrupt data: ${corruptedData}`));
     }
   };
 
