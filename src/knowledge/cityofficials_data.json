@@ -21,10 +21,13 @@
     "intent": "cityofficials.congresswoman",
     "documents": [
       "Who is the congresswoman",
+      "Who is the congress woman",
       "Who is the current congresswoman of Bacoor?",
-      "Who is the congresswoman of Bacoor"
+      "Who is the current congress woman of Bacoor?",
+      "Who is the congresswoman of Bacoor",
+      "Who is the congress woman of Bacoor"
     ],
-    "answer": "The Congresswoman of Bacoor is Lani Mercado-Revilla. Revilla."
+    "answer": "The Congresswoman of Bacoor is Lani Mercado-Revilla"
   },
   {
     "intent": "cityofficials.board_members",
