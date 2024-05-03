@@ -132,21 +132,22 @@ app.delete('/bot/deleteTrainingData/',async (req, res) => {
 });
 app.put('/bot/updateTrainingData/',async (req, res) => {
   try {
-    const {knowledgeBaseIndex, dataIndex, ...data} = req.body
-    const datum = data.newData;
-  
-    Object.entries(datum).map(([objectKey, value], index) => {
-      if (!value){
-        delete datum[objectKey]
-      }
-    });
+    const {knowledgeBaseIndex, dataIndex, newData} = req.body
+    console.log(newData);
+    if (!(newData.documents instanceof Array)) {
+      newData.documents = newData.documents.split(',');
+    }
+    Object.keys(newData).forEach(key => newData[key] || delete newData[key]);
+    console.log(newData);
+    
     const filePaths = await getAllFilePaths('./knowledge');
     const knowledgePath = filePaths[knowledgeBaseIndex]
-    updateTrainingData(knowledgePath, dataIndex, datum)
-    res.status(200).json({ success: true, message: 'training data updated' });
-    
+    updateTrainingData(knowledgePath, dataIndex, newData)
+    newData
+    res.status(200).json({ success: true, message: 'Training data updated' });
   } catch (error) {
-    console.error('no update for u', error);
+    console.error('Error updating training data:', error);
+    res.status(500).json({ success: false, message: 'Failed to update training data' });
   }
 });
 
