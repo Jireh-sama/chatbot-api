@@ -25,11 +25,6 @@
     "answer": "You can pay your real property tax at Bacoor City Hall by visiting the Treasurer's Office or through accredited banks and payment centers. Make sure to bring your tax declaration or tax identification number (TIN) for reference. You can inquire about the current tax rates and payment deadlines at the Treasury Department."
   },
   {
-    "intent": "question.bacoor_city_hall_location",
-    "documents": ["Where is the City Hall of Bacoor, Cavite located?", "Where can i find the City hall of Bacoor Cavite?", "can you tell me the currect location of the bacoor city hall?"],
-    "answer": "The City of Bacoor Government Center, formerly Bacoor Government Center or Bacoor City Government Center, is a complex that serves as the seat of government of Bacoor City, Cavite, Philippines. It is where its city hall is located."
-  },
-  {
     "intent": "question.bacoor_city_hall_contact",
     "documents": [
       "What is the contact number for Bacoor City Hall?",
@@ -84,3 +79,4 @@
     "answer": "The primary goal of the LTO is to make land transportation facilities and services more efficient while reducing the complexity of its regulations and laws. It also believes that public servants must become more aware of their roles in developing the country's leadership. One of the agency's main commitments is to provide a safe and comfortable environment for land travel."
   }
 ]
+

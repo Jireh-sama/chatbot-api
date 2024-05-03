@@ -2,7 +2,7 @@
   {
     "intent": "fallback.office",
     "documents": [
-      "what is the office?",
+      "the office?",
       "what is office?"
     ],
     "answer": "I'm sorry, I didn't understand that. Can you please provide more information about the office?"
@@ -10,9 +10,9 @@
   {
     "intent": "fallback.what_is_the",
     "documents": [
-      "what is the office?",
-      "what is office?"
+      "what is the",
+      "do you know"
     ],
-    "answer": "I'm sorry, I didn't understand that. Can you please provide more information about the office?"
+    "answer": "I'm sorry, I didn't understand that. Can you please elaborate more on what you're asking?"
   }
 ]
