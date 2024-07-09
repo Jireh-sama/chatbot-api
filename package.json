@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "cd src && node index",
-    "dev": "cd src && npx nodemon index.js --ignore *.json"
+    "start": "node index",
+    "dev": "npx nodemon index.js --ignore *.json"
   },
   "author": "",
   "license": "ISC",
@@ -21,6 +21,7 @@
     "express": "^4.18.3",
     "firebase": "^10.8.1",
     "firebase-admin": "^12.0.0",
+    "jsdoc": "^4.0.3",
     "natural": "^6.12.0",
     "node-cron": "^3.0.3",
     "node-nlp": "^4.27.0",

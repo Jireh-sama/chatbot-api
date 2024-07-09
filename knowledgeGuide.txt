@@ -1,0 +1,12 @@
+About - consists of data pertaining to the bot itself like its name, creator etc.
+City Officials - consists of data for the positions of goverment personel such as mayor. vice mayor etc.
+Fallback - consists of data to handle queries that are to vague for the chatbot to process and analyze.
+Form - document file with links to download
+Link - links for social medie or pages
+Navigation - consists of data to handle navigation or location within the city hall.
+Question - consists of queries that are meant to ask for information.
+Request - requirements, steps, process...
+Salutation - greetings farewell etc.
+Service - Email, Contact #
+Trivia - consists of data for trivial things like name, birthday age etc.
+

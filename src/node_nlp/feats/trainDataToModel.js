@@ -24,7 +24,7 @@ const trainDataToModel = (manager) => {
     }
   };
 
-  const knowledgePaths = getAllFilePaths('./knowledge')
+  const knowledgePaths = getAllFilePaths('./src/knowledge')
 
   for (const path of knowledgePaths) {
     const knowledgeData = readJSONFile(path);

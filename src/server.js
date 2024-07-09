@@ -64,7 +64,7 @@ app.get('/bot/getKnowledge', async (req, res) => {
   try {
     console.log('gettings knowledge');
     let allKnowledgeData = []
-    const filePaths = await getAllFilePaths('./knowledge');
+    const filePaths = await getAllFilePaths('./src/knowledge');
     for (const filePath of filePaths) {
       const data = readJSONFile(filePath);
       allKnowledgeData.push(data);
@@ -79,7 +79,7 @@ app.post('/bot/addTrainingData', async (req, res) => {
   try {
     const { knowledgeIndex, knowledgeName, ...trainingData } = req.body;
     trainingData.documents = trainingData.documents.split(',').map(item => item.trim());
-    const filePaths = await getAllFilePaths('./knowledge');
+    const filePaths = await getAllFilePaths('./src/knowledge');
     if (knowledgeIndex < 0 || knowledgeIndex >= filePaths.length) {
       throw new Error('Invalid knowledge index');
     }
@@ -94,11 +94,9 @@ app.post('/bot/addTrainingData', async (req, res) => {
 // route to add a knowledge base
 app.post('/bot/addKnowledgeBase/', (req, res) => {
   try {
-    const { knowledgeIndex, knowledgeName, ...trainingData } = req.body;
+    const { knowledgeName, ...trainingData } = req.body;
     trainingData.documents = trainingData.documents.split(',').map(item => item.trim());
-    const pathTemplate = `./knowledge/${knowledgeName}.json`
-    console.log(pathTemplate);
-    console.log(trainingData);
+    const pathTemplate = `./src/knowledge/${knowledgeName}.json`
     createKnowledgeBase(pathTemplate, [trainingData]);
     res.status(200).json({ success: true, message: 'Knowledge Base added successfully' });
   } catch (error) {
@@ -109,7 +107,7 @@ app.post('/bot/addKnowledgeBase/', (req, res) => {
 app.delete('/bot/deleteKnowledgeBase/',async (req, res) => {
   try {
     const { knowledgeBaseIndex } = req.body;
-    const filePaths = await getAllFilePaths('./knowledge');
+    const filePaths = await getAllFilePaths('./src/knowledge');
     const knowledgePath = filePaths[knowledgeBaseIndex]
     deleteKnowledgeBase(knowledgePath)
     res.status(200).json({ success: true, message: 'Knowledge Base deleted successfully' });
@@ -121,7 +119,7 @@ app.delete('/bot/deleteKnowledgeBase/',async (req, res) => {
 app.delete('/bot/deleteTrainingData/',async (req, res) => {
   try {
     const { knowledgeBaseIndex, dataIndex } = req.body;
-    const filePaths = await getAllFilePaths('./knowledge');
+    const filePaths = await getAllFilePaths('./src/knowledge');
     const knowledgePath = filePaths[knowledgeBaseIndex];
     console.log(`We will delete training data from ${knowledgePath} with index ${dataIndex}`);
     deleteTrainingData(knowledgePath, dataIndex)
@@ -140,7 +138,7 @@ app.put('/bot/updateTrainingData/',async (req, res) => {
     Object.keys(newData).forEach(key => newData[key] || delete newData[key]);
     console.log(newData);
     
-    const filePaths = await getAllFilePaths('./knowledge');
+    const filePaths = await getAllFilePaths('./src/knowledge');
     const knowledgePath = filePaths[knowledgeBaseIndex]
     updateTrainingData(knowledgePath, dataIndex, newData)
     newData
