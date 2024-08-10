@@ -74,7 +74,7 @@ const processMessage = async (message) => {
 
 const guessLanguage = (text) => {
   const language = new Language();
-  languageGuessLimit = 3;
+  const languageGuessLimit = 3;
   const guess = language.guess(text, null, languageGuessLimit);
   const guessedLanguage = guess[0].language.toLowerCase();
   return guessedLanguage;
