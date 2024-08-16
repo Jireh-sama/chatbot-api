@@ -26,7 +26,8 @@
   "devDependencies": {
     "@eslint/js": "^9.9.0",
     "colorette": "^2.0.20",
-    "eslint": "^9.9.0",
+    "eslint": "^8.57.0",
+    "eslint-import-resolver-alias": "^1.1.2",
     "globals": "^15.9.0",
     "jsdoc": "^4.0.3",
     "nodemon": "^3.1.4"
