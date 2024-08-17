@@ -14,8 +14,7 @@ const createKnowledgeBase = async (knowledgeBaseName, defaultDataEntry) => {
   await fs.writeFile(knowledgePath, knowledgeData);
 };
 
-const readKnowledgeBase = async (knowledgeBaseName) => {
-    const knowledgeBasePath = getKnowledgeBasePath(knowledgeBaseName);
+const readKnowledgeBase = async (knowledgeBasePath) => {
     const data = await fs.readFile(knowledgeBasePath, "utf8");
     const jsonData = JSON.parse(data);
     return jsonData;
@@ -41,7 +40,6 @@ const readAllKnowledgeBase = async () => {
   const allKnowledgeData = {};
   const readedKnowledgeData = [];
   const knowledgePathList = await getKnowldgePathList();
-
   for (const knowledgePath of knowledgePathList) {
     const knowledgeData = await readKnowledgeBase(knowledgePath);
     if (knowledgeData.length === 0) {
@@ -149,5 +147,5 @@ module.exports = {
   updateKnowledgeEntry,
   deleteKnowledgeEntry,
 
-  getKnowldgePathList
+  getKnowldgePathList,
 };
