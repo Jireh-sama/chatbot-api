@@ -2,7 +2,15 @@ const express = require('express')
 const path = require('path')
 const cors = require('cors')
 const bodyParser = require('body-parser')
-const { sendMessage, getAllKnowledgeData, addKnowledgeBase, addKnowledgeEntry, deleteKnowledgeBase, deleteKnowledgeEntry, updateKnowledgeEntry } = require('./routes')
+const {
+  sendMessage,
+  getAllKnowledgeData,
+  addKnowledgeBase,
+  addKnowledgeEntry,
+  deleteKnowledgeBase,
+  deleteKnowledgeEntry,
+  updateKnowledgeEntry,
+} = require("./routes");
  
 const app = express();
 
