@@ -46,7 +46,7 @@ class Nlp {
     }
   }
 
-  async initializeOrTrainModel() {
+  async handleInitializeOrTrainModel() {
     try {
       const managerInstance = this.getManagerInstance();
       const knowledgePathList = await getKnowldgePathList();
@@ -72,10 +72,11 @@ class Nlp {
   // ######## KNOWLEDGE_HANDLERS ######## //
   async handleCreateKnowledgeBase(knowledgeBaseName, defaultDataEntry) {
     try {
-      createKnowledgeBase(knowledgeBaseName, defaultDataEntry);
-      console.log("Successfully handled: handleCreateKnowledgeBase");
+      await createKnowledgeBase(knowledgeBaseName, defaultDataEntry);
+      console.log(green("Successfully handled: handleCreateKnowledgeBase"));
     } catch (error) {
-      console.error(red(`Error handling: handleCreateKnowledgeBase: ${error}`));
+      console.error(yellow(`Error handling handleCreateKnowledgeBase`));
+      throw error
     }
   }
 
@@ -85,7 +86,7 @@ class Nlp {
       console.log(green("Successfully handled: handleReadKnowledgeBase"));
       return data;
     } catch (error) {
-      console.log(red(`Error handling: handleReadKnowledgeBase: ${error}`));
+      console.error(yellow(`Error handling: handleReadKnowledgeBase: ${error}`));
     }
   }
 
@@ -94,7 +95,7 @@ class Nlp {
       await updateKnowledgeBaseName(oldName, newName);
       console.log(green("Successfully handled: handleUpdateKnowledgeBaseName"));
     } catch (error) {
-      console.log(
+      console.error(
         red(`Error handling: handleUpdateKnowledgeBaseName: ${error}`)
       );
     }
@@ -105,7 +106,7 @@ class Nlp {
       await deleteKnowledgeBase(knowledgeBaseName);
       console.log(green("Successfully handled: handleDeleteKnowledgeBase"));
     } catch (error) {
-      console.log(red(`Error handling: handleDeleteKnowledgeBase: ${error}`));
+      console.error(red(`Error handling: handleDeleteKnowledgeBase: ${error}`));
     }
   }
 
@@ -150,4 +151,3 @@ class Nlp {
 }
 
 module.exports = Nlp;
-
