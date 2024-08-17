@@ -11,10 +11,6 @@ const { red, green } = require("colorette");
 const createKnowledgeBase = async (knowledgeBaseName, defaultDataEntry) => {
   const knowledgePath = getKnowledgeBasePath(knowledgeBaseName)
   const knowledgeData = JSON.stringify(defaultDataEntry, null, 2);
-  const doesExists = await checkKnowledgeBaseExists(knowledgePath);
-  if (doesExists) 
-    throw new Error('Knowledge base already exists. Operation is cancelled')
-
   await fs.writeFile(knowledgePath, knowledgeData);
 };
 
