@@ -1,4 +1,3 @@
-const { red } = require('colorette');
 const defaultConfig = require('./config/default_config');
 const Nlp = require('./Nlp')
 
@@ -6,11 +5,7 @@ const Nlp = require('./Nlp')
 const nlp = new Nlp(defaultConfig)
 
 const startModel = async () => {
-  try {
-    await nlp.initializeOrTrainModel()
-  } catch (error) {
-    console.error(red(`Starting model failed: ${error}`));
-  }
+  await nlp.handleInitializeOrTrainModel()
 };
 
 const sendMessage = async (message) => {
@@ -55,6 +50,9 @@ const deleteKnowledgeEntry = async (knowledgeBaseName, knowledgeEntryIndex) => {
 }
 
 
+// Expose Validation
+
+
 module.exports = {
   startModel,
   sendMessage,
@@ -65,5 +63,5 @@ module.exports = {
   deleteKnowledgeBase,
   addKnowledgeEntry,
   updateKnowledgeEntry,
-  deleteKnowledgeEntry
+  deleteKnowledgeEntry,
 };
