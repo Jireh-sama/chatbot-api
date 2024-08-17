@@ -13,6 +13,7 @@
     "@": ".",
     "@knowledge": "./src/knowledge/",
     "@nlp": "./src/nlp/",
+    "@validators": "./src/validators/",
     "@controllers": "./src/nlp/controllers/"
   },
   "author": "",
@@ -33,6 +34,7 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.9.0",
+    "@types/jest": "^29.5.12",
     "colorette": "^2.0.20",
     "eslint": "^8.57.0",
     "eslint-import-resolver-alias": "^1.1.2",
