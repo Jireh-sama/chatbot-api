@@ -4,7 +4,6 @@ import pluginJs from "@eslint/js";
 export default [
   { languageOptions: { globals: { ...globals.browser, ...globals.node } } },
   pluginJs.configs.recommended,
-  // Add this section for path alias support
   {
     overrides: [
       {
@@ -21,9 +20,10 @@ export default [
             ["@", "."],
             ["@knowledge", "./src/knowledge/"],
             ["@nlp", "./src/nlp/"],
+            ["@validators", "./src/validators/"],
             ["@controllers", "./src/nlp/controllers/"],
           ],
-          extensions: [".js", ".mjs", ".json"], // Add other extensions if necessary
+          extensions: [".js", ".mjs", ".json"],
         },
       },
     },
