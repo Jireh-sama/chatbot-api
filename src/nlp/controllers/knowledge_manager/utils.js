@@ -17,7 +17,7 @@ const extractKnowledgeBaseNameFromPath = (path) => {
 };
 
 const getKnowledgeBasePath = (knowledgeBaseName, path = DEFAULT_KNOWLEDGE_PATH) => {
-  return `${path}/${knowledgeBaseName}.json`
+  return `${path}/${knowledgeBaseName}_data.json`
 }
 
 /**
