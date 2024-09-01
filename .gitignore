@@ -9,6 +9,7 @@ model
 
 # private files
 serviceAccount/
+todo.txt
 
 # compiled output
 /dist

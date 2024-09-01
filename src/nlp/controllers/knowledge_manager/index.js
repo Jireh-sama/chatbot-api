@@ -17,6 +17,7 @@ const createKnowledgeBase = async (knowledgeBaseName, defaultDataEntry) => {
 const readKnowledgeBase = async (knowledgeBasePath) => {
     const data = await fs.readFile(knowledgeBasePath, "utf8");
     const jsonData = JSON.parse(data);
+    console.log('data: ', jsonData);
     return jsonData;
 };
 

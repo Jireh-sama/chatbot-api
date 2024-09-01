@@ -1,7 +1,5 @@
 const defaultConfig = require('./config/default_config');
 const Nlp = require('./Nlp')
-
-
 const nlp = new Nlp(defaultConfig)
 
 const startModel = async () => {
@@ -48,10 +46,6 @@ const updateKnowledgeEntry = async (knowledgeName, index, newKnowledgeEntry) => 
 const deleteKnowledgeEntry = async (knowledgeBaseName, knowledgeEntryIndex) => {
   await nlp.handleDeleteKnowledgeEntry(knowledgeBaseName, knowledgeEntryIndex)
 }
-
-
-// Expose Validation
-
 
 module.exports = {
   startModel,

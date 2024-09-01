@@ -1,10 +1,8 @@
-require('module-alias/register');
-const startServer = require('../core/server.js');
-const { startModel } = require('./nlp/index.js');
-
+import startServer from'./app.js';
+import { initializeChatbot } from './application/chatbotServiceManager.js';
 
 const initialize = async () => {
-    await startModel();
+    initializeChatbot()  
     startServer();
 }
 

@@ -16,7 +16,6 @@ const {
 
 class Nlp {
   #manager;
-
   constructor(config) {
     this.supportedLanguage = config.languages[0];
     this.#manager = new NlpManager(config);
@@ -146,8 +145,6 @@ class Nlp {
       console.error(red(`Error handling: handleDeleteKnowledgeEntry: ${error}`));
     }
   }
-
-
 }
 
 module.exports = Nlp;
