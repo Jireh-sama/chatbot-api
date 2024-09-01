@@ -3,12 +3,11 @@
   "version": "1.0.0",
   "type": "module",
   "description": "",
-  "main": "index.js",
+  "main": "main.js",
   "scripts": {
     "test": "jest",
-    "start": "node index",
-    "dev": "npx nodemon src/main.js --ignore *.json",
-    "test-knowledge-controller": "node src/nlp/controllers/knowledge_manager/index.js"
+    "start": "node src/main.js",
+    "dev": "npx nodemon src/main.js --ignore *.json"
   },
   "imports": {
     "#/*": ".*",
