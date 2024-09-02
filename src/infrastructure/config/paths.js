@@ -9,4 +9,5 @@ const __dirname = dirname(__filename);
 export const defaultKnowledgeDirectory = path.join(__dirname, '../persistence/database/storage/knowledge-files/');
 export const defaultModelDirectory = path.join(__dirname, '../persistence/database/storage/model-files/');
 export const modelFilePath = path.join(defaultModelDirectory, nlpModelFileName)
-   
+export const defaultKnowledgeExtension = '.json'
+
