@@ -1,12 +1,17 @@
-import { defaultKnowledgeDirectory } from "#infrastructure/config/paths.js"; 
+import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
 import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 import createKnowledgeEntry from "#domain/entities/KnowledgeEntry.js"
 
 function updateKnowledgeEntry(knowledgeRepository) {
 
   const execute = async (knowledgeBaseName, knowledgeEntryIndex, updatedKnowledgeEntry) => {
+
     const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
     const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
+
+    if (!selectedKnowledgeBase) {
+      throw new Error('Cannot update knowledge entry the selected knowledge base does not exist')
+    }
 
     const {intent, documents, answer} = updatedKnowledgeEntry;
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer)
@@ -14,10 +19,7 @@ function updateKnowledgeEntry(knowledgeRepository) {
     // Validate the updated knowledge entry
     newKnowledgeEntry.validate()
 
-    // read and update the target knowledge base
-    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName)
-    const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
-
+    // update the selected knowledge base
     selectedKnowledgeBase.splice(knowledgeEntryIndex, 1, newKnowledgeEntry.toObject())
 
     await knowledgeRepository.updateKnowledgeBase(knowledgeBasePath, selectedKnowledgeBase)
