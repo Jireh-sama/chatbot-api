@@ -31,7 +31,7 @@ function fileSystemStorage() {
           fileData.push(data.toObject())
         }
         // use .json extension
-        await fs.writeFile(`${filePath}.json`, JSON.stringify(fileData, null, 2))
+        await fs.writeFile(filePath, JSON.stringify(fileData, null, 2))
       } catch (error) {
         console.log(error);        
       }
@@ -39,14 +39,14 @@ function fileSystemStorage() {
 
     const updateFile = async (filePath, data) => {
       try {
-        await fs.writeFile(`${filePath}.json`, JSON.stringify(data, null, 2))
+        await fs.writeFile(filePath, JSON.stringify(data, null, 2))
       } catch (error) {
         console.log(error);  
       }
     }
 
     const deleteFile = async (filePath) => {
-      await fs.unlink(`${filePath}.json`)
+      await fs.unlink(filePath)
     }
   return { readFile, readDirectory, updateFile, writeFile, deleteFile }
 }
