@@ -1,5 +1,5 @@
 import path from 'path'
 
-const getFilePath = (dir, fileName) => (path.join(dir, fileName))
+const getFilePath = (dir, fileName, extension) => (path.join(dir, `${fileName}${extension}`))
 
 export { getFilePath }
