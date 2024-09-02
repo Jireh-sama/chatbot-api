@@ -1,11 +1,11 @@
-import { defaultKnowledgeDirectory } from "#infrastructure/config/paths.js"; 
+import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
 import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 
 function deleteKnowledgeEntry(knowledgeRepository) {
 
   const execute = async (knowledgeBaseName, knowledgeEntryIndex) => {
 
-    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName)
+    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
     const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
 
     if (selectedKnowledgeBase.length === 1 ) {

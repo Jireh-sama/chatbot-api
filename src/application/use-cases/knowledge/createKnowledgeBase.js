@@ -1,5 +1,5 @@
 import createKnowledgeEntry from "#domain/entities/KnowledgeEntry.js"
-import { defaultKnowledgeDirectory } from "#infrastructure/config/paths.js"; 
+import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
 import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 
 /**
@@ -11,9 +11,8 @@ import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 function createKnowledgeBase(knowledgeRepository) {
   const execute = async (knowledgeBaseName, knowledgeEntries) => {
 
-    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName)
+    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
     const existingKnowledge = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
-    
     if (existingKnowledge) {
       throw new Error('Knowledge base already exist')
     }

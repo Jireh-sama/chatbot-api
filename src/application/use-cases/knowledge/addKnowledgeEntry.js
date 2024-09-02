@@ -1,5 +1,5 @@
 import createKnowledgeEntry from "#domain/entities/KnowledgeEntry.js"
-import { defaultKnowledgeDirectory } from "#infrastructure/config/paths.js"; 
+import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
 import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 
 function addKnowledgeEntry(knowledgeRepository) {
@@ -9,7 +9,7 @@ function addKnowledgeEntry(knowledgeRepository) {
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer)
     newKnowledgeEntry.validate()
 
-    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName)
+    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
     const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
 
     selectedKnowledgeBase.push(newKnowledgeEntry.toObject())

@@ -5,6 +5,8 @@ import createKnowledgeEntry from "#domain/entities/KnowledgeEntry.js"
 function updateKnowledgeEntry(knowledgeRepository) {
 
   const execute = async (knowledgeBaseName, knowledgeEntryIndex, updatedKnowledgeEntry) => {
+    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
+    const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
 
     const {intent, documents, answer} = updatedKnowledgeEntry;
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer)
