@@ -4,7 +4,6 @@ function fileSystemStorage() {
     const readFile = async (filePath) => {
       try {
         const data = await fs.readFile(filePath, "utf8");
-        console.log(`Read file at: ${filePath}`);
         return JSON.parse(data)
       } catch (error) {
         if (error.code === 'ENOENT') {
