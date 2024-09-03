@@ -34,9 +34,10 @@ function knowledgeDataController(
     }
   };
 
-  const getKnowledgeCollection = async (_req, res) => {
+  const getKnowledgeCollection = async (req, res) => {
     try {
       const knowledgeCollection = await getKnowledgeCollectionUseCase.execute();
+      console.log(yellow('Get knowledge collection'));
       return res.status(200).json({ success: true, knowledgeCollection });
     } catch (error) {
       console.error(red(error.message || error));
