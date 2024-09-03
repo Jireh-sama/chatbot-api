@@ -1,4 +1,4 @@
-import createKnowledgeEntry from "#domain/entities/KnowledgeEntry.js"
+import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js"
 import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
 import { getFilePath } from "#infrastructure/utils/getFilePath.js";
 
