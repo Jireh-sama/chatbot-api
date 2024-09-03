@@ -3,10 +3,6 @@
 # ignored dir
 recycle/
 
-# node nlp model files
-model
-*.nlp
-
 # private files
 serviceAccount/
 todo.txt
