@@ -1,3 +1,4 @@
+import 'dotenv/config'
 import startServer from'./app.js';
 import { initializeChatbot } from './application/chatbotServiceManager.js';
 
