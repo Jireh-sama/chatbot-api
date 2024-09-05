@@ -1,6 +1,6 @@
 [
   {
-    "intent": "service.BDRRMO_hotline",
+    "intent": "BDRRMO-hotline",
     "documents": [
       "What's the emergency hotline for Bacoor Disaster Risk Reduction and Management Office?",
       "Can you provide the emergency contact number for BDRRMO?",
@@ -9,7 +9,7 @@
     "answer": "The emergency hotline for the Bacoor Disaster Risk Reduction and Management Office (BDRRMO) is (046) 417-0727."
   },
   {
-    "intent": "service.PNP_hotline",
+    "intent": "PNP-hotline",
     "documents": [
       "What's the emergency hotline for Philippine National Police?",
       "Can you provide the emergency contact number for PNP?",
@@ -18,7 +18,7 @@
     "answer": "The emergency hotline for the Philippine National Police-Bacoor City (PNP) is (046) 417-6366."
   },
   {
-    "intent": "service.BFP_hotline",
+    "intent": "BFP-hotline",
     "documents": [
       "What's the emergency hotline for Bureau of Fire Protection-Bacoor City?",
       "Can you provide the emergency contact number for BFP?",
@@ -27,7 +27,7 @@
     "answer": "The emergency hotline for the Bureau of Fire Protection-Bacoor City (BFP) is (046) 417-6060."
   },
   {
-    "intent": "service.CIO_hotline",
+    "intent": "CIO-hotline",
     "documents": [
       "What's the emergency hotline for City Information Office?",
       "Can you provide the emergency contact number for CIO?",

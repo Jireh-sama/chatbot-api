@@ -1,6 +1,6 @@
 [
   {
-    "intent": "salutation.greeting",
+    "intent": "greeting",
     "documents": [
       "Hello there",
       "Hi, How are you",
@@ -10,7 +10,7 @@
     "answer": "Hello! My name is Viviane 😊 How can I assist you today?"
   },
   {
-    "intent": "salutation.greeting_time_based",
+    "intent": "greeting-time-based",
     "documents": [
       "Good morning",
       "Good afternoon",
@@ -20,7 +20,7 @@
     "answer": "Hey there! How can I help you? 🌞"
   },
   {
-    "intent": "salutation.thanks",
+    "intent": "thanks",
     "documents": [
       "Thank you",
       "Thanks a lot",
@@ -33,7 +33,7 @@
     "answer": "You're welcome! It's my pleasure to assist you. 😊"
   },
   {
-    "intent": "salutation.thanks_polite",
+    "intent": "thanks-polite",
     "documents": [
       "Thank you very much",
       "Many thanks",
@@ -46,7 +46,7 @@
     "answer": "You're very welcome! Let me know if there's anything else I can do for you."
   },
   {
-    "intent": "salutation.goodbye",
+    "intent": "goodbye",
     "documents": [
       "Goodbye",
       "See you later",
