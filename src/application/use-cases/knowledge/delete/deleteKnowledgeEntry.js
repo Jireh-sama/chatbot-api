@@ -1,5 +1,5 @@
 import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
-import { getFilePath } from "#infrastructure/utils/getFilePath.js";
+import { getFilePath } from "#infrastructure/utils/pathUtils.js";
 
 function deleteKnowledgeEntry(knowledgeRepository) {
 

@@ -1,6 +1,6 @@
 import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js"
 import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#infrastructure/config/paths.js"; 
-import { getFilePath } from "#infrastructure/utils/getFilePath.js";
+import { getFilePath } from "#infrastructure/utils/pathUtils.js";
 
 function addKnowledgeEntry(knowledgeRepository) {
   const execute = async (knowledgeBaseName, knowledgeEntry) => {
