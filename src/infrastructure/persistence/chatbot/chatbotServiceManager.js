@@ -1,8 +1,8 @@
-import ChatbotService from "../domain/services/chatbotService.js";
+import ChatbotService from "#domain/services/chatbotService.js";
 import { NlpManager } from "node-nlp";
-import { nlpManagerConfig } from "../infrastructure/config/nlpManagerConfig.js";
-import { modelFilePath, defaultKnowledgeDirectory } from "../infrastructure/config/paths.js";
-import { getAbsolutePathListFromDirectory } from "../infrastructure/utils/fileSystemUtils.js";
+import { nlpManagerConfig } from "#infrastructure/config/nlpManagerConfig.js";
+import { modelFilePath, defaultKnowledgeDirectory } from "#infrastructure/config/paths.js";
+import { getAbsolutePathListFromDirectory } from "#infrastructure/utils/pathUtils.js";
 import fs from 'fs/promises'
 
 const manager = new NlpManager(nlpManagerConfig)
