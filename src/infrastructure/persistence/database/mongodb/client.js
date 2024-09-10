@@ -7,35 +7,44 @@ import { MongoClient } from "mongodb";
  * @param {string} collection - The name of the collection to use.
  * @param {object} config - Additional configuration options.
  */
-async function mongoDbStorage(uri, dbName, collectionName, config){
-  
+function mongoDbClient(uri, dbName, collectionName, config) {
   const client = new MongoClient(uri, config);
   // Collection instance
   let collection;
 
   const initializeCollection = async () => {
     if (!collection) {
-      await client.connect()
-      const db = client.db(dbName)
-      collection = db.collection(collectionName)
+      await client.connect();
+      const db = client.db(dbName);
+      collection = db.collection(collectionName);
     }
     return collection;
-  }
+  };
 
-  const createDocument = async ( data ) => {
+  const addDocument = async (document) => {
     const collection = await initializeCollection();
-    const result = collection.insertOne(data)
+    const result = await collection.insertOne(document);
     console.log(result);
-  }
+  };
 
-  const readCollection = async () => {
-    const collection = initializeCollection();
-    return await collection.find()
-  }
+  const readCollection = async (showId = false) => {
+    const collection = await initializeCollection();
+    const projection = showId ? {} : { _id: 0 };
+    return await collection.find({}, { projection }).toArray();
+  };
+  const readDocument = async (query, projection = {}) => {
+    const collection = await initializeCollection();
+    return await collection.findOne(query, { projection });
+  };
 
-  return { createDocument, readCollection }
-} 
+  const updateDocument = async (filter, updateDpcument) => {
+    const collection = await initializeCollection();
+    const res = await collection.updateOne(filter, updateDpcument);
 
-
-
-export default mongoDbStorage
+    if (res.matchedCount === 0) {
+      throw new Error('No document found matching the filter')
+    }
+  };
+  return { addDocument, readCollection, updateDocument, readDocument };
+}
+export default mongoDbClient;
