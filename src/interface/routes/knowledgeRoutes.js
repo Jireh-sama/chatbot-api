@@ -1,7 +1,9 @@
 import express from "express";
 import KnowledgeBaseRepository from '#infrastructure/persistence/repositories/knowledgeBaseRepository.js'
 import KnowledgeController from "#interface/controllers/knowledgeController.js"; 
-import FileSystemStorage from "#infrastructure/persistence/database/storage/fileSystemStorage.js";
+import MongoDbClient from "#infrastructure/persistence/database/mongodb/client.js";
+import { uri, defaultMongoDbConfig, dbName, collectionName } from "#infrastructure/config/db.js";
+// import FileSystemStorage from "#infrastructure/persistence/database/storage/fileSystemStorage.js";
 
 // Use-Cases
 import CreateKnowledgeBase from "#application/use-cases/knowledge/create/createKnowledgeBase.js";
@@ -13,14 +15,18 @@ import DeleteKnowledgeEntry from "#application/use-cases/knowledge/delete/delete
 import AddKnowledgeEntry from "#application/use-cases/knowledge/create/addKnowledgeEntry.js";
 import DeleteKnowledgeEntryDocument from "#application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
 
+// const fileSystemStorage = FileSystemStorage()
+const mongoDbClient = MongoDbClient(uri, dbName, collectionName, defaultMongoDbConfig)
+const knowledgeBaseRepository = KnowledgeBaseRepository(mongoDbClient)
 
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeBaseRepository)
+const getKnowledgeEntry = GetKnowledgeEntry(knowledgeBaseRepository)
 const createKnowledgeBase = CreateKnowledgeBase(knowledgeBaseRepository)
 const deleteKnowledgeBase = DeleteKnowledgeBase(knowledgeBaseRepository)
 const updateKnowledgeEntry = UpdateKnowledgeEntry(knowledgeBaseRepository)
 const deleteKnowledgeEntry = DeleteKnowledgeEntry(knowledgeBaseRepository)
 const addKnowledgeEntry = AddKnowledgeEntry(knowledgeBaseRepository)
-
+const deleteKnowledgeEntryDocument = DeleteKnowledgeEntryDocument(knowledgeBaseRepository)
 
 const knowledgeController = KnowledgeController(
   getKnowledgeCollection,
