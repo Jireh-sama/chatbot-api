@@ -2,12 +2,16 @@ import { green, red, yellow } from "colorette";
 
 function knowledgeDataController(
   getKnowledgeCollectionUseCase,
+  getKnowledgeEntryUseCase,
+  getKnowledgeBaseUseCase,
+
   createKnowledgeBaseUseCase,
   deleteKnowledgeBaseUseCase,
   updateKnowledgeEntryUseCase,
   deleteKnowledgeEntryUseCase,
   deleteKnowledgeEntryDocumentUseCase,
   addKnowledgeEntryUseCase,
+  
 ) {
   const createKnowledgeBase = async (req, res) => {
     try {
@@ -41,11 +45,37 @@ function knowledgeDataController(
     }
   };
 
+  const getKnowledgeBase = async (req, res) => {
+    try {
+      const knowledgeBase = await getKnowledgeBaseUseCase.execute();
+      // console.log(yellow('Get knowledge collection'));
+      return res.status(200).json({ success: true, knowledgeBase });
+    } catch (error) {
+      console.error(red(error.message || error));
+      return res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  };
   const getKnowledgeCollection = async (req, res) => {
     try {
       const knowledgeCollection = await getKnowledgeCollectionUseCase.execute();
       console.log(yellow('Get knowledge collection'));
       return res.status(200).json({ success: true, knowledgeCollection });
+    } catch (error) {
+      console.error(red(error.message || error));
+      return res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  };
+
+  const getKnowledgeEntry = async (req, res) => {
+    try {
+      const { knowledgeBase } = req.params
+      const knowledgeEntry = await getKnowledgeEntryUseCase.execute(knowledgeBase);
+      // console.log(yellow('Get knowledge collection'));
+      return res.status(200).json({ success: true, knowledgeEntry });
     } catch (error) {
       console.error(red(error.message || error));
       return res
