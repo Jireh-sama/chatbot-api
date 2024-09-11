@@ -11,9 +11,14 @@ function chatbotService(chatbot, reader) {
     return response;
   }
 
-  const loadModel = (modelFilePath) => {
+  const loadModel = async (modelFilePath) => {
+    const modelData = await reader(modelFilePath)
+    if(!modelData) {
+      throw new Error('Modal data not found')
+    }
     chatbot.load(modelFilePath)
   }
+
 
   const loadDataIntoModel = (knowledgeBase) => {
     try {
@@ -27,6 +32,7 @@ function chatbotService(chatbot, reader) {
       console.error(`An error occurred while loading data into the Model: ${error.message || error}`);
     }
   }
+
   const trainModel = async (knowledgeBasePathList, modelFilePath) => {
     // Refactor this later
     for (const knowledgeBasePath of knowledgeBasePathList) {
