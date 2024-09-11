@@ -1,4 +1,5 @@
 import { green, red, yellow } from "colorette";
+import { formatDuplicateKeyError } from "#infrastructure/utils/loggingUtils.js";
 
 function knowledgeDataController(
   getKnowledgeCollectionUseCase,
@@ -20,7 +21,7 @@ function knowledgeDataController(
         knowledgeBaseName,
         knowledgeEntry
       );
-      console.log('Successfully created knowledge base: ', knowledgeBaseName);
+      console.log('Successfully created knowledge base:', knowledgeBaseName);
       return res
         .status(201)
         .json({
@@ -60,7 +61,7 @@ function knowledgeDataController(
   const getKnowledgeCollection = async (req, res) => {
     try {
       const knowledgeCollection = await getKnowledgeCollectionUseCase.execute();
-      console.log(yellow('Get knowledge collection'));
+      // console.log(yellow('Get knowledge collection'));
       return res.status(200).json({ success: true, knowledgeCollection });
     } catch (error) {
       console.error(red(error.message || error));
@@ -108,9 +109,9 @@ function knowledgeDataController(
 
   const updateKnowledgeEntry = async (req, res) => {
     try {
-      const { knowledgeBaseName, knowledgeEntryIndex, updatedKnowledgeEntry } = req.body;
-      await updateKnowledgeEntryUseCase.execute(knowledgeBaseName, knowledgeEntryIndex, updatedKnowledgeEntry);
-      console.log(green(`Successfully updated the knowledge entry at knowledge base: ${knowledgeBaseName}, index: ${knowledgeEntryIndex}`));
+      const { knowledgeEntryIntent, knowledgeEntry } = req.body;
+      await updateKnowledgeEntryUseCase.execute(knowledgeEntryIntent, knowledgeEntry);
+      console.log(green(`Successfully updated the knowledge entry at knowledge base: ${knowledgeEntryIntent}`));
       return res
         .status(200)
         .json({
@@ -189,8 +190,11 @@ function knowledgeDataController(
     deleteKnowledgeBase,
     updateKnowledgeEntry,
     deleteKnowledgeEntry,
+    deleteKnowledgeEntryDocument,
     getKnowledgeCollection,
+    getKnowledgeEntry,
     addKnowledgeEntry,
+    getKnowledgeBase,
   };
 }
 
