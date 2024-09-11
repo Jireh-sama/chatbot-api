@@ -6,6 +6,7 @@ import { getAbsolutePathListFromDirectory } from "#infrastructure/utils/pathUtil
 import fs from 'fs/promises'
 
 const manager = new NlpManager(nlpManagerConfig)
+
 const chatbotService = ChatbotService(manager, async (filePath) => {
   const data = await fs.readFile(filePath, "utf-8");
   return JSON.parse(data);
@@ -13,7 +14,7 @@ const chatbotService = ChatbotService(manager, async (filePath) => {
 
 async function initializeChatbot() {
   try {
-    chatbotService.loadModel(modelFilePath);
+    await chatbotService.loadModel(modelFilePath);
     console.log("Model loaded successfully!");
   } catch (error) {
     console.error("Model does not exist, training a new one...");
