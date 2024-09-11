@@ -14,6 +14,7 @@ import UpdateKnowledgeEntry from "#application/use-cases/knowledge/update/update
 import DeleteKnowledgeEntry from "#application/use-cases/knowledge/delete/deleteKnowledgeEntry.js";
 import AddKnowledgeEntry from "#application/use-cases/knowledge/create/addKnowledgeEntry.js";
 import DeleteKnowledgeEntryDocument from "#application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
+import GetKnowledgeBase from "#application/use-cases/knowledge/read/getKnowledgeBase.js";
 
 // const fileSystemStorage = FileSystemStorage()
 const mongoDbClient = MongoDbClient(uri, dbName, collectionName, defaultMongoDbConfig)
@@ -21,6 +22,7 @@ const knowledgeBaseRepository = KnowledgeBaseRepository(mongoDbClient)
 
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeBaseRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeBaseRepository)
+const getKnowledgeBase = GetKnowledgeBase(knowledgeBaseRepository)
 const createKnowledgeBase = CreateKnowledgeBase(knowledgeBaseRepository)
 const deleteKnowledgeBase = DeleteKnowledgeBase(knowledgeBaseRepository)
 const updateKnowledgeEntry = UpdateKnowledgeEntry(knowledgeBaseRepository)
@@ -31,6 +33,7 @@ const deleteKnowledgeEntryDocument = DeleteKnowledgeEntryDocument(knowledgeBaseR
 const knowledgeController = KnowledgeController(
   getKnowledgeCollection,
   getKnowledgeEntry,
+  getKnowledgeBase,
 
   createKnowledgeBase,
   deleteKnowledgeBase,
@@ -48,7 +51,7 @@ router.post('/knowledge/entry', (req, res) => knowledgeController.addKnowledgeEn
 
 router.put('/knowledge/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
 
-router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
+router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeBase(req, res))
 router.get('/knowledge/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
 
 
