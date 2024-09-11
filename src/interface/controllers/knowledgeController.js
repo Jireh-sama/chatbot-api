@@ -6,6 +6,7 @@ function knowledgeDataController(
   deleteKnowledgeBaseUseCase,
   updateKnowledgeEntryUseCase,
   deleteKnowledgeEntryUseCase,
+  deleteKnowledgeEntryDocumentUseCase,
   addKnowledgeEntryUseCase,
 ) {
   const createKnowledgeBase = async (req, res) => {
@@ -103,6 +104,24 @@ function knowledgeDataController(
       if (error.message) {
         console.error(red(error.message || error));
         return res.status(400).json({ success: false, message: `Failed to delete knowledge entry: ${error.message}` });
+      }
+      console.error(error);
+      return res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    }
+  }
+  const deleteKnowledgeEntryDocument = async (req, res) => {
+    try {
+      console.log('correct');
+      const { knowledgeEntryIntent, documentValue } = req.body;
+      await deleteKnowledgeEntryDocumentUseCase.execute(knowledgeEntryIntent, documentValue)
+      console.log('Delete knowledge entry doc');
+      return res.status(200).json({ success: true, message: 'Knowledge entry document deleted' })
+    } catch (error) {
+      if (error.message) {
+        console.error(red(error.message || error));
+        return res.status(400).json({ success: false, message: `Failed to delete knowledge entry document: ${error.message}` });
       }
       console.error(error);
       return res
