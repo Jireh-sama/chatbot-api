@@ -28,7 +28,13 @@ function knowledgeDataController(
         console.error(yellow(error.message));
         return res.status(400).json({ success: false, message: error.message });
       }
-      console.error(red(error.message || error));
+      if (error.code === 11000) {
+        const errMessage = formatDuplicateKeyError(error.message);
+        console.error(red(errMessage));
+        return res.status(400).json({ success: false, message: errMessage });
+      }
+      // console.error(red(error.message || error));
+      console.error(red(`Unknown errpr: ${error.code}`));
       return res
         .status(500)
         .json({ success: false, message: `Internal server error` });
