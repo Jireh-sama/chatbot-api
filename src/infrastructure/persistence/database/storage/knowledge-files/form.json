@@ -1,6 +1,6 @@
 [
   {
-    "intent": "form.bir_application_for_registration",
+    "intent": "bir-application-for-registration",
     "documents": [
       "can you give or provide me the BIR form for application of registration", 
       "send me the bir form for the Application of registration", 
@@ -9,7 +9,7 @@
     "answer": "Here is the BIR Form 1903, {=https://www.dropbox.com/scl/fi/arodmw7p1rgvmm283myto/BIR_application_of_registration.pdf?rlkey=tgl7hme01yy4nha0qfay00cnr&dl=1=} also known as the Application for Registration for Corporations/ Partnerships (Taxable/Non-Taxable), is a form used by businesses in the Philippines to register with the Bureau of Internal Revenue (BIR). This form is specifically designed for corporations and partnerships, whether they are taxable or non-taxable entities."
   },
   {
-    "intent": "form.application_building_permit",
+    "intent": "application-building-permit",
     "documents": [
       "Can you give or provide me the form for applying for a building permit?",
       "Send me the building permit application form.",
@@ -18,7 +18,7 @@
     "answer": "Here is the form for the Application for Building Permit {=https://www.dropbox.com/scl/fi/lkjue8v7s46o19kgejuj2/Application-for-Bldg-Permit_FSEC_Revised.pdf?rlkey=20effwz2d54rmzk6mh0hmin4m&dl=1=}."
   },
   {
-    "intent": "form.requirements_new_construction",
+    "intent": "requirements-new-construction",
     "documents": [
       "What are the requirements when applying for a business permit for a newly constructed building",
       "Can you list the documents needed for obtaining a business permit for a newly constructed building?",
@@ -27,7 +27,7 @@
     "answer": "Here are the requirements for applying for a building permit for a newly constructed building {=https://www.dropbox.com/scl/fi/n0uu9no10hxinfo31try7/REQ-01_Requirements-BP-New-Construction.pdf?rlkey=bnuk45xq46brd1o6eyx639qrh&dl=1=}. I have provided you with a document that contains all the necessary requirements that you will need throughout the application process."
   },
   {
-    "intent": "form.application_birth_certificate",
+    "intent": "application-birth-certificate",
     "documents": [
       "How can I apply for a birth certificate in Bacoor City?",
       "Do you have the form or document for the application of birth certiface",
@@ -36,7 +36,7 @@
     "answer": "To apply for a birth certificate in Bacoor City, you can fill out the application form provided in this link {=https://www.dropbox.com/scl/fi/cnp660oqp1xttouizfx8c/Appication-form-Birth-Cert.pdf?rlkey=11c1l9kr6xr3m3ami768omck8&dl=1=}. Simply download the form and fill it out with the required information."
   },
   {
-    "intent": "form.application_birth_certificate",
+    "intent": "application-marriage-certificate",
     "documents": [
       "How can I apply for a marriage license in Bacoor City?",
       "Do you have the form or document for the application of marriage license",

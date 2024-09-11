@@ -1,7 +1,7 @@
 import express from "express";
 import ChatbotController from "../controllers/chatbotController.js";
 import ProcessUserQuery from "../../application/use-cases/chatbot/processUserQuery.js";
-import { getChatbotInstance } from '../../application/chatbotServiceManager.js'
+import { getChatbotInstance } from '#infrastructure/persistence/chatbot/chatbotServiceManager.js'
 
 const router = express.Router()
 

@@ -1,4 +1,7 @@
+import path from 'path'
 import fs from 'fs/promises'
+
+export const getFilePath = (dir, fileName, extension) => (path.join(dir, `${fileName}${extension}`))
 
 // This is a function to get all the filepaths inside the specified folder or directory
 export const getAbsolutePathListFromDirectory = async (directory) => {
