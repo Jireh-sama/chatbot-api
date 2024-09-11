@@ -51,7 +51,7 @@ router.post('/knowledge/entry', (req, res) => knowledgeController.addKnowledgeEn
 
 router.put('/knowledge/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
 
-router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeBase(req, res))
+router.get('/knowledge/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
 router.get('/knowledge/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
 
 
