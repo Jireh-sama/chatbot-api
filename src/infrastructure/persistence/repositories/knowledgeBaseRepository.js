@@ -12,6 +12,12 @@ function knowledgeBaseRepository(db) {
     const createKnowledgeBase = async (document) => {
       await db.addDocument(document);
     }
+
+    const getKnowledgeBaseList = async () => {
+      const resultFilter = { _id: 0, knowledgeEntry: 0 }
+      return await db.readDocuments({}, resultFilter)
+    }
+
     // Read and return a document that matches the knowledgeBase
     const readKnowledgeBase = async (knowledgeBase) => {
       const query = { knowledgeBase }
@@ -41,7 +47,11 @@ function knowledgeBaseRepository(db) {
       const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer } }
       await db.updateDocument(filter, updateDocument)
     }
-
+    const addKnowledgeEntry = async (knowledgeBase, knowledgeEntry) => {
+      const query = { knowledgeBase }
+      const updateData = { $push: { knowledgeEntry } }
+      await db.insertDocument(query, updateData)
+    }
 
     const updateKnowledgeBase = async (knowledgeBase, updatedKnowledgeEntry) => {
       const { intent, documents, answer } = updatedKnowledgeEntry;
@@ -61,6 +71,8 @@ function knowledgeBaseRepository(db) {
       getKnowledgeCollection,
       deleteKnowledgeEntryDocument,
       updateKnowledgeEntry,
+      getKnowledgeBaseList,
+      addKnowledgeEntry,
     };
 }
 
