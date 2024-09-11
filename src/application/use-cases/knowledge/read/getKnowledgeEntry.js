@@ -6,7 +6,6 @@ function getKnowledgeEntry(knowledgeRepository) {
     if (!knowledgeEntry) {
       throw new Error('Knowledge Entry does not exist')
     }
-    console.log(knowledgeEntry);
     return knowledgeEntry
   }
   return { execute }
