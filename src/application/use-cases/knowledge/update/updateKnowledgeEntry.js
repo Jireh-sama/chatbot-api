@@ -1,5 +1,4 @@
 import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js"
-import { isArrayEmpty } from "#infrastructure/utils/objectUtils.js";
 
 function updateKnowledgeEntry(knowledgeRepository) {
 
