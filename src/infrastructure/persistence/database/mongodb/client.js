@@ -23,6 +23,7 @@ function mongoDbClient(uri, dbName, collectionName, config) {
 
   const addDocument = async (document) => {
     const collection = await initializeCollection();
+    console.log('inserting this document: ', document);
     const result = await collection.insertOne(document);
     console.log(result);
   };
@@ -36,6 +37,15 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     const collection = await initializeCollection();
     return await collection.findOne(query, { projection });
   };
+  const readDocuments = async (query, projection = {}) => {
+    const collection = await initializeCollection();
+    return await collection.find({}, { projection }).toArray();
+  };
+
+  const insertDocument = async (query, updateData) => {
+    const collection = await initializeCollection();
+    return await collection.updateOne(query, updateData)
+  }
 
   const updateDocument = async (filter, updateDpcument) => {
     const collection = await initializeCollection();
@@ -45,6 +55,6 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { addDocument, readCollection, updateDocument, readDocument };
+  return { addDocument, readCollection, updateDocument, readDocument, readDocuments, insertDocument };
 }
 export default mongoDbClient;
