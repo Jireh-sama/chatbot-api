@@ -5,7 +5,7 @@ function createKnowledgeBase(knowledgeRepository) {
     const existingKnowledge = await knowledgeRepository.readKnowledgeBase(
       knowledgeBase
     );
-    if (existingKnowledge.length !== 0) {
+    if (existingKnowledge) {
       throw new Error("Knowledge base already exist");
     }
     const { intent, documents, answer } = knowledgeEntry;
