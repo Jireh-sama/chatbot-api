@@ -27,34 +27,17 @@ function chatbotService(chatbot, reader, modelFilePath) {
     chatbot.addAnswer("en", intent, answer);
   };
   
+  const saveModel = async (modelFilePath) => {
+    try {
+      await chatbot.train()
+      chatbot.save(modelFilePath)
+      
     } catch (error) {
-      console.error(`An error occurred while loading data into the Model: ${error.message || error}`);
+      console.log(error);
     }
   }
 
-  const trainModel = async (knowledgeBasePathList, modelFilePath) => {
-    // Refactor this later
-    for (const knowledgeBasePath of knowledgeBasePathList) {
-      try {
-        const knowledgeBase = await reader(knowledgeBasePath)
-        console.log('Validating knowledge base: ',knowledgeBasePath);
-    
-        console.log('Loading data into model: ',knowledgeBasePath);
-        loadDataIntoModel(knowledgeBase)
-      } catch (error) {
-          console.error(`${error.message || error}, skipping this knowledge base ${knowledgeBasePath}`);
-        continue;
-      }
-    }
-    await chatbot.train()
-    saveModel(modelFilePath);
-  }
-  const saveModel = (path) => {
-    chatbot.save(path)
-  }
-
-
-  return { processUserQuery, loadModel, trainModel }
+  return { processQuery, loadModel, saveModel, loadEntry}
 }
 
 export default chatbotService
