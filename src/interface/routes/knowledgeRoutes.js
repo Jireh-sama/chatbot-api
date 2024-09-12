@@ -1,5 +1,4 @@
 import express from "express";
-import KnowledgeBaseRepository from '#infrastructure/persistence/repositories/knowledgeBaseRepository.js'
 import KnowledgeController from "#interface/controllers/knowledgeController.js"; 
 import { knowledgeRepository } from "#infrastructure/service/index.js";
 
@@ -47,7 +46,8 @@ router.post('/knowledge/entry', (req, res) => knowledgeController.addKnowledgeEn
 
 router.put('/knowledge/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
 
-router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeBase(req, res))
+router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
+router.get('/knowledge/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
 router.get('/knowledge/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
 
 
