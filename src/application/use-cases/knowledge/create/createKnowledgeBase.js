@@ -12,7 +12,7 @@ function createKnowledgeBase(knowledgeRepository) {
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer);
     newKnowledgeEntry.validate();
     
-    await knowledgeRepository.createKnowledgeBase({ knowledgeBase, knowledgeEntry: [knowledgeEntry] });
+    await knowledgeRepository.createKnowledgeBase(knowledgeBase, newKnowledgeEntry.toObject());
   };
   return { execute };
 }
