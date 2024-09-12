@@ -13,8 +13,6 @@ import AddKnowledgeEntry from "#application/use-cases/knowledge/create/addKnowle
 import DeleteKnowledgeEntryDocument from "#application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
 import GetKnowledgeBase from "#application/use-cases/knowledge/read/getKnowledgeBase.js";
 
-
-
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeRepository)
 const getKnowledgeBase = GetKnowledgeBase(knowledgeRepository)
@@ -29,7 +27,6 @@ const knowledgeController = KnowledgeController(
   getKnowledgeCollection,
   getKnowledgeEntry,
   getKnowledgeBase,
-
   createKnowledgeBase,
   deleteKnowledgeBase,
   updateKnowledgeEntry,
@@ -37,7 +34,6 @@ const knowledgeController = KnowledgeController(
   deleteKnowledgeEntryDocument,
   addKnowledgeEntry
 );
-
 
 const router = express.Router();
 
