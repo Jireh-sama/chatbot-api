@@ -27,19 +27,12 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return await collection.insertOne(query);
   };
 
-  const readCollection = async (showId = false) => {
+  const readCollection = async (query, projection, isSingle = false) => {
     const collection = await initializeCollection();
-    const projection = showId ? {} : { _id: 0 };
-    return await collection.find({}, { projection }).toArray();
-  };
-  const readDocument = async (query, projection = {}) => {
-    const collection = await initializeCollection();
-    return await collection.findOne(query, { projection });
-  };
-  const readDocuments = async (query, projection = {}) => {
-    const collection = await initializeCollection();
-    return await collection.find({}, { projection }).toArray();
-  };
+    return isSingle 
+      ? await collection.findOne(query, { projection })
+      : await collection.find(query, { projection }).toArray();
+  }
 
   const insertDocument = async (query, updateData) => {
     const collection = await initializeCollection();
