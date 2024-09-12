@@ -47,6 +47,6 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { addDocument, readCollection, updateDocument, readDocument, readDocuments, insertDocument };
+  return { addDocument, readCollection, updateDocument, insertDocument };
 }
 export default mongoDbClient;
