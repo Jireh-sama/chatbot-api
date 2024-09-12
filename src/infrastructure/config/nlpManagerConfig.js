@@ -1,7 +1,7 @@
 
 export const nlpManagerConfig = {
   languages: ["en"],
-  nlu: { log: true, useNoneFeature: true },
+  nlu: { log: false, useNoneFeature: true },
   forceNER: true,
   autoSave: false
 };
