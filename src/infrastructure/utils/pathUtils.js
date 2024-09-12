@@ -15,3 +15,8 @@ export const getAbsolutePathListFromDirectory = async (directory) => {
     return []
   }
 }
+
+export const readFilePath = async (filePath) => {
+  const data = await fs.readFile(filePath, "utf-8");
+  return JSON.parse(data);
+}
