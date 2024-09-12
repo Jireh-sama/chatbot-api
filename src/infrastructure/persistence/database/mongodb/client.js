@@ -22,11 +22,9 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return collection;
   };
 
-  const addDocument = async (document) => {
+  const addDocument = async (query) => {
     const collection = await initializeCollection();
-    console.log('inserting this document: ', document);
-    const result = await collection.insertOne(document);
-    console.log(result);
+    return await collection.insertOne(query);
   };
 
   const readCollection = async (showId = false) => {
