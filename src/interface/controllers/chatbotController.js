@@ -1,4 +1,4 @@
-function chatbotController(processUserQueryUseCase) {
+function chatbotController(processUserQueryUseCase, trainChatbotUseCase) {
   
   const processUserQuery = async (req, res) => {
     try {
@@ -12,16 +12,17 @@ function chatbotController(processUserQueryUseCase) {
     }
   }
 
-  // const trainChatbot = async (_req, res) => {
-  //   try {
-  //     await trainChatbotUseCase.execute()
-  //     console.log('Model trained successfully');
-  //   } catch (error) {
-  //     res.status(500).json({ success: false, response: error.message || error })
-  //   }
-  // }
+  const trainChatbot = async (_req, res) => {
+    try {
+      await trainChatbotUseCase.execute()
+      console.log('Model trained successfully');
+      res.status(200).json({ success: false, response: 'Model trained successfully' })
+    } catch (error) {
+      res.status(500).json({ success: false, response: error.message || error })
+    }
+  }
 
-  return { processUserQuery }
+  return { processUserQuery, trainChatbot }
 }
 
 export default chatbotController
