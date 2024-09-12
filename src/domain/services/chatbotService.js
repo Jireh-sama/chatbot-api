@@ -6,12 +6,12 @@
 
 function chatbotService(chatbot, reader, modelFilePath) {
 
-  const processUserQuery = async (query) => {
+  const processQuery = async (query) => {
     const response = await chatbot.process('en', query)
     return response;
   }
 
-  const loadModel = async (modelFilePath) => {
+  const loadModel = async () => {
     const modelData = await reader(modelFilePath)
     if(!modelData) {
       throw new Error('Modal data not found')
