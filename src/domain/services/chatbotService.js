@@ -19,15 +19,14 @@ function chatbotService(chatbot, reader, modelFilePath) {
     chatbot.load(modelFilePath)
   }
 
-
-  const loadDataIntoModel = (knowledgeBase) => {
-    try {
-      for (const knowledgeEntry of knowledgeBase) {
-        knowledgeEntry.documents.forEach((document) => {
-          chatbot.addDocument("en", document, knowledgeEntry.intent);
-        });
-        chatbot.addAnswer("en", knowledgeEntry.intent, knowledgeEntry.answer);
-      }
+  const loadEntry = (knowledgeEntry) => {
+    const { intent, documents, answer } = knowledgeEntry
+    documents.forEach((document) => {
+      chatbot.addDocument("en", document, intent);
+    });
+    chatbot.addAnswer("en", intent, answer);
+  };
+  
     } catch (error) {
       console.error(`An error occurred while loading data into the Model: ${error.message || error}`);
     }
