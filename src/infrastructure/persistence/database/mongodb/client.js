@@ -11,15 +11,25 @@ import { MongoClient } from "mongodb";
 function mongoDbClient(uri, dbName, collectionName, config) {
   const client = new MongoClient(uri, config);
   // Collection instance
-  let collection;
-
+  let collection, pingStatus;
   const initializeCollection = async () => {
     if (!collection) {
       await client.connect();
       const db = client.db(dbName);
+
+      pingStatus = await db.command({ ping: 1 })
       collection = db.collection(collectionName);
     }
     return collection;
+  };
+
+  const ping = async () => {
+    const collection = await initializeCollection();
+    return pingStatus;
+  }
+  const closeConnection = async () => {
+    await client.close();
+    console.log('MongoDB connection closed');
   };
 
   const addDocument = async (query) => {
@@ -47,6 +57,6 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { addDocument, readCollection, updateDocument, insertDocument };
+  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument };
 }
 export default mongoDbClient;
