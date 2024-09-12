@@ -3,6 +3,9 @@
 # ignored dir
 recycle/
 
+# ignored extension
+*.nlp
+
 # private files
 serviceAccount/
 todo.txt
