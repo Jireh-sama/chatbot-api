@@ -4,7 +4,8 @@ import { MongoClient } from "mongodb";
  * Connects to a MongoDB database and returns a client object.
  *
  * @param {string} uri - The MongoDB connection URI.
- * @param {string} collection - The name of the collection to use.
+ * @param {string} dbName - The name of the db to use.
+ * @param {string} collectionName - The name of the collection to use.
  * @param {object} config - Additional configuration options.
  */
 function mongoDbClient(uri, dbName, collectionName, config) {
