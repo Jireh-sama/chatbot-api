@@ -6,7 +6,7 @@ import { getFilePath } from "#infrastructure/utils/pathUtils.js";
 function deleteKnowledgeBase(knowledgeRepository) {
   const execute = async (knowledgeBaseName) => {
     const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
-    const existingKnowledge = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
+    const existingKnowledge = await knowledgeRepository.getKnowledgeBase(knowledgeBasePath)
     if (!existingKnowledge) {
       throw new Error('Cannot delete knowledge base, It does not exist')
     }

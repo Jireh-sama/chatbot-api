@@ -3,7 +3,7 @@ function processUserQuery(chatbot) {
     if (!query) {
       throw new Error('A Query is required to process and deliver a response')
     }
-    const response = await chatbot.processUserQuery(query)
+    const response = await chatbot.processQuery(query)
     // Do some logic to manipulating response here...
     return response;
   }

@@ -2,7 +2,7 @@ import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js";
 
 function createKnowledgeBase(knowledgeRepository) {
   const execute = async (knowledgeBase, knowledgeEntry) => {
-    const existingKnowledge = await knowledgeRepository.readKnowledgeBase(
+    const existingKnowledge = await knowledgeRepository.getKnowledgeBase(
       knowledgeBase
     );
     if (existingKnowledge) {
@@ -12,7 +12,7 @@ function createKnowledgeBase(knowledgeRepository) {
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer);
     newKnowledgeEntry.validate();
     
-    await knowledgeRepository.createKnowledgeBase({ knowledgeBase, knowledgeEntry: [knowledgeEntry] });
+    await knowledgeRepository.createKnowledgeBase(knowledgeBase, newKnowledgeEntry.toObject());
   };
   return { execute };
 }

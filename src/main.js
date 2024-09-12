@@ -1,9 +1,9 @@
 import 'dotenv/config'
 import startServer from'./app.js';
-import { initializeChatbot } from '#infrastructure/persistence/chatbot/chatbotServiceManager.js';
+import { chatbotClient } from './infrastructure/service/index.js';
 
 const initialize = async () => {
-    await initializeChatbot()  
+    await chatbotClient.initialize()
     startServer();
 }
 

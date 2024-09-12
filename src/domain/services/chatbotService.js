@@ -4,14 +4,14 @@
  * library and exposes a clean API to the rest of the application
  */
 
-function chatbotService(chatbot, reader) {
+function chatbotService(chatbot, reader, modelFilePath) {
 
-  const processUserQuery = async (query) => {
+  const processQuery = async (query) => {
     const response = await chatbot.process('en', query)
     return response;
   }
 
-  const loadModel = async (modelFilePath) => {
+  const loadModel = async () => {
     const modelData = await reader(modelFilePath)
     if(!modelData) {
       throw new Error('Modal data not found')
@@ -19,43 +19,25 @@ function chatbotService(chatbot, reader) {
     chatbot.load(modelFilePath)
   }
 
-
-  const loadDataIntoModel = (knowledgeBase) => {
+  const loadEntry = (knowledgeEntry) => {
+    const { intent, documents, answer } = knowledgeEntry
+    documents.forEach((document) => {
+      chatbot.addDocument("en", document, intent);
+    });
+    chatbot.addAnswer("en", intent, answer);
+  };
+  
+  const saveModel = async (modelFilePath) => {
     try {
-      for (const knowledgeEntry of knowledgeBase) {
-        knowledgeEntry.documents.forEach((document) => {
-          chatbot.addDocument("en", document, knowledgeEntry.intent);
-        });
-        chatbot.addAnswer("en", knowledgeEntry.intent, knowledgeEntry.answer);
-      }
+      await chatbot.train()
+      chatbot.save(modelFilePath)
+      
     } catch (error) {
-      console.error(`An error occurred while loading data into the Model: ${error.message || error}`);
+      console.log(error);
     }
   }
 
-  const trainModel = async (knowledgeBasePathList, modelFilePath) => {
-    // Refactor this later
-    for (const knowledgeBasePath of knowledgeBasePathList) {
-      try {
-        const knowledgeBase = await reader(knowledgeBasePath)
-        console.log('Validating knowledge base: ',knowledgeBasePath);
-    
-        console.log('Loading data into model: ',knowledgeBasePath);
-        loadDataIntoModel(knowledgeBase)
-      } catch (error) {
-          console.error(`${error.message || error}, skipping this knowledge base ${knowledgeBasePath}`);
-        continue;
-      }
-    }
-    await chatbot.train()
-    saveModel(modelFilePath);
-  }
-  const saveModel = (path) => {
-    chatbot.save(path)
-  }
-
-
-  return { processUserQuery, loadModel, trainModel }
+  return { processQuery, loadModel, saveModel, loadEntry}
 }
 
 export default chatbotService

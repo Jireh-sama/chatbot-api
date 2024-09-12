@@ -4,7 +4,8 @@ import { MongoClient } from "mongodb";
  * Connects to a MongoDB database and returns a client object.
  *
  * @param {string} uri - The MongoDB connection URI.
- * @param {string} collection - The name of the collection to use.
+ * @param {string} dbName - The name of the db to use.
+ * @param {string} collectionName - The name of the collection to use.
  * @param {object} config - Additional configuration options.
  */
 function mongoDbClient(uri, dbName, collectionName, config) {
@@ -21,26 +22,17 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return collection;
   };
 
-  const addDocument = async (document) => {
+  const addDocument = async (query) => {
     const collection = await initializeCollection();
-    console.log('inserting this document: ', document);
-    const result = await collection.insertOne(document);
-    console.log(result);
+    return await collection.insertOne(query);
   };
 
-  const readCollection = async (showId = false) => {
+  const readCollection = async (query, projection, isSingle = false) => {
     const collection = await initializeCollection();
-    const projection = showId ? {} : { _id: 0 };
-    return await collection.find({}, { projection }).toArray();
-  };
-  const readDocument = async (query, projection = {}) => {
-    const collection = await initializeCollection();
-    return await collection.findOne(query, { projection });
-  };
-  const readDocuments = async (query, projection = {}) => {
-    const collection = await initializeCollection();
-    return await collection.find({}, { projection }).toArray();
-  };
+    return isSingle 
+      ? await collection.findOne(query, { projection })
+      : await collection.find(query, { projection }).toArray();
+  }
 
   const insertDocument = async (query, updateData) => {
     const collection = await initializeCollection();
@@ -55,6 +47,6 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { addDocument, readCollection, updateDocument, readDocument, readDocuments, insertDocument };
+  return { addDocument, readCollection, updateDocument, insertDocument };
 }
 export default mongoDbClient;

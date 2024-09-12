@@ -4,17 +4,7 @@ function updateKnowledgeEntry(knowledgeRepository) {
 
   const execute = async (knowledgeEntryIntent, updatedKnowledgeEntry) => {
 
-    // const targetKnowledgeBase = await knowledgeRepository.readKnowledgeBase(
-    //   knowledgeBase
-    // );
-    
-    // if (isArrayEmpty(targetKnowledgeBase)) {
-    //   throw new Error('Cannot update knowledge entry the selected knowledge base does not exist')
-    // }
-
-
     const {intent, documents, answer} = updatedKnowledgeEntry;
-
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer)
     newKnowledgeEntry.validate()
 

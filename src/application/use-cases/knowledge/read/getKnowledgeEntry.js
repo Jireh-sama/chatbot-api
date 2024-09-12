@@ -1,4 +1,4 @@
-
+// Get knowledge entry of the knowledge base
 function getKnowledgeEntry(knowledgeRepository) {
   const execute = async (knowledgeBase) => {
     const {knowledgeEntry} = await knowledgeRepository.readKnowledgeEntry(knowledgeBase)
