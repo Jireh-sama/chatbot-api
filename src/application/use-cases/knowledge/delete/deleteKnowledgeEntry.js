@@ -6,7 +6,7 @@ function deleteKnowledgeEntry(knowledgeRepository) {
   const execute = async (knowledgeBaseName, knowledgeEntryIndex) => {
 
     const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
-    const selectedKnowledgeBase = await knowledgeRepository.readKnowledgeBase(knowledgeBasePath)
+    const selectedKnowledgeBase = await knowledgeRepository.getKnowledgeBase(knowledgeBasePath)
 
     if (selectedKnowledgeBase.length === 1 ) {
       throw new Error("Knowledge base only contains 1 entry there you cannot delete this");

@@ -2,7 +2,7 @@ import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js";
 
 function createKnowledgeBase(knowledgeRepository) {
   const execute = async (knowledgeBase, knowledgeEntry) => {
-    const existingKnowledge = await knowledgeRepository.readKnowledgeBase(
+    const existingKnowledge = await knowledgeRepository.getKnowledgeBase(
       knowledgeBase
     );
     if (existingKnowledge) {
