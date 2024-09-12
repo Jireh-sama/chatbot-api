@@ -4,7 +4,7 @@
  * library and exposes a clean API to the rest of the application
  */
 
-function chatbotService(chatbot, reader) {
+function chatbotService(chatbot, reader, modelFilePath) {
 
   const processUserQuery = async (query) => {
     const response = await chatbot.process('en', query)
