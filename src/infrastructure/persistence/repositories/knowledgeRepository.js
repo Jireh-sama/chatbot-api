@@ -3,25 +3,27 @@
   They encapsulate the logic for retrieving and persisting data, ensuring that the 
   rest of the application is not tied to the details of the data storage.
 */
-function knowledgeBaseRepository(db) {
-    // Read and return the collection
+function knowledgeRepository(db) {
+    
     const getKnowledgeCollection  = async () => {
-      return await db.readCollection()
-    }
-    // Creates a new document
-    const createKnowledgeBase = async (document) => {
-      await db.addDocument(document);
+      const filter = { _id: 0 }
+      return await db.readCollection({}, filter)
     }
 
     const getKnowledgeBaseList = async () => {
-      const resultFilter = { _id: 0, knowledgeEntry: 0 }
-      return await db.readDocuments({}, resultFilter)
+      const filter = { _id: 0, knowledgeEntry: 0 }
+      return await db.readCollection({}, filter)
     }
 
-    // Read and return a document that matches the knowledgeBase
-    const readKnowledgeBase = async (knowledgeBase) => {
+    const getKnowledgeBase = async (knowledgeBase) => {
       const query = { knowledgeBase }
-      return await db.readDocument(query)
+      const isSingle = true
+      return await db.readCollection(query, null, isSingle)
+    }
+
+    const createKnowledgeBase = async (knowledgeBase, knowledgeEntry) => {
+      const query = { knowledgeBase, knowledgeEntry: [ knowledgeEntry ] }
+      await db.addDocument(query);
     }
 
     const readKnowledgeEntry = async (knowledgeBase) => {
@@ -59,12 +61,9 @@ function knowledgeBaseRepository(db) {
       const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer } }
       await db.updateDocument(filter, updateDocument)
     }
-    
-
-
 
     return {
-      readKnowledgeBase,
+      getKnowledgeBase,
       readKnowledgeEntry,
       createKnowledgeBase,
       updateKnowledgeBase,
@@ -76,6 +75,6 @@ function knowledgeBaseRepository(db) {
     };
 }
 
-export default knowledgeBaseRepository
+export default knowledgeRepository
 
 
