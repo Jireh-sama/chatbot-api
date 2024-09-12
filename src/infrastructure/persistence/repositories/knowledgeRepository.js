@@ -29,7 +29,8 @@ function knowledgeRepository(db) {
     const readKnowledgeEntry = async (knowledgeBase) => {
       const query = { knowledgeBase }
       const filter = { _id: 0, knowledgeBase: 0 }
-      return await db.readDocument(query, filter)
+      const isSingle = true
+      return await db.readCollection(query, filter, isSingle)
     }
 
     // Removes a value from a specified document field
