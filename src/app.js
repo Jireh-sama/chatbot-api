@@ -15,10 +15,20 @@ const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 3001;
 const app = express();
 
-console.log(__dirname);
-app.use(express.static(path.join(__dirname, 'static')));
+function checkAccessToken(req, res, next) {
+  const { token } = req.params;
+  const allowedToken = '123qwe123qwe'
+  if (token !== allowedToken) {
+    return res.status(404).json({message: 'Nyope'})
+  }
+  return next()
+}
+
+
 app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
+
+app.use('/static/:token', checkAccessToken, express.static(path.join(__dirname, 'static')));
 
 app.use('/api', validateRequestMiddleware, knowledgeRoutes)
 app.use('/api', validateRequestMiddleware, chatbotRoutes)
