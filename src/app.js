@@ -19,10 +19,9 @@ console.log(__dirname);
 app.use(express.static(path.join(__dirname, 'static')));
 app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
-app.use(validateRequestMiddleware)
 
-app.use('/api', knowledgeRoutes)
-app.use('/api', chatbotRoutes)
+app.use('/api', validateRequestMiddleware, knowledgeRoutes)
+app.use('/api', validateRequestMiddleware, chatbotRoutes)
 
 
 const startServer = () => {
