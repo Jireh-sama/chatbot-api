@@ -16,7 +16,7 @@ function chatbotController(processUserQueryUseCase, trainChatbotUseCase) {
     try {
       await trainChatbotUseCase.execute()
       console.log('Model trained successfully');
-      res.status(200).json({ success: false, response: 'Model trained successfully' })
+      res.status(200).json({ success: true, response: 'Model trained successfully' })
     } catch (error) {
       res.status(500).json({ success: false, response: error.message || error })
     }
