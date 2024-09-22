@@ -8,7 +8,6 @@ import path from 'path'
 import { fileURLToPath } from 'url';
 
 // Get the directory name of the current module
-
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -17,7 +16,7 @@ const app = express();
 
 function checkAccessToken(req, res, next) {
   const { token } = req.params;
-  const allowedToken = '123qwe123qwe'
+  const allowedToken = '5b9SlUTT3l4lVvbf2HCcI4w9VU69VI8W3e1tbAMWBkXFGoqCkbhtklM5UfHmstES'
   if (token !== allowedToken) {
     return res.status(404).json({message: 'Nyope'})
   }
@@ -36,7 +35,9 @@ app.use('/api', validateRequestMiddleware, chatbotRoutes)
 
 const startServer = () => {
   app.listen(port, () => {
-    console.log(`🚀 Server is listening on port: ${port}`);
+    if (process.env.NODE_ENV === 'development') {
+      console.log(`Server is running at http://localhost:${port}`);
+    }
   });
 }
 
