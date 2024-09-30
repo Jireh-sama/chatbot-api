@@ -2,7 +2,8 @@ import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import verifyAPIKey from './interface/middleware/validateRequestMiddleware.js';
-import helmet from 'helmet';
+import { knowledgeRoutes, authRoutes, chatbotRoutes } from './interface/routes/index.js';
+import { getDirName } from './infrastructure/utils/pathUtils.js';
 
 const port = process.env.PORT || 3001;
 const app = express();
