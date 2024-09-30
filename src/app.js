@@ -1,4 +1,5 @@
 import express from 'express';
+import path from 'path'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import verifyAPIKey from './interface/middleware/validateRequestMiddleware.js';
@@ -12,6 +13,7 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors({ origin: '*' }));
 
+app.use('/static/', express.static(path.join(getDirName(), 'static')));
 app.use('/api', verifyAPIKey, knowledgeRoutes)
 app.use('/api', verifyAPIKey, chatbotRoutes)
 app.use('/api', verifyAPIKey, authRoutes)
