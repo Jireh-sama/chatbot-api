@@ -1,4 +1,4 @@
-function validateRequestMiddleware(req, res, next) {
+function verifyAPIKey(req, res, next) {
   const apiKey = req.headers['authorization']
   if (apiKey !== process.env.API_KEY) {
     console.error('Unauthorized request has been detected');
@@ -7,4 +7,4 @@ function validateRequestMiddleware(req, res, next) {
   return next()
 }
 
-export default validateRequestMiddleware
+export default verifyAPIKey
