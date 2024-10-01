@@ -11,11 +11,7 @@
   },
   "imports": {
     "#/*": ".*",
-    "#src/*": "./src/*",
-    "#domain/*": "./src/domain/*",
-    "#infrastructure/*": "./src/infrastructure/*",
-    "#interface/*": "./src/interface/*",
-    "#application/*": "./src/application/*"
+    "#src/*": "./src/*"
   },
   "author": "",
   "license": "ISC",
