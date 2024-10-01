@@ -4,6 +4,7 @@ import { chatbotClient } from "#src/infrastructure/service/index.js";
 
 import ProcessUserQuery from "#src/application/use-cases/chatbot/processUserQuery.js";
 import TrainChatbot from "#src/application/use-cases/chatbot/trainChatbot.js";
+import { asyncHandler } from "../middleware/errorHandler.js";
 
 const router = express.Router()
 
@@ -12,7 +13,7 @@ const trainChatbot = TrainChatbot(chatbotClient);
 
 const chatBotController = ChatbotController(processUserQuery, trainChatbot);
   
-router.post('/query', (req, res) => chatBotController.processUserQuery(req, res))
-router.post('/train', (req, res) => chatBotController.trainChatbot(req, res))
+router.post('/query', asyncHandler(chatBotController.processUserQuery))
+router.post('/train', asyncHandler(chatBotController.trainChatbot))
 
 export default router

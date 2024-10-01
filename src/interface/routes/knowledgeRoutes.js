@@ -1,6 +1,7 @@
 import express from "express";
 import KnowledgeController from "../controllers/knowledgeController.js";
 import { knowledgeRepository } from "#src/infrastructure/service/index.js";
+import { asyncHandler } from "../middleware/errorHandler.js";
 
 // Use-Cases
 import CreateKnowledgeBase from "#src/application/use-cases/knowledge/create/createKnowledgeBase.js";
@@ -37,18 +38,18 @@ const knowledgeController = KnowledgeController(
 
 const router = express.Router();
 
-router.post('/', (req, res) => knowledgeController.createKnowledgeBase(req, res))
-router.post('/entry', (req, res) => knowledgeController.addKnowledgeEntry(req, res))
+router.post('/',  asyncHandler(knowledgeController.createKnowledgeBase))
+router.post('/entry',  asyncHandler(knowledgeController.addKnowledgeEntry))
 
-router.put('/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
+router.put('/entry',  asyncHandler(knowledgeController.updateKnowledgeEntry))
 
-router.get('/', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
-router.get('/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
-router.get('/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
+router.get('/',  asyncHandler(knowledgeController.getKnowledgeCollection))
+router.get('/base',  asyncHandler(knowledgeController.getKnowledgeBase))
+router.get('/:knowledgeBase',  asyncHandler(knowledgeController.getKnowledgeEntry))
 
 
-router.delete('/entry', (req, res) => knowledgeController.deleteKnowledgeEntry(req, res))
-router.delete('/entry/document', (req, res) => knowledgeController.deleteKnowledgeEntryDocument(req, res))
-router.delete('/:knowledgeBaseName', (req, res) => knowledgeController.deleteKnowledgeBase(req, res))
+router.delete('/entry',  asyncHandler(knowledgeController.deleteKnowledgeEntry))
+router.delete('/entry/document',  asyncHandler(knowledgeController.deleteKnowledgeEntryDocument))
+router.delete('/:knowledgeBaseName',  asyncHandler(knowledgeController.deleteKnowledgeBase))
 
 export default router
