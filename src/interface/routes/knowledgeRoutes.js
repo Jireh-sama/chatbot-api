@@ -37,18 +37,18 @@ const knowledgeController = KnowledgeController(
 
 const router = express.Router();
 
-router.post('/knowledge', (req, res) => knowledgeController.createKnowledgeBase(req, res))
-router.post('/knowledge/entry', (req, res) => knowledgeController.addKnowledgeEntry(req, res))
+router.post('/', (req, res) => knowledgeController.createKnowledgeBase(req, res))
+router.post('/entry', (req, res) => knowledgeController.addKnowledgeEntry(req, res))
 
-router.put('/knowledge/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
+router.put('/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
 
-router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
-router.get('/knowledge/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
-router.get('/knowledge/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
+router.get('/', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
+router.get('/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
+router.get('/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
 
 
-router.delete('/knowledge/entry', (req, res) => knowledgeController.deleteKnowledgeEntry(req, res))
-router.delete('/knowledge/entry/document', (req, res) => knowledgeController.deleteKnowledgeEntryDocument(req, res))
-router.delete('/knowledge/:knowledgeBaseName', (req, res) => knowledgeController.deleteKnowledgeBase(req, res))
+router.delete('/entry', (req, res) => knowledgeController.deleteKnowledgeEntry(req, res))
+router.delete('/entry/document', (req, res) => knowledgeController.deleteKnowledgeEntryDocument(req, res))
+router.delete('/:knowledgeBaseName', (req, res) => knowledgeController.deleteKnowledgeBase(req, res))
 
 export default router

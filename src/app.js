@@ -15,9 +15,9 @@ app.use(cors({ origin: '*' }));
 app.use(helmet())
 
 app.use('/static/', express.static(path.join(getDirName(), 'static')));
-app.use('/api', verifyAPIKey, knowledgeRoutes)
-app.use('/api', verifyAPIKey, chatbotRoutes)
-app.use('/api', verifyAPIKey, authRoutes)
+app.use('/api/knowledge', verifyAPIKey, knowledgeRoutes)
+app.use('/api/chatbot', verifyAPIKey, chatbotRoutes)
+app.use('/api/auth', verifyAPIKey, authRoutes)
 
 const startServer = () => {
   app.listen(port, () => {

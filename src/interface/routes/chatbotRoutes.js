@@ -12,7 +12,7 @@ const trainChatbot = TrainChatbot(chatbotClient);
 
 const chatBotController = ChatbotController(processUserQuery, trainChatbot);
   
-router.post('/chatbot/query', (req, res) => chatBotController.processUserQuery(req, res))
-router.post('/chatbot/train', (req, res) => chatBotController.trainChatbot(req, res))
+router.post('/query', (req, res) => chatBotController.processUserQuery(req, res))
+router.post('/train', (req, res) => chatBotController.trainChatbot(req, res))
 
 export default router
