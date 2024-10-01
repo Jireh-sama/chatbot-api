@@ -1,9 +1,9 @@
 import express from "express";
 import ChatbotController from "../controllers/chatbotController.js";
-import { chatbotClient } from "#infrastructure/service/index.js";
+import { chatbotClient } from "#src/infrastructure/service/index.js";
 
-import ProcessUserQuery from "#application/use-cases/chatbot/processUserQuery.js";
-import TrainChatbot from "#application/use-cases/chatbot/trainChatbot.js";
+import ProcessUserQuery from "#src/application/use-cases/chatbot/processUserQuery.js";
+import TrainChatbot from "#src/application/use-cases/chatbot/trainChatbot.js";
 
 const router = express.Router()
 

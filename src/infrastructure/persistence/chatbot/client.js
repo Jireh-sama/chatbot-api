@@ -1,6 +1,6 @@
 import { NlpManager } from "node-nlp";
-import ChatbotService from "#domain/services/chatbotService.js";
-import { readFilePath } from "#infrastructure/utils/pathUtils.js";
+import ChatbotService from "#src/domain/services/chatbotService.js";
+import { readFilePath } from "#src/infrastructure/utils/pathUtils.js";
 
 function chatbotClient(config, knowledgeRepository, modelFilePath) {
 

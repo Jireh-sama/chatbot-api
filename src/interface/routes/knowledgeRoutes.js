@@ -1,17 +1,17 @@
 import express from "express";
-import KnowledgeController from "#interface/controllers/knowledgeController.js"; 
-import { knowledgeRepository } from "#infrastructure/service/index.js";
+import KnowledgeController from "../controllers/knowledgeController.js";
+import { knowledgeRepository } from "#src/infrastructure/service/index.js";
 
 // Use-Cases
-import CreateKnowledgeBase from "#application/use-cases/knowledge/create/createKnowledgeBase.js";
-import DeleteKnowledgeBase from "#application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
-import GetKnowledgeCollection from "#application/use-cases/knowledge/read/getKnowledgeCollection.js";
-import GetKnowledgeEntry from "#application/use-cases/knowledge/read/getKnowledgeEntry.js";
-import UpdateKnowledgeEntry from "#application/use-cases/knowledge/update/updateKnowledgeEntry.js";
-import DeleteKnowledgeEntry from "#application/use-cases/knowledge/delete/deleteKnowledgeEntry.js";
-import AddKnowledgeEntry from "#application/use-cases/knowledge/create/addKnowledgeEntry.js";
-import DeleteKnowledgeEntryDocument from "#application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
-import GetKnowledgeBase from "#application/use-cases/knowledge/read/getKnowledgeBase.js";
+import CreateKnowledgeBase from "#src/application/use-cases/knowledge/create/createKnowledgeBase.js";
+import DeleteKnowledgeBase from "#src/application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
+import GetKnowledgeCollection from "#src/application/use-cases/knowledge/read/getKnowledgeCollection.js";
+import GetKnowledgeEntry from "#src/application/use-cases/knowledge/read/getKnowledgeEntry.js";
+import UpdateKnowledgeEntry from "#src/application/use-cases/knowledge/update/updateKnowledgeEntry.js";
+import DeleteKnowledgeEntry from "#src/application/use-cases/knowledge/delete/deleteKnowledgeEntry.js";
+import AddKnowledgeEntry from "#src/application/use-cases/knowledge/create/addKnowledgeEntry.js";
+import DeleteKnowledgeEntryDocument from "#src/application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
+import GetKnowledgeBase from "#src/application/use-cases/knowledge/read/getKnowledgeBase.js";
 
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeRepository)

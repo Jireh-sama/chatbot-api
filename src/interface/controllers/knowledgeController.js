@@ -1,6 +1,6 @@
-import { formatDuplicateKeyError } from "#infrastructure/utils/loggingUtils.js";
+import { formatDuplicateKeyError } from "#src/infrastructure/utils/loggingUtils.js";
 
-function knowledgeDataController(
+function knowledgeController(
   getKnowledgeCollectionUseCase,
   getKnowledgeEntryUseCase,
   getKnowledgeBaseUseCase,
@@ -198,4 +198,4 @@ function knowledgeDataController(
   };
 }
 
-export default knowledgeDataController;
+export default knowledgeController;

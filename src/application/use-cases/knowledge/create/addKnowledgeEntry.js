@@ -1,4 +1,4 @@
-import createKnowledgeEntry from "#domain/entities/knowledgeEntry.js"
+import createKnowledgeEntry from "#src/domain/entities/knowledgeEntry.js"
 
 function addKnowledgeEntry(knowledgeRepository) {
   const execute = async (knowledgeBase, knowledgeEntry) => {
