@@ -1,11 +1,11 @@
 import express from "express";
-import { userRepository } from "#infrastructure/service/index.js";
+import { adminRepository } from "#src/infrastructure/service/index.js";
 import AuthController from "../controllers/authController.js";
 
 import AuthenticateUser from "#application/use-cases/auth/authenticateUser.js";
 
-const authenticateUser = AuthenticateUser(userRepository)
-const authController = AuthController(authenticateUser);
+const authenticateAdmin = AuthenticateAdmin(adminRepository)
+const authController = AuthController(authenticateAdmin);
 
 
 const router = express.Router();
