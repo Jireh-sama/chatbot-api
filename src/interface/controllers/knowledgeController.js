@@ -87,7 +87,8 @@ function knowledgeDataController(
   const deleteKnowledgeBase = async (req, res) => {
     try {
       const { knowledgeBaseName } = req.params;
-      await deleteKnowledgeBaseUseCase.execute(knowledgeBaseName);
+      const deletedItemCount = await deleteKnowledgeBaseUseCase.execute(knowledgeBaseName);
+      console.log(`Successfully deleted ${deletedItemCount} document`);
       return res
         .status(200)
         .json({

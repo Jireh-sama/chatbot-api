@@ -57,6 +57,13 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument };
+
+  const deleteDocument = async (filter) => {
+    const collection = await initializeCollection();
+    const result = await collection.deleteOne(filter)
+    return result.deletedCount
+  } 
+
+  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument, deleteDocument };
 }
 export default mongoDbClient;
