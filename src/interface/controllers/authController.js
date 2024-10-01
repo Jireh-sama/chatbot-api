@@ -1,9 +1,10 @@
-function authController(authenticateUserUseCase) {
-  const loginUser = async (req, res) => {
+import { hashPassword } from "#src/infrastructure/utils/passwordUtils.js"
+
+function authController(authenticateAdminUseCase) {
+  const loginAdmin = async (req, res) => {
     try {
-      console.log('works');
       const { email, password } = req.body
-      await authenticateUserUseCase.execute(email, password)
+      await authenticateAdminUseCase.execute(email, password)
       res.status(200).json({ message: 'Successfully logged in' })
     } catch (error) {
       res.status(500).json({ message: 'something went wrong' })
@@ -11,8 +12,18 @@ function authController(authenticateUserUseCase) {
     }
   }
 
+  const registerAdmin = async (req, res) => {
+    const { email, password } = req.body
+    if (email) {
+      throw new Error('Email exist')
+    }
+    const hashedPassword = await hashPassword(password)
+    res.status(201).json({ message: 'User created successfully' })
+  }
+
   return {
-    loginUser
+    loginAdmin,
+    registerAdmin,
   }
 }
 
