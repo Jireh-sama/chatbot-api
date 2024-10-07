@@ -49,9 +49,9 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return await collection.updateOne(query, updateData)
   }
 
-  const updateDocument = async (filter, updateDpcument) => {
+  const updateDocument = async (filter, updateDocument) => {
     const collection = await initializeCollection();
-    const res = await collection.updateOne(filter, updateDpcument);
+    const res = await collection.updateOne(filter, updateDocument);
 
     if (res.matchedCount === 0) {
       throw new Error('No document found matching the filter')
