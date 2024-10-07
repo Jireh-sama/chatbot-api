@@ -8,7 +8,7 @@ function addKnowledgeEntry(knowledgeRepository) {
     );
 
     if (!existingKnowledge) {
-      throw new Error(`Knowledge base ${knowledgeBase} does not exist`);
+      throw new CustomError(`Knowledge base ${knowledgeBase} does not exist`, 404)
     }
 
     const { intent, documents, answer } = knowledgeEntry 
