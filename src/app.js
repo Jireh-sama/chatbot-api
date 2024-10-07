@@ -7,7 +7,7 @@ import verifyAPIKey from './interface/middleware/validateRequestMiddleware.js';
 import { knowledgeRoutes, authRoutes, chatbotRoutes } from './interface/routes/index.js';
 import { getDirName } from './infrastructure/utils/pathUtils.js';
 import { globalErrorHandler } from './interface/middleware/errorHandler.js';
-
+import { verifyToken } from './interface/middleware/authMiddleware.js';
 const port = process.env.PORT || 3001;
 const app = express();
 
@@ -16,9 +16,9 @@ app.use(cors({ origin: '*' }));
 app.use(helmet())
 
 app.use('/static/', express.static(path.join(getDirName(), 'static')));
-app.use('/api/knowledge', verifyAPIKey, knowledgeRoutes)
-app.use('/api/chatbot', verifyAPIKey, chatbotRoutes)
-app.use('/api/auth', verifyAPIKey, authRoutes)
+app.use('/api/auth', authRoutes)
+app.use('/api/knowledge', verifyToken, knowledgeRoutes)
+app.use('/api/chatbot', chatbotRoutes)
 
 app.use(globalErrorHandler)
 
