@@ -28,3 +28,13 @@ export const verifyToken =  (req, res, next) => {
     next();
   });
 };
+
+export const verifyAPIKey = (req, res, next) => {
+  const apiKey = req.headers['authorization']
+  if (apiKey !== process.env.API_KEY) {
+    if (process.env.NODE_ENV === 'development') console.error('Unauthorized request has been detected')
+    return res.status(401).json({ success: false, response: 'Unauthorized Request' })
+  }
+
+  return next()
+}
