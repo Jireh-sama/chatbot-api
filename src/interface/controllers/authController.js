@@ -13,6 +13,7 @@ function authController(
     res.cookie("jwt", refreshToken, {
       httpOnly: true,
       sameSite: "Lax",
+      secure: true,
     });
     res.status(200).json({ success: true, accessToken });
   };
