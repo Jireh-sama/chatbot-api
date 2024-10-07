@@ -1,10 +1,8 @@
 import express from 'express';
-import path from 'path'
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import helmet from 'helmet';
 import { knowledgeRoutes, authRoutes, chatbotRoutes } from './interface/routes/index.js';
-import { getDirName } from './infrastructure/utils/pathUtils.js';
 import { globalErrorHandler } from './interface/middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import { verifyToken } from './interface/middleware/authMiddleware.js';
@@ -15,7 +13,7 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app'],
+  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001'],
   credentials: true,
 }));
 app.use(helmet())
