@@ -1,17 +1,18 @@
 import express from "express";
-import KnowledgeController from "#interface/controllers/knowledgeController.js"; 
-import { knowledgeRepository } from "#infrastructure/service/index.js";
+import KnowledgeController from "../controllers/knowledgeController.js";
+import { knowledgeRepository } from "#src/infrastructure/service/index.js";
+import { asyncHandler } from "../middleware/errorHandler.js";
 
 // Use-Cases
-import CreateKnowledgeBase from "#application/use-cases/knowledge/create/createKnowledgeBase.js";
-import DeleteKnowledgeBase from "#application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
-import GetKnowledgeCollection from "#application/use-cases/knowledge/read/getKnowledgeCollection.js";
-import GetKnowledgeEntry from "#application/use-cases/knowledge/read/getKnowledgeEntry.js";
-import UpdateKnowledgeEntry from "#application/use-cases/knowledge/update/updateKnowledgeEntry.js";
-import DeleteKnowledgeEntry from "#application/use-cases/knowledge/delete/deleteKnowledgeEntry.js";
-import AddKnowledgeEntry from "#application/use-cases/knowledge/create/addKnowledgeEntry.js";
-import DeleteKnowledgeEntryDocument from "#application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
-import GetKnowledgeBase from "#application/use-cases/knowledge/read/getKnowledgeBase.js";
+import CreateKnowledgeBase from "#src/application/use-cases/knowledge/create/createKnowledgeBase.js";
+import DeleteKnowledgeBase from "#src/application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
+import GetKnowledgeCollection from "#src/application/use-cases/knowledge/read/getKnowledgeCollection.js";
+import GetKnowledgeEntry from "#src/application/use-cases/knowledge/read/getKnowledgeEntry.js";
+import UpdateKnowledgeEntry from "#src/application/use-cases/knowledge/update/updateKnowledgeEntry.js";
+import DeleteKnowledgeEntry from "#src/application/use-cases/knowledge/delete/deleteKnowledgeEntry.js";
+import AddKnowledgeEntry from "#src/application/use-cases/knowledge/create/addKnowledgeEntry.js";
+import DeleteKnowledgeEntryDocument from "#src/application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
+import GetKnowledgeBase from "#src/application/use-cases/knowledge/read/getKnowledgeBase.js";
 
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeRepository)
@@ -37,18 +38,18 @@ const knowledgeController = KnowledgeController(
 
 const router = express.Router();
 
-router.post('/knowledge', (req, res) => knowledgeController.createKnowledgeBase(req, res))
-router.post('/knowledge/entry', (req, res) => knowledgeController.addKnowledgeEntry(req, res))
+router.post('/',  asyncHandler(knowledgeController.createKnowledgeBase))
+router.post('/entry',  asyncHandler(knowledgeController.addKnowledgeEntry))
 
-router.put('/knowledge/entry', (req, res) => knowledgeController.updateKnowledgeEntry(req, res))
+router.put('/entry',  asyncHandler(knowledgeController.updateKnowledgeEntry))
 
-router.get('/knowledge', (req, res) => knowledgeController.getKnowledgeCollection(req, res))
-router.get('/knowledge/base', (req, res) => knowledgeController.getKnowledgeBase(req, res))
-router.get('/knowledge/:knowledgeBase', (req, res) => knowledgeController.getKnowledgeEntry(req, res))
+router.get('/',  asyncHandler(knowledgeController.getKnowledgeCollection))
+router.get('/base',  asyncHandler(knowledgeController.getKnowledgeBase))
+router.get('/:knowledgeBase',  asyncHandler(knowledgeController.getKnowledgeEntry))
 
 
-router.delete('/knowledge/entry', (req, res) => knowledgeController.deleteKnowledgeEntry(req, res))
-router.delete('/knowledge/entry/document', (req, res) => knowledgeController.deleteKnowledgeEntryDocument(req, res))
-router.delete('/knowledge/:knowledgeBaseName', (req, res) => knowledgeController.deleteKnowledgeBase(req, res))
+router.delete('/entry',  asyncHandler(knowledgeController.deleteKnowledgeEntry))
+router.delete('/entry/document',  asyncHandler(knowledgeController.deleteKnowledgeEntryDocument))
+router.delete('/:knowledgeBaseName',  asyncHandler(knowledgeController.deleteKnowledgeBase))
 
 export default router

@@ -1,43 +1,39 @@
 import express from 'express';
+import path from 'path'
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import knowledgeRoutes from './interface/routes/knowledgeRoutes.js'
-import chatbotRoutes from './interface/routes/chatbotRoutes.js'
-import validateRequestMiddleware from './interface/middleware/validateRequestMiddleware.js';
-import path from 'path'
-import { fileURLToPath } from 'url';
-
-// Get the directory name of the current module
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
+import helmet from 'helmet';
+import { knowledgeRoutes, authRoutes, chatbotRoutes } from './interface/routes/index.js';
+import { getDirName } from './infrastructure/utils/pathUtils.js';
+import { globalErrorHandler } from './interface/middleware/errorHandler.js';
+import cookieParser from 'cookie-parser';
+import { verifyToken } from './interface/middleware/authMiddleware.js';
 const port = process.env.PORT || 3001;
 const app = express();
 
-function checkAccessToken(req, res, next) {
-  const { token } = req.params;
-  const allowedToken = '5b9SlUTT3l4lVvbf2HCcI4w9VU69VI8W3e1tbAMWBkXFGoqCkbhtklM5UfHmstES'
-  if (token !== allowedToken) {
-    return res.status(404).json({message: 'Nyope'})
-  }
-  return next()
-}
-
-
 app.use(bodyParser.json());
-app.use(cors({ origin: '*' }));
+app.use(cookieParser())
 
-app.use('/static/:token', checkAccessToken, express.static(path.join(__dirname, 'static')));
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app'],
+  credentials: true,
+}));
+app.use(helmet())
 
-app.use('/api', validateRequestMiddleware, knowledgeRoutes)
-app.use('/api', validateRequestMiddleware, chatbotRoutes)
+app.use('/static/', express.static(path.join(getDirName(), 'static')));
+app.use('/api/auth', authRoutes)
+app.use('/api/knowledge', verifyToken, knowledgeRoutes)
+app.use('/api/chatbot', chatbotRoutes)
 
+app.use(globalErrorHandler)
 
 const startServer = () => {
   app.listen(port, () => {
     if (process.env.NODE_ENV === 'development') {
       console.log(`Server is running at http://localhost:${port}`);
+      return;
     }
+    console.log(`Server is running on port: ${port}`);
   });
 }
 

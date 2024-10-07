@@ -32,7 +32,10 @@ function knowledgeRepository(db) {
       const isSingle = true
       return await db.readCollection(query, filter, isSingle)
     }
-
+    const deleteKnowledgeBase = async (knowledgeBase) => {
+      const filter = { knowledgeBase }
+      return await db.deleteDocument(filter);
+    }
     // Removes a value from a specified document field
     const deleteKnowledgeEntryDocument = async (knowledgeEntryIntent, documentValue) => {
       const filter = {"knowledgeEntry.intent": knowledgeEntryIntent}
@@ -69,6 +72,7 @@ function knowledgeRepository(db) {
       createKnowledgeBase,
       updateKnowledgeBase,
       getKnowledgeCollection,
+      deleteKnowledgeBase,
       deleteKnowledgeEntryDocument,
       updateKnowledgeEntry,
       getKnowledgeBaseList,

@@ -1,9 +1,12 @@
+import { verifyToken, verifyAPIKey } from "../middleware/authMiddleware.js";
+import { asyncHandler } from "../middleware/errorHandler.js";
+
 import express from "express";
 import ChatbotController from "../controllers/chatbotController.js";
-import { chatbotClient } from "#infrastructure/service/index.js";
+import { chatbotClient } from "#src/infrastructure/service/index.js";
 
-import ProcessUserQuery from "#application/use-cases/chatbot/processUserQuery.js";
-import TrainChatbot from "#application/use-cases/chatbot/trainChatbot.js";
+import ProcessUserQuery from "#src/application/use-cases/chatbot/processUserQuery.js";
+import TrainChatbot from "#src/application/use-cases/chatbot/trainChatbot.js";
 
 const router = express.Router()
 
@@ -12,7 +15,8 @@ const trainChatbot = TrainChatbot(chatbotClient);
 
 const chatBotController = ChatbotController(processUserQuery, trainChatbot);
   
-router.post('/chatbot/query', (req, res) => chatBotController.processUserQuery(req, res))
-router.post('/chatbot/train', (req, res) => chatBotController.trainChatbot(req, res))
+router.post('/query', verifyAPIKey, asyncHandler(chatBotController.processUserQuery))
+router.post('/query-admin', verifyToken, asyncHandler(chatBotController.processUserQuery))
+router.post('/train', verifyToken, asyncHandler(chatBotController.trainChatbot))
 
 export default router

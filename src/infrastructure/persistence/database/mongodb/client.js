@@ -49,14 +49,21 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return await collection.updateOne(query, updateData)
   }
 
-  const updateDocument = async (filter, updateDpcument) => {
+  const updateDocument = async (filter, updateDocument) => {
     const collection = await initializeCollection();
-    const res = await collection.updateOne(filter, updateDpcument);
+    const res = await collection.updateOne(filter, updateDocument);
 
     if (res.matchedCount === 0) {
       throw new Error('No document found matching the filter')
     }
   };
-  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument };
+
+  const deleteDocument = async (filter) => {
+    const collection = await initializeCollection();
+    const result = await collection.deleteOne(filter)
+    return result.deletedCount
+  } 
+
+  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument, deleteDocument };
 }
 export default mongoDbClient;
