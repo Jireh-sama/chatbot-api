@@ -1,27 +1,49 @@
-import { hashPassword } from "#src/infrastructure/utils/passwordUtils.js"
+function authController(
+  createAdminUseCase,
+  loginAdminUseCase,
+  logoutAdminUseCase,
+  issueAdminNewAccessTokenUseCase,
+) {
+  const handleAdminLogin = async (req, res) => {
+    const { email, password } = req.body;
+    const { accessToken, refreshToken } = await loginAdminUseCase.execute(
+      email,
+      password
+    );
+    res.cookie("jwt", refreshToken, {
+      httpOnly: true,
+      sameSite: "Lax",
+    });
+    res.status(200).json({ success: true, accessToken });
+  };
 
-function authController(authenticateAdminUseCase) {
-  const loginAdmin = async (req, res) => {
-    const { email, password } = req.body
-    await authenticateAdminUseCase.execute(email, password)
-    res.status(200).json({ message: 'Successfully logged in' })
-  }
+  const handleAdminRegister = async (req, res) => {
+    const { email, password } = req.body;
+    await createAdminUseCase.execute(email, password);
+    res.status(201).json({ message: "User created successfully" });
+  };
 
-  const registerAdmin = async (req, res) => {
-    const { email, password } = req.body
+  const handleAdminLogout = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) throw new CustomError("JWT cookie not found", 404);
 
-    
-    if (email) {
-      throw new Error('Email exist')
-    }
-    const hashedPassword = await hashPassword(password)
-    res.status(201).json({ message: 'User created successfully' })
-  }
+    await logoutAdminUseCase.execute(cookies.jwt);
+    res.status(200).json({ message: "Logout success" });
+  };
 
+  const handleAdminRefreshToken = async (req, res) => {
+    const cookies = req.cookies;
+    if (!cookies?.jwt) throw new CustomError("JWT cookie not found", 404);
+
+    const newAccessToken = await issueAdminNewAccessTokenUseCase.execute(cookies.jwt);
+    res.status(201).json({ accessToken: newAccessToken })
+  };
   return {
-    loginAdmin,
-    registerAdmin,
-  }
+    handleAdminLogin,
+    handleAdminRegister,
+    handleAdminLogout,
+    handleAdminRefreshToken,
+  };
 }
 
-export default authController
+export default authController;
