@@ -8,11 +8,11 @@ import { uri, defaultMongoDbConfig, dbName, collectionName } from "../config/db.
 import { nlpManagerConfig } from "../config/nlpManagerConfig.js";
 import { modelFilePath } from "../config/paths.js";
 
-const userDB = MongoDbClient(uri, dbName, 'user', defaultMongoDbConfig)
+const adminDB = MongoDbClient(uri, dbName, 'admin', defaultMongoDbConfig)
 const knowledgeDB = MongoDbClient(uri, dbName, collectionName, defaultMongoDbConfig);
 
 const knowledgeRepository = KnowledgeRepository(knowledgeDB);
-const adminRepository = AdminRepository(userDB)
+const adminRepository = AdminRepository(adminDB)
 const chatbotClient = ChatbotClient(nlpManagerConfig, knowledgeRepository, modelFilePath)
 
 export { knowledgeRepository, chatbotClient, adminRepository };
