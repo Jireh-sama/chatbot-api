@@ -20,7 +20,8 @@ app.use(cors({
 }));
 app.use(helmet())
 
-app.use('/static/', express.static(path.join(getDirName(), 'static')));
+app.use(express.static('public'));
+
 app.use('/api/auth', authRoutes)
 app.use('/api/knowledge', verifyToken, knowledgeRoutes)
 app.use('/api/chatbot', chatbotRoutes)
