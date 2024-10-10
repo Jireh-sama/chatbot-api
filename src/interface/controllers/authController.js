@@ -11,9 +11,10 @@ function authController(
       password
     );
     res.cookie("jwt", refreshToken, {
-      httpOnly: true,
-      sameSite: "None",
-      secure: true,
+      httpOnly: true,   // Important for security
+      secure: true,     // Must be secure (HTTPS) when using SameSite=None
+      sameSite: 'None', // Required for cross-site usage
+      partitioned: true // To allow cross-site access in a partitioned manner
     });
     res.status(200).json({ success: true, accessToken });
   };
