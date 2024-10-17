@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(cookieParser())
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app', 'cob-chatbot-moonbamivercel-tsukiwa.vercel.app'],
+  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app'],
   credentials: true,
 }));
 app.use(helmet())
