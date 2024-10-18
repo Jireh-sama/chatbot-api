@@ -20,11 +20,18 @@ function chatbotService(chatbot, reader, modelFilePath) {
   }
 
   const loadEntry = (knowledgeEntry) => {
-    const { intent, documents, answer } = knowledgeEntry
+    const { intent, documents, answer, fileUrl } = knowledgeEntry
     documents.forEach((document) => {
       chatbot.addDocument("en", document, intent);
     });
-    chatbot.addAnswer("en", intent, answer);
+
+    if (!fileUrl) {
+      console.log('No file url detected');
+      chatbot.addAnswer("en", intent, answer);
+      return;
+    }
+
+    chatbot.addAnswer("en", intent, `${answer} [${fileUrl}]`);
   };
   
   const saveModel = async (modelFilePath) => {
