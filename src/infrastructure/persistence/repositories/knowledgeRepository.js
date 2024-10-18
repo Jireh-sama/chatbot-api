@@ -48,9 +48,9 @@ function knowledgeRepository(db) {
     }
     // Update the value of the specified knowledge entry item
     const updateKnowledgeEntry = async (knowledgeEntryIntent, updatedKnowledgeEntry) => {
-      const { intent, documents, answer } = updatedKnowledgeEntry;
+      const { intent, documents, answer, fileUrl } = updatedKnowledgeEntry;
       const filter = {'knowledgeEntry.intent': knowledgeEntryIntent}
-      const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer } }
+      const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer, 'knowledgeEntry.$.fileUrl': fileUrl } }
       await db.updateDocument(filter, updateDocument)
     }
     const addKnowledgeEntry = async (knowledgeBase, knowledgeEntry) => {

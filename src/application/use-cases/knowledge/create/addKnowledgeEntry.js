@@ -11,8 +11,8 @@ function addKnowledgeEntry(knowledgeRepository) {
       throw new CustomError(`Knowledge base ${knowledgeBase} does not exist`, 404)
     }
 
-    const { intent, documents, answer } = knowledgeEntry 
-    const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer)
+    const { intent, documents, answer, fileUrl } = knowledgeEntry 
+    const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer, fileUrl)
     newKnowledgeEntry.validate()
 
     knowledgeRepository.addKnowledgeEntry(knowledgeBase, newKnowledgeEntry.toObject())

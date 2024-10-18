@@ -6,7 +6,8 @@
  * @param {string} answer - The answer to the knowledge entry.
  * @returns {Object} - The knowledge entry object with `validate` and `toObject` methods.
  */
-function createKnowledgeEntry(intent, documents, answer) {
+function createKnowledgeEntry(intent, documents, answer, fileUrl) {
+
     const validate =() => {
       // Validate intent
       if (!intent) {
@@ -39,7 +40,11 @@ function createKnowledgeEntry(intent, documents, answer) {
       }
     }
     
-    const toObject = () => ({ intent, documents, answer })
+    const toObject = () => {
+      if (!fileUrl) return { intent, documents, answer }
+      
+      return {intent, documents, answer, fileUrl}
+    }
 
   return { validate, toObject }
 }
