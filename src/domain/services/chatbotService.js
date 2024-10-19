@@ -26,7 +26,6 @@ function chatbotService(chatbot, reader, modelFilePath) {
     });
 
     if (!fileUrl) {
-      console.log('No file url detected');
       chatbot.addAnswer("en", intent, answer);
       return;
     }
@@ -40,7 +39,7 @@ function chatbotService(chatbot, reader, modelFilePath) {
       chatbot.save(modelFilePath)
       
     } catch (error) {
-      console.log(error);
+      console.log(`Error occured while saving model: ${error}`);
     }
   }
 
