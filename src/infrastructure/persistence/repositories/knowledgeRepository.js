@@ -59,11 +59,13 @@ function knowledgeRepository(db) {
       await db.insertDocument(query, updateData)
     }
 
-    const updateKnowledgeBase = async (knowledgeBase, updatedKnowledgeEntry) => {
-      const { intent, documents, answer } = updatedKnowledgeEntry;
-      const filter = {'knowledgeEntry.intent': intent}
-      const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer } }
-      await db.updateDocument(filter, updateDocument)
+    const incrementKnowledgeEntryFrequency = async (knowledgeEntryIntent) => {
+      const filter = { 'knowledgeEntry.intent': knowledgeEntryIntent }; // Match the intent
+      const update = {
+        $inc: { 'knowledgeEntry.$.frequency': 1 }, // Increment the frequency
+      };
+
+      await db.updateDocument(filter, update)
     }
 
     return {
