@@ -16,7 +16,7 @@ export const verifyToken =  (req, res, next) => {
   }
   jwt.verify(token, process.env.ACCESS_TOKEN_SECRET, (err, user) => {
     if (err) {
-      console.log('Token is invalid or expired');
+      console.log('Access Token is invalid or expired');
       return res.status(401).json({ message: 'Unauthorized' });
     }
 
