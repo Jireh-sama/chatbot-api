@@ -1,5 +1,6 @@
 import { verifyPassword } from "#src/infrastructure/utils/passwordUtils.js";
 import { generateAccessToken } from "#src/infrastructure/utils/tokenUtils.js";
+import { ACCESS_TOKEN_EXPIRATION_TIME, REFRESH_TOKEN_EXPIRATION_TIME } from "#src/infrastructure/config/token.js";
 
 function loginAdmin(adminRepository) {
   const execute = async (email, password) => {
@@ -16,8 +17,8 @@ function loginAdmin(adminRepository) {
       throw new CustomError('Invalid credentials', 404)
     }
 
-    const accessToken = generateAccessToken({ id: foundAdmin._id}, process.env.ACCESS_TOKEN_SECRET, '15m')
-    const refreshToken = generateAccessToken({ id: foundAdmin._id}, process.env.REFRESH_TOKEN_SECRET, '1d')
+    const accessToken = generateAccessToken({ id: foundAdmin._id}, process.env.ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRATION_TIME)
+    const refreshToken = generateAccessToken({ id: foundAdmin._id}, process.env.REFRESH_TOKEN_SECRET, REFRESH_TOKEN_EXPIRATION_TIME)
     
     await adminRepository.updateAdminRefreshToken(foundAdmin._id, { $set: { refreshToken } } )
     if (process.env.NODE_ENV === 'development') {
