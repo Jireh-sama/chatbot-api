@@ -20,6 +20,15 @@ function knowledgeRepository(db) {
       const isSingle = true
       return await db.readCollection(query, null, isSingle)
     }
+
+    // retrieve a single knowledge entry item
+    const getKnowledgeEntry = async (intent) => {
+      const query = { 'knowledgeEntry.intent': intent };
+      const projection = { 'knowledgeEntry.$': 1 };
+      const isSingle = true;
+      return await db.readCollection(query, projection, isSingle)
+    }
+
     const getTop5KnowledgeEntry = async () => {
       const pipeline = [
         { $unwind: '$knowledgeEntry' }, // Deconstructs the knowledgeEntry array
@@ -43,7 +52,7 @@ function knowledgeRepository(db) {
 
     const readKnowledgeEntry = async (knowledgeBase) => {
       const query = { knowledgeBase }
-      const filter = { _id: 0, knowledgeBase: 0 }
+      const filter = { _id: 0, knowledgeBase: 0, 'knowledgeEntry.frequency': 0 }
       const isSingle = true
       return await db.readCollection(query, filter, isSingle)
     }
@@ -83,6 +92,7 @@ function knowledgeRepository(db) {
       const updateDocument = { $set: { 'knowledgeEntry.$.intent': intent, 'knowledgeEntry.$.documents': documents, 'knowledgeEntry.$.answer': answer, 'knowledgeEntry.$.fileUrl': fileUrl } }
       await db.updateDocument(filter, updateDocument)
     }
+
     const addKnowledgeEntry = async (knowledgeBase, knowledgeEntry) => {
       const query = { knowledgeBase }
       const updateData = { $push: { knowledgeEntry } }
@@ -100,15 +110,19 @@ function knowledgeRepository(db) {
 
     return {
       getKnowledgeBase,
+      getKnowledgeEntry,
+      getTop5KnowledgeEntry,
       readKnowledgeEntry,
       createKnowledgeBase,
       updateKnowledgeBase,
       getKnowledgeCollection,
       deleteKnowledgeBase,
       deleteKnowledgeEntryDocument,
+      deleteKnowledgeEntry,
       updateKnowledgeEntry,
       getKnowledgeBaseList,
       addKnowledgeEntry,
+      incrementKnowledgeEntryFrequency,
     };
 }
 
