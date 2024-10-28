@@ -47,6 +47,13 @@ function knowledgeRepository(db) {
       const isSingle = true
       return await db.readCollection(query, filter, isSingle)
     }
+
+    const deleteKnowledgeEntry = async (knowledgeBase, knowledgeEntryIntent) => {
+      const query = { knowledgeBase }
+      const updateData = { $pull: { knowledgeEntry: { intent: knowledgeEntryIntent } } }
+      await db.updateDocument(query, updateData)
+    }
+
     const deleteKnowledgeBase = async (knowledgeBase) => {
       const filter = { knowledgeBase }
       return await db.deleteDocument(filter);
