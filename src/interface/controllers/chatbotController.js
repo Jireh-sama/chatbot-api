@@ -1,19 +1,25 @@
-function chatbotController(processUserQueryUseCase, trainChatbotUseCase) {
+function chatbotController(processUserQueryUseCase, trainChatbotUseCase, updateKnowledgeEntryFrequencyUseCase, updateQuestionFrequencyUseCase) {
   
   const processUserQuery = async (req, res) => {
     const { userQuery } = req.body;
     const response = await processUserQueryUseCase.execute(userQuery)
-    console.log(`User query successfully handled, Query: ${response.utterance}`);
-    return res.status(200).json({ success: true, response })
+
+    await updateKnowledgeEntryFrequencyUseCase.execute(response.intent)
+    res.status(200).json({ success: true, response })
   }
 
   const trainChatbot = async (_req, res) => {
-    await trainChatbotUseCase.execute()
+    const timeFinishedTraining = await trainChatbotUseCase.execute()
     console.log('Model trained successfully');
-    res.status(200).json({ success: true, response: 'Model trained successfully' })
+    res.status(200).json({ success: true, response: `Model trained successfully: ${timeFinishedTraining}` })
   }
 
-  return { processUserQuery, trainChatbot }
+  const updateQuestionFrequency = async (_req, res) => {
+    await updateQuestionFrequencyUseCase.execute()
+    res.status(200).json({ success: true, response: `Updated question frequency` })
+  }
+
+  return { processUserQuery, trainChatbot, updateQuestionFrequency }
 }
 
 export default chatbotController
