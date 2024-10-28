@@ -20,6 +20,21 @@ function knowledgeRepository(db) {
       const isSingle = true
       return await db.readCollection(query, null, isSingle)
     }
+    const getTop5KnowledgeEntry = async () => {
+      const pipeline = [
+        { $unwind: '$knowledgeEntry' }, // Deconstructs the knowledgeEntry array
+        { $sort: { 'knowledgeEntry.frequency': -1 } }, // Sorts by frequency in descending order
+        { $limit: 5 }, // Limits to the top 5 results
+        { 
+          $project: {
+            intent: '$knowledgeEntry.intent',  
+            document: '$$ROOT',
+            frequency: '$knowledgeEntry.frequency'
+          } 
+        } 
+      ]
+      return await db.aggregateDocuments(pipeline)
+    }
 
     const createKnowledgeBase = async (knowledgeBase, knowledgeEntry) => {
       const query = { knowledgeBase, knowledgeEntry: [ knowledgeEntry ] }
