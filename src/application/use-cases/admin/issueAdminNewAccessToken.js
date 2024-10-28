@@ -1,4 +1,5 @@
-import { generateAccessToken } from "../../../infrastructure/utils/tokenUtils.js"
+import { ACCESS_TOKEN_EXPIRATION_TIME } from "#src/infrastructure/config/token.js";
+import { generateAccessToken } from "#src/infrastructure/utils/tokenUtils.js"
 
 function issueAdminNewAccessToken(adminRepository) {
   const execute = async (refreshToken) => {
@@ -8,8 +9,8 @@ function issueAdminNewAccessToken(adminRepository) {
     if (!foundAdmin) {
       throw new CustomError('No admin found with the given credentials', 404)
     }
-
-    return await generateAccessToken(foundAdmin, process.env.ACCESS_TOKEN_SECRET, '15m')
+    console.log('generating new access token for admin');
+    return await generateAccessToken(foundAdmin, process.env.ACCESS_TOKEN_SECRET, ACCESS_TOKEN_EXPIRATION_TIME)
   }
   return { execute }
 }

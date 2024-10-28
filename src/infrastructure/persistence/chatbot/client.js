@@ -4,13 +4,14 @@ import { readFilePath } from "#src/infrastructure/utils/pathUtils.js";
 
 function chatbotClient(config, knowledgeRepository, modelFilePath) {
 
-  const manager = new NlpManager(config)
-  const chatbotService = ChatbotService(manager, readFilePath, modelFilePath)
+  let chatbotService = null;
   
   const processQuery = async (query) => {
     return await chatbotService.processQuery(query)
   }
   const initialize = async () => {
+    const manager = new NlpManager(config)
+    chatbotService = ChatbotService(manager, readFilePath, modelFilePath)
     try {
       await chatbotService.loadModel(modelFilePath);
       console.log("Model loaded successfully!");
@@ -21,9 +22,10 @@ function chatbotClient(config, knowledgeRepository, modelFilePath) {
   }
 
   const train = async () => {
+    const manager = new NlpManager(config)
+    chatbotService = ChatbotService(manager, readFilePath, modelFilePath)
     try {
-      const knowledgeCollection =
-        await knowledgeRepository.getKnowledgeCollection();
+      const knowledgeCollection = await knowledgeRepository.getKnowledgeCollection();
 
       for (const knowledge of knowledgeCollection) {
         const { knowledgeBase, knowledgeEntry } = knowledge;

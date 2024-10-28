@@ -1,25 +1,18 @@
-import { defaultKnowledgeDirectory, defaultKnowledgeExtension } from "#src/infrastructure/config/paths.js"; 
-import { getFilePath } from "#src/infrastructure/utils/pathUtils.js";
-
 function deleteKnowledgeEntry(knowledgeRepository) {
 
-  const execute = async (knowledgeBaseName, knowledgeEntryIndex) => {
+  const execute = async (knowledgeBase, knowledgeEntryIntent) => {
+  
+    const existingKnowledge = await knowledgeRepository.getKnowledgeBase(
+      knowledgeBase
+    );
 
-    const knowledgeBasePath = getFilePath(defaultKnowledgeDirectory, knowledgeBaseName, defaultKnowledgeExtension)
-    const selectedKnowledgeBase = await knowledgeRepository.getKnowledgeBase(knowledgeBasePath)
+    if (!existingKnowledge) throw new CustomError(`Knowledge base ${knowledgeBase} does not exist`, 404)
 
-    if (selectedKnowledgeBase.length === 1 ) {
-      throw new Error("Knowledge base only contains 1 entry there you cannot delete this");
-    }
+    const intentExist = existingKnowledge.knowledgeEntry.some((entry => entry.intent === knowledgeEntryIntent))
 
-    if (knowledgeEntryIndex < 0 || knowledgeEntryIndex >= selectedKnowledgeBase.length) {
-      throw new Error("Index out of bounds");
-    }
-
-    // Logic to delete the target knowledge entry
-    selectedKnowledgeBase.splice(knowledgeEntryIndex, 1)
-
-    await knowledgeRepository.updateKnowledgeBase(knowledgeBasePath, selectedKnowledgeBase)
+    if (!intentExist) throw new CustomError(`Knowledge entry with intent ${knowledgeEntryIntent} does not exist`, 404)
+      
+    await knowledgeRepository.deleteKnowledgeEntry(knowledgeBase, knowledgeEntryIntent)
   }
 
   return { execute }

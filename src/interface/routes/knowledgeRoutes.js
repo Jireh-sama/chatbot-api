@@ -38,18 +38,18 @@ const knowledgeController = KnowledgeController(
 
 const router = express.Router();
 
-router.post('/',  asyncHandler(knowledgeController.createKnowledgeBase))
-router.post('/entry',  asyncHandler(knowledgeController.addKnowledgeEntry))
+router.post('/', asyncHandler(knowledgeController.createKnowledgeBase))
+router.post('/entry', asyncHandler(knowledgeController.addKnowledgeEntry))
 
-router.put('/entry',  asyncHandler(knowledgeController.updateKnowledgeEntry))
+router.put('/entry', asyncHandler(knowledgeController.updateKnowledgeEntry))
 
-router.get('/',  asyncHandler(knowledgeController.getKnowledgeCollection))
-router.get('/base',  asyncHandler(knowledgeController.getKnowledgeBase))
-router.get('/:knowledgeBase',  asyncHandler(knowledgeController.getKnowledgeEntry))
+router.get('/', asyncHandler(knowledgeController.getKnowledgeCollection))
+router.get('/base', asyncHandler(knowledgeController.getKnowledgeBase))
+router.get('/:knowledgeBase', asyncHandler(knowledgeController.getKnowledgeEntry))
 
 
-router.delete('/entry',  asyncHandler(knowledgeController.deleteKnowledgeEntry))
-router.delete('/entry/document',  asyncHandler(knowledgeController.deleteKnowledgeEntryDocument))
-router.delete('/:knowledgeBaseName',  asyncHandler(knowledgeController.deleteKnowledgeBase))
+router.delete('/entry/document', asyncHandler(knowledgeController.deleteKnowledgeEntryDocument))
+router.delete('/entry/:baseAndIntent', asyncHandler(knowledgeController.deleteKnowledgeEntry))
+router.delete('/:knowledgeBaseName', asyncHandler(knowledgeController.deleteKnowledgeBase))
 
 export default router

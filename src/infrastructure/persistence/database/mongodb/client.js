@@ -64,6 +64,12 @@ function mongoDbClient(uri, dbName, collectionName, config) {
     return result.deletedCount
   } 
 
-  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument, deleteDocument };
+  const aggregateDocuments = async (pipeline) => {
+    const collection = await initializeCollection(); 
+    const result = await collection.aggregate(pipeline).toArray(); 
+    return result; 
+  };
+
+  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument, deleteDocument, aggregateDocuments };
 }
 export default mongoDbClient;
