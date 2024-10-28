@@ -10,6 +10,7 @@ import { verifyToken } from './interface/middleware/authMiddleware.js';
 const port = process.env.PORT || 3001;
 const app = express();
 
+const WHITELIST_URL = ["https://chatbot-api-0zup.onrender.com", "http://localhost:5173"]
 
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
@@ -17,7 +18,12 @@ const limiter = rateLimit({
   message: 'Too many requests, please try again later.'
 })
 
-app.use(limiter)
+app.use((req, res, next) => {
+  if (WHITELIST_URL.includes(req.headers.origin)) {
+    return next()
+  }
+  limiter(req, res, next)
+})
 app.use(express.static('public'));
 app.use(bodyParser.json());
 app.use(cookieParser())
