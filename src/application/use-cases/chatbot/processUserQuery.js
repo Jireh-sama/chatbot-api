@@ -1,3 +1,5 @@
+import { getFallBackResponse } from "#src/infrastructure/config/nlpManagerConfig.js";
+
 function processUserQuery(chatbot) {
   const execute = async (query) => {
     if (!query) {
@@ -5,6 +7,9 @@ function processUserQuery(chatbot) {
     }
     const response = await chatbot.processQuery(query)
     // Do some logic to manipulating response here...
+    if (response.intent === 'None') {
+      response.answer = getFallBackResponse();
+    }
     return response;
   }
 
