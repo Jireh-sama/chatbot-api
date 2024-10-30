@@ -1,19 +1,23 @@
 import { NlpManager } from "node-nlp";
 import ChatbotService from "#src/domain/services/chatbotService.js";
-import { readFilePath } from "#src/infrastructure/utils/pathUtils.js";
 
-function chatbotClient(config, knowledgeRepository, modelFilePath) {
+function chatbotClient(config, knowledgeRepository, modelRepository) {
 
   let chatbotService = null;
   
   const processQuery = async (query) => {
     return await chatbotService.processQuery(query)
   }
+
   const initialize = async () => {
     const manager = new NlpManager(config)
-    chatbotService = ChatbotService(manager, readFilePath, modelFilePath)
+    chatbotService = ChatbotService(manager)
     try {
-      await chatbotService.loadModel(modelFilePath);
+      const result = await modelRepository.getModalData();
+
+      if (!result || !result.model) throw new Error('Model Data not found')
+      await chatbotService.loadModel(result.model);
+
       console.log("Model loaded successfully!");
     } catch (error) {
       console.error("Model does not exist, training a new one...");
@@ -23,7 +27,8 @@ function chatbotClient(config, knowledgeRepository, modelFilePath) {
 
   const train = async () => {
     const manager = new NlpManager(config)
-    chatbotService = ChatbotService(manager, readFilePath, modelFilePath)
+    chatbotService = ChatbotService(manager)
+
     try {
       const knowledgeCollection = await knowledgeRepository.getKnowledgeCollection();
 
@@ -41,8 +46,8 @@ function chatbotClient(config, knowledgeRepository, modelFilePath) {
       }
 
       // Save model data to model dir
-      chatbotService.saveModel(modelFilePath);
-      console.log(`Model saved successfully to ${modelFilePath}`);
+      const modelData = await chatbotService.saveModel();
+      await modelRepository.updateModelData(modelData)
     } catch (error) {
       console.log("Training error:", error.message || error);
     }
