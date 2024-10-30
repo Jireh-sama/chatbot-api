@@ -1,9 +1,0 @@
-[
-  {
-    "intent": "apple.fruit",
-    "documents": [
-      "apple what"
-    ],
-    "answer": "apple is fruit"
-  }
-]

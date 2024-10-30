@@ -3,8 +3,8 @@ import { readFile } from 'fs/promises';
 
 
 // const serviceAccount = JSON.parse(
-  //   await readFile(new URL('./serviceAccount/cob-chatbot-firebase-adminsdk-ix45m-d65aeb395d.json', import.meta.url))
-  // );
+//     await readFile(new URL('./serviceAccount/cob-chatbot-firebase-adminsdk-ix45m-d65aeb395d.json', import.meta.url))
+//   );
   
 const serviceAccountPath = '/etc/secrets/cob-chatbot-firebase-adminsdk-ix45m-d65aeb395d.json';
 const serviceAccount = JSON.parse(
