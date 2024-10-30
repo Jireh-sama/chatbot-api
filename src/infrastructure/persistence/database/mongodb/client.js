@@ -44,9 +44,9 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       : await collection.find(query, { projection }).toArray();
   }
 
-  const insertDocument = async (query, updateData) => {
+  const insertDocument = async (filter, updated, options = {}) => {
     const collection = await initializeCollection();
-    return await collection.updateOne(query, updateData)
+    return await collection.updateOne(filter, updated, options)
   }
 
   const updateDocument = async (filter, updateDocument) => {
