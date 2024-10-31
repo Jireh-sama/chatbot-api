@@ -12,6 +12,10 @@ function addKnowledgeEntry(knowledgeRepository) {
     }
 
     const { intent, documents, answer, fileUrl } = knowledgeEntry 
+
+    const existingIntent = await knowledgeRepository.getKnowledgeEntry(intent);
+    if (existingIntent) throw new CustomError(`Knowledge entry with intent ${intent} already exist`, 409)
+      
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer, fileUrl)
     newKnowledgeEntry.validate()
 
