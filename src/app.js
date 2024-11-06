@@ -7,6 +7,11 @@ import { globalErrorHandler } from './interface/middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
 import { rateLimit } from 'express-rate-limit'
 import { verifyToken } from './interface/middleware/authMiddleware.js';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3001;
 const app = express();
 
@@ -43,12 +48,19 @@ app.use(helmet.contentSecurityPolicy({
     ],
   },
 }));
+
+app.use(cors({
+  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app'],
+  credentials: true,
+}));
+
+app.use(bodyParser.json());
+app.use(cookieParser())
 const limiter = rateLimit({
   windowMs: 15 * 60 * 1000, // 15 minutes
   limit: 100,
   message: 'Too many requests, please try again later.'
 })
-
 app.use((req, res, next) => {
   if (WHITELIST_URL.includes(req.headers.origin)) {
     return next()
