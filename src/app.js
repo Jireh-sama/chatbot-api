@@ -55,16 +55,14 @@ app.use((req, res, next) => {
   }
   limiter(req, res, next)
 })
-app.use(express.static('public'));
-app.use(bodyParser.json());
-app.use(cookieParser())
-
-app.use(cors({
-  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app'],
-  credentials: true,
-}));
-app.use(helmet())
-
+app.use('/user', express.static(path.join(publicPath, 'user')));
+app.get('/user/*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'user', 'index.html'));
+});
+app.use('/admin', express.static(path.join(publicPath, 'admin')));
+app.get('/admin/*', (req, res) => {
+  res.sendFile(path.join(publicPath, 'admin', 'index.html'));
+});
 
 app.use('/api/auth', authRoutes)
 app.use('/api/knowledge', verifyToken, knowledgeRoutes)
