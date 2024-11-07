@@ -59,17 +59,18 @@ app.use(cors({
 
 app.use(bodyParser.json());
 app.use(cookieParser())
-const limiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  limit: 100,
-  message: 'Too many requests, please try again later.'
-})
-app.use((req, res, next) => {
-  if (WHITELIST_URL.includes(req.headers.origin)) {
-    return next()
-  }
-  limiter(req, res, next)
-})
+
+// const limiter = rateLimit({
+//   windowMs: 15 * 60 * 1000, // 15 minutes
+//   limit: 100,
+//   message: 'Too many requests, please try again later.'
+// })
+// app.use((req, res, next) => {
+//   if (WHITELIST_URL.includes(req.headers.origin)) {
+//     return next()
+//   }
+//   limiter(req, res, next)
+// })
 
 // API routes
 app.use('/api/auth', authRoutes)
