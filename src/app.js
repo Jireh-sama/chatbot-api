@@ -45,6 +45,7 @@ app.use(helmet.contentSecurityPolicy({
       "'self'",
       "https://*.firebaseio.com",
       "https://firebasestorage.googleapis.com",
+      "data:",  // Allow data URIs for images
     ],
     fontSrc: [
       "'self'",
