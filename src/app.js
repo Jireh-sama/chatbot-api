@@ -25,9 +25,11 @@ app.use(helmet.contentSecurityPolicy({
       "https://firestore.googleapis.com",
       "https://firebase.googleapis.com",
       "https://firebaseinstallations.googleapis.com",
+      "https://chatbot-api-0zup.onrender.com",
     ],
     scriptSrc: [
       "'self'",
+      "'unsafe-inline'",
       "https://www.gstatic.com",
       "https://www.googleapis.com",
       "https://www.googleapis.com/auth",
