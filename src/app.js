@@ -67,6 +67,17 @@ app.use((req, res, next) => {
   }
   limiter(req, res, next)
 })
+
+// API routes
+app.use('/api/auth', authRoutes)
+app.use('/api/knowledge', verifyToken, knowledgeRoutes)
+app.use('/api/chatbot', chatbotRoutes)
+
+app.get('/', (_, res) => {
+  res.redirect(301, '/user');
+})
+
+// Static File routes
 app.use('/user', express.static(path.join(publicPath, 'user')));
 app.get('/user/*', (req, res) => {
   res.sendFile(path.join(publicPath, 'user', 'index.html'));
@@ -76,9 +87,6 @@ app.get('/admin/*', (req, res) => {
   res.sendFile(path.join(publicPath, 'admin', 'index.html'));
 });
 
-app.use('/api/auth', authRoutes)
-app.use('/api/knowledge', verifyToken, knowledgeRoutes)
-app.use('/api/chatbot', chatbotRoutes)
 app.use(globalErrorHandler)
 
 const startServer = () => {
