@@ -8,8 +8,8 @@ function createKnowledgeBase(knowledgeRepository) {
     if (existingKnowledge) {
       throw new Error("Knowledge base already exist");
     }
-    const { intent, documents, answer } = knowledgeEntry;
-    const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer);
+    const { intent, documents, answer, fileUrl } = knowledgeEntry;
+    const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer, fileUrl);
     newKnowledgeEntry.validate();
     
     await knowledgeRepository.createKnowledgeBase(knowledgeBase, newKnowledgeEntry.toObject());
