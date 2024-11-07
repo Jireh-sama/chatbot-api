@@ -23,6 +23,7 @@ app.use(helmet.contentSecurityPolicy({
     connectSrc: [
       "'self'",
       "https://firestore.googleapis.com",
+      "https://firebasestorage.googleapis.com",
       "https://firebase.googleapis.com",
       "https://firebaseinstallations.googleapis.com",
       "https://identitytoolkit.googleapis.com",
