@@ -28,6 +28,7 @@ app.use(helmet.contentSecurityPolicy({
       "https://firebaseinstallations.googleapis.com",
       "https://identitytoolkit.googleapis.com",
       "https://chatbot-api-0zup.onrender.com",
+      "https://securetoken.googleapis.com",
     ],
     scriptSrc: [
       "'self'",
