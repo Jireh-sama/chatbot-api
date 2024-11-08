@@ -17,44 +17,6 @@ const app = express();
 
 const WHITELIST_URL = ["https://chatbot-api-0zup.onrender.com", "http://localhost:5173"]
 
-app.use(helmet.contentSecurityPolicy({
-  directives: {
-    defaultSrc: ["'self'"],
-    connectSrc: [
-      "'self'",
-      "https://firestore.googleapis.com",
-      "https://firebasestorage.googleapis.com",
-      "https://firebase.googleapis.com",
-      "https://firebaseinstallations.googleapis.com",
-      "https://identitytoolkit.googleapis.com",
-      "https://chatbot-api-0zup.onrender.com",
-      "https://securetoken.googleapis.com",
-    ],
-    scriptSrc: [
-      "'self'",
-      "'unsafe-inline'",
-      "https://www.gstatic.com",
-      "https://www.googleapis.com",
-      "https://www.googleapis.com/auth",
-      "https://*.firebaseio.com",
-    ],
-    styleSrc: [
-      "'self'",
-      "https://fonts.googleapis.com",
-    ],
-    imgSrc: [
-      "'self'",
-      "https://*.firebaseio.com",
-      "https://firebasestorage.googleapis.com",
-      "data:",  // Allow data URIs for images
-    ],
-    fontSrc: [
-      "'self'",
-      "https://fonts.gstatic.com",
-    ],
-  },
-}));
-
 app.use(cors({
   origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app'],
   credentials: true,
