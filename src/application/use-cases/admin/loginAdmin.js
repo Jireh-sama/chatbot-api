@@ -10,7 +10,6 @@ function loginAdmin(adminRepository) {
     if (!adminRecord) {
       throw new CustomError('Invalid credentials', 404)
     }
-
     const isPasswordValid = await verifyPassword(password, adminRecord.password)
     
     if (!isPasswordValid) {
