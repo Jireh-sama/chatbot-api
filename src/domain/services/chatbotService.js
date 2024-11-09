@@ -26,7 +26,7 @@ function chatbotService(chatbot) {
       return;
     }
 
-    chatbot.addAnswer("en", intent, `${answer} [${fileUrl}]`);
+    chatbot.addAnswer("en", intent, `${answer} [=${fileUrl}=]`);
   };
   
   const saveModel = async () => {
