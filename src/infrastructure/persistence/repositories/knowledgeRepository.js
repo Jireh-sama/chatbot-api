@@ -93,6 +93,12 @@ function knowledgeRepository(db) {
       await db.updateDocument(filter, updateDocument)
     }
 
+    const updateKnowledgeBaseName = async (knowledgeBaseName, newKnowledgeBaseName) => {
+      const filter = { knowledgeBase: knowledgeBaseName }
+      const updateDocument = { $set: { knowledgeBase: newKnowledgeBaseName } }
+      await db.updateDocument(filter, updateDocument)
+    }
+
     const addKnowledgeEntry = async (knowledgeBase, knowledgeEntry) => {
       const query = { knowledgeBase }
       const updateData = { $push: { knowledgeEntry } }
@@ -120,6 +126,7 @@ function knowledgeRepository(db) {
       deleteKnowledgeEntryDocument,
       deleteKnowledgeEntry,
       updateKnowledgeEntry,
+      updateKnowledgeBaseName,
       getKnowledgeBaseList,
       addKnowledgeEntry,
       incrementKnowledgeEntryFrequency,
