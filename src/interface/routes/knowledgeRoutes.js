@@ -13,6 +13,7 @@ import DeleteKnowledgeEntry from "#src/application/use-cases/knowledge/delete/de
 import AddKnowledgeEntry from "#src/application/use-cases/knowledge/create/addKnowledgeEntry.js";
 import DeleteKnowledgeEntryDocument from "#src/application/use-cases/knowledge/delete/deleteKnowledgeEntryDocument.js";
 import GetKnowledgeBase from "#src/application/use-cases/knowledge/read/getKnowledgeBase.js";
+import UpdateKnowledgeBaseName from "../../application/use-cases/knowledge/update/updateKnowledgeBaseName.js";
 
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeRepository)
@@ -23,6 +24,7 @@ const updateKnowledgeEntry = UpdateKnowledgeEntry(knowledgeRepository)
 const deleteKnowledgeEntry = DeleteKnowledgeEntry(knowledgeRepository)
 const addKnowledgeEntry = AddKnowledgeEntry(knowledgeRepository)
 const deleteKnowledgeEntryDocument = DeleteKnowledgeEntryDocument(knowledgeRepository)
+const updateKnowledgeBaseName = UpdateKnowledgeBaseName(knowledgeRepository)
 
 const knowledgeController = KnowledgeController(
   getKnowledgeCollection,
@@ -33,7 +35,8 @@ const knowledgeController = KnowledgeController(
   updateKnowledgeEntry,
   deleteKnowledgeEntry,
   deleteKnowledgeEntryDocument,
-  addKnowledgeEntry
+  addKnowledgeEntry,
+  updateKnowledgeBaseName,
 );
 
 const router = express.Router();
@@ -42,6 +45,7 @@ router.post('/', asyncHandler(knowledgeController.createKnowledgeBase))
 router.post('/entry', asyncHandler(knowledgeController.addKnowledgeEntry))
 
 router.put('/entry', asyncHandler(knowledgeController.updateKnowledgeEntry))
+router.put('/base', asyncHandler(knowledgeController.updateKnowledgeBaseName))
 
 router.get('/', asyncHandler(knowledgeController.getKnowledgeCollection))
 router.get('/base', asyncHandler(knowledgeController.getKnowledgeBase))

@@ -2,14 +2,13 @@ function knowledgeController(
   getKnowledgeCollectionUseCase,
   getKnowledgeEntryUseCase,
   getKnowledgeBaseUseCase,
-
   createKnowledgeBaseUseCase,
   deleteKnowledgeBaseUseCase,
   updateKnowledgeEntryUseCase,
   deleteKnowledgeEntryUseCase,
   deleteKnowledgeEntryDocumentUseCase,
   addKnowledgeEntryUseCase,
-  
+  updateKnowledgeBaseNameUseCase,
 ) {
   const createKnowledgeBase = async (req, res) => {
     const { knowledgeBaseName, knowledgeEntry } = req.body;
@@ -89,6 +88,12 @@ function knowledgeController(
     return res.status(200).json({ success: true, message: `Knowledge entry has been added` });
   }
 
+  const updateKnowledgeBaseName = async (req, res) => {
+    const { knowledgeBaseName, newKnowledgeBaseName } = req.body
+    await updateKnowledgeBaseNameUseCase.execute(knowledgeBaseName, newKnowledgeBaseName)
+    return res.status(200).json({ success: true, message: `Knowledge base name has been updated` });
+  }
+
   return {
     createKnowledgeBase,
     deleteKnowledgeBase,
@@ -99,6 +104,7 @@ function knowledgeController(
     getKnowledgeEntry,
     addKnowledgeEntry,
     getKnowledgeBase,
+    updateKnowledgeBaseName,
   };
 }
 
