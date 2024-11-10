@@ -1,11 +1,11 @@
 import express from 'express';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import helmet from 'helmet';
+// import helmet from 'helmet';
 import { knowledgeRoutes, authRoutes, chatbotRoutes } from './interface/routes/index.js';
 import { globalErrorHandler } from './interface/middleware/errorHandler.js';
 import cookieParser from 'cookie-parser';
-import { rateLimit } from 'express-rate-limit'
+// import { rateLimit } from 'express-rate-limit'
 import { verifyToken } from './interface/middleware/authMiddleware.js';
 import path from 'path';
 import { fileURLToPath } from 'url';
@@ -15,7 +15,7 @@ const publicPath = path.join(__dirname, '..', 'public');
 const port = process.env.PORT || 3001;
 const app = express();
 
-const WHITELIST_URL = ["https://chatbot-api-0zup.onrender.com", "http://localhost:5173"]
+// const WHITELIST_URL = ["https://chatbot-api-0zup.onrender.com", "http://localhost:5173"]
 
 // app.use(helmet.contentSecurityPolicy({
 //   directives: {
