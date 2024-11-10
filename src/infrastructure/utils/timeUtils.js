@@ -1,6 +1,5 @@
 export const getCurrentTime = () => {
   const now = new Date();
-
   const options = {
     year: 'numeric',
     month: '2-digit',
@@ -9,7 +8,7 @@ export const getCurrentTime = () => {
     minute: '2-digit',
     second: '2-digit',
     hour12: true,
+    timeZone: 'Asia/Manila'
   };
   return now.toLocaleString('en-US', options);
 }
-
