@@ -10,3 +10,9 @@ export const formatDuplicateKeyError = (errorMessage) => {
   
   return 'Duplicate key error: Unable to extract key and value from the error message.';
 };
+
+
+export const extractQuotedText = (errorMessage) => {
+  const match = errorMessage.match(/"([^"]*)"/);
+  return match ? match[1] : null;
+};
