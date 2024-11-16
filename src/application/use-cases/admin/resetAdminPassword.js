@@ -3,16 +3,21 @@ import { hashPassword, verifyPassword } from "#src/infrastructure/utils/password
 
 function resetAdminPassword(adminRepository) {
   const execute = async (adminInfo) => {
-    const { _id, password } = adminInfo
-    const hashedPassword = await hashPassword(password)
+    const { _id, password, newPassword } = adminInfo
+    
+    const hashedPassword = await hashPassword(newPassword)
     const id = ObjectId.createFromHexString(_id)
 
     const foundAdmin = await adminRepository.findOneAdmin({ _id: id})
     if (!foundAdmin) throw new CustomError('No admin found with the given credentials', 404)
+    
+    // Check if the current password matches
+    const isPasswordValid = await verifyPassword(password, foundAdmin.password)
+    if (!isPasswordValid) throw new CustomError('Admin password is incorrect', 400)
 
-    // console.log(foundAdmin);
-    const isPasswordTheSame = await verifyPassword(password, foundAdmin.password)
-    if (isPasswordTheSame) throw new CustomError('The new password cannot be the same as the current password. Please choose a different password.', 400)
+    // Prevent same password from before
+    const isNewPasswordSameAsBefore = await verifyPassword(newPassword, foundAdmin.password)
+    if (isNewPasswordSameAsBefore) throw new CustomError('New password must be different from the old one', 400)
       
     await adminRepository.updateAdminPassword(id, hashedPassword)
   }

@@ -24,7 +24,7 @@ function loginAdmin(adminRepository) {
     if (process.env.NODE_ENV === 'development') {
       console.log('Successfully logged in admin:', adminRecord);
     }
-    const adminInfo = { email: adminRecord.email, role: adminRecord.role, id: adminRecord._id  }
+    const adminInfo = { email: adminRecord.email, role: adminRecord.role, id: adminRecord._id }
     return {accessToken, refreshToken, adminInfo}
   }
   return {execute}
