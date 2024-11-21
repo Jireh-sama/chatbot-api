@@ -56,7 +56,7 @@ const app = express();
 // }));
 
 app.use(cors({
-  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app'],
+  origin: ['http://localhost:5173', 'https://cob-chatbot.vercel.app', 'http://localhost:3001', 'https://chatbot-adminpanel.vercel.app', 'https://www.bacoorchatbot.com'],
   credentials: true,
 }));
 
