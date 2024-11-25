@@ -20,6 +20,7 @@ function loginAdmin(adminRepository) {
     const refreshToken = generateAccessToken({ id: adminRecord._id}, process.env.REFRESH_TOKEN_SECRET, REFRESH_TOKEN_EXPIRATION_TIME)
     
     await adminRepository.updateAdminRefreshToken(adminRecord._id, { $set: { refreshToken } } )
+    await adminRepository.updateAdminLoginTime(adminRecord._id)
 
     if (process.env.NODE_ENV === 'development') {
       console.log('Successfully logged in admin:', adminRecord);

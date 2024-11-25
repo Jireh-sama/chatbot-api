@@ -31,6 +31,12 @@ function adminRepository(db) {
     const updateDocument = { $set: { role: newRole } }
     await db.updateDocument(query, updateDocument)
   };
+  const updateAdminLoginTime = async (id) => {
+    const query = { _id: id };
+    const updateDocument = { $set: { lastLoginAt: new Date } }
+    await db.updateDocument(query, updateDocument)
+  };
+
   return {
     findOneAdmin,
     findAllAdmin,
@@ -39,6 +45,7 @@ function adminRepository(db) {
     updateAdminPassword,
     updateAdminRole,
     updateAdminRefreshToken,
+    updateAdminLoginTime,
   }
 }
 
