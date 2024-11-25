@@ -27,13 +27,12 @@ export const removeStopWords = (text) => {
   const stopwords = eng;
 
   // Adding exceptions
-  const exceptions = ["get"];
+  const exceptions = ["get", 'who'];
   const customStopwords = stopwords.filter(
     (word) => !exceptions.includes(word)
   );
 
   const oldString = text.split(" ");
   const newString = removeStopwords(oldString, customStopwords);
-
   return newString.join(' ')
 }
