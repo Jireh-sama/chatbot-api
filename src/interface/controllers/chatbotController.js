@@ -4,7 +4,7 @@ function chatbotController(processUserQueryUseCase, trainChatbotUseCase, updateK
     const { userQuery } = req.body;
     const response = await processUserQueryUseCase.execute(userQuery)
 
-    await updateKnowledgeEntryFrequencyUseCase.execute(response.intent)
+    // await updateKnowledgeEntryFrequencyUseCase.execute(response.intent)
     res.status(200).json({ success: true, response })
   }
 
