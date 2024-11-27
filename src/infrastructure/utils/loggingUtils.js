@@ -16,3 +16,9 @@ export const extractQuotedText = (errorMessage) => {
   const match = errorMessage.match(/"([^"]*)"/);
   return match ? match[1] : null;
 };
+
+export const logMessage = (message) => {
+  if (process.env.NODE_ENV === 'development') {
+    console.log(message);
+  }
+}
