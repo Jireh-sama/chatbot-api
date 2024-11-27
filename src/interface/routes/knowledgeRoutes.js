@@ -1,11 +1,12 @@
 import express from "express";
 import KnowledgeController from "../controllers/knowledgeController.js";
-import { knowledgeRepository } from "#src/infrastructure/service/index.js";
+import { knowledgeRepository, archiveRepository } from "#src/infrastructure/service/index.js";
 import { asyncHandler } from "../middleware/errorHandler.js";
 
 // Use-Cases
 import CreateKnowledgeBase from "#src/application/use-cases/knowledge/create/createKnowledgeBase.js";
-import DeleteKnowledgeBase from "#src/application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
+import DeleteKnowledgeBase from "../../application/use-cases/knowledge/delete/deleteKnowledgeBase.js";
+
 import GetKnowledgeCollection from "#src/application/use-cases/knowledge/read/getKnowledgeCollection.js";
 import GetKnowledgeEntry from "#src/application/use-cases/knowledge/read/getKnowledgeEntry.js";
 import UpdateKnowledgeEntry from "#src/application/use-cases/knowledge/update/updateKnowledgeEntry.js";
@@ -15,15 +16,17 @@ import DeleteKnowledgeEntryDocument from "#src/application/use-cases/knowledge/d
 import GetKnowledgeBase from "#src/application/use-cases/knowledge/read/getKnowledgeBase.js";
 import UpdateKnowledgeBaseName from "../../application/use-cases/knowledge/update/updateKnowledgeBaseName.js";
 
+// Delete
+const deleteKnowledgeBase = DeleteKnowledgeBase(archiveRepository, knowledgeRepository)
+const deleteKnowledgeEntry = DeleteKnowledgeEntry(archiveRepository, knowledgeRepository)
+const deleteKnowledgeEntryDocument = DeleteKnowledgeEntryDocument(knowledgeRepository)
+
 const getKnowledgeCollection = GetKnowledgeCollection(knowledgeRepository)
 const getKnowledgeEntry = GetKnowledgeEntry(knowledgeRepository)
 const getKnowledgeBase = GetKnowledgeBase(knowledgeRepository)
 const createKnowledgeBase = CreateKnowledgeBase(knowledgeRepository)
-const deleteKnowledgeBase = DeleteKnowledgeBase(knowledgeRepository)
 const updateKnowledgeEntry = UpdateKnowledgeEntry(knowledgeRepository)
-const deleteKnowledgeEntry = DeleteKnowledgeEntry(knowledgeRepository)
 const addKnowledgeEntry = AddKnowledgeEntry(knowledgeRepository)
-const deleteKnowledgeEntryDocument = DeleteKnowledgeEntryDocument(knowledgeRepository)
 const updateKnowledgeBaseName = UpdateKnowledgeBaseName(knowledgeRepository)
 
 const knowledgeController = KnowledgeController(
