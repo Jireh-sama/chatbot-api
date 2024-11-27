@@ -41,7 +41,7 @@ function knowledgeController(
     return res.status(200).json({ success: true, knowledgeEntry });
   };
 
-  const archiveKnowledgeBase = async (req, res) => {
+  const deleteKnowledgeBase = async (req, res) => {
     const { knowledgeBaseName } = req.params;
     const deletedItemCount = await deleteKnowledgeBaseUseCase.execute(knowledgeBaseName);
     console.log(`Successfully deleted ${deletedItemCount} document`);
@@ -95,7 +95,7 @@ function knowledgeController(
 
   return {
     createKnowledgeBase,
-    archiveKnowledgeBase,
+    deleteKnowledgeBase,
     updateKnowledgeEntry,
     deleteKnowledgeEntry,
     deleteKnowledgeEntryDocument,
