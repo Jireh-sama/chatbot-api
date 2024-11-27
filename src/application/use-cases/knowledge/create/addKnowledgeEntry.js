@@ -19,7 +19,7 @@ function addKnowledgeEntry(knowledgeRepository) {
     const newKnowledgeEntry = createKnowledgeEntry(intent, documents, answer, fileUrl)
     newKnowledgeEntry.validate()
 
-    knowledgeRepository.addKnowledgeEntry(knowledgeBase, newKnowledgeEntry.toObject())
+    await knowledgeRepository.addKnowledgeEntry(knowledgeBase, newKnowledgeEntry.toObject())
   }
 
   return { execute }
