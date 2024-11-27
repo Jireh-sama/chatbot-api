@@ -11,10 +11,10 @@ function knowledgeController(
   updateKnowledgeBaseNameUseCase,
 ) {
   const createKnowledgeBase = async (req, res) => {
-    const { knowledgeBaseName, knowledgeEntry } = req.body;
+    const { knowledgeBaseName, knowledgeEntries } = req.body;
     await createKnowledgeBaseUseCase.execute(
       knowledgeBaseName,
-      knowledgeEntry
+      knowledgeEntries
     );
     console.log('Successfully created knowledge base:', knowledgeBaseName);
     return res
@@ -41,7 +41,7 @@ function knowledgeController(
     return res.status(200).json({ success: true, knowledgeEntry });
   };
 
-  const deleteKnowledgeBase = async (req, res) => {
+  const archiveKnowledgeBase = async (req, res) => {
     const { knowledgeBaseName } = req.params;
     const deletedItemCount = await deleteKnowledgeBaseUseCase.execute(knowledgeBaseName);
     console.log(`Successfully deleted ${deletedItemCount} document`);
@@ -74,7 +74,6 @@ function knowledgeController(
   }
 
   const deleteKnowledgeEntryDocument = async (req, res) => {
-    console.log('correct');
     const { knowledgeEntryIntent, documentValue } = req.body;
     await deleteKnowledgeEntryDocumentUseCase.execute(knowledgeEntryIntent, documentValue)
     console.log('Delete knowledge entry doc');
@@ -96,7 +95,7 @@ function knowledgeController(
 
   return {
     createKnowledgeBase,
-    deleteKnowledgeBase,
+    archiveKnowledgeBase,
     updateKnowledgeEntry,
     deleteKnowledgeEntry,
     deleteKnowledgeEntryDocument,
