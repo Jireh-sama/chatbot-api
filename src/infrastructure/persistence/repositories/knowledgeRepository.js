@@ -15,10 +15,10 @@ function knowledgeRepository(db) {
       return await db.readCollection({}, filter)
     }
 
-    const getKnowledgeBase = async (knowledgeBase) => {
+    const getKnowledgeBase = async (knowledgeBase, filter = null) => {
       const query = { knowledgeBase }
       const isSingle = true
-      return await db.readCollection(query, null, isSingle)
+      return await db.readCollection(query, filter, isSingle)
     }
 
     // retrieve a single knowledge entry item
@@ -45,8 +45,8 @@ function knowledgeRepository(db) {
       return await db.aggregateDocuments(pipeline)
     }
 
-    const createKnowledgeBase = async (knowledgeBase, knowledgeEntry) => {
-      const query = { knowledgeBase, knowledgeEntry: [ knowledgeEntry ] }
+    const createKnowledgeBase = async (knowledgeBase, knowledgeEntries) => {
+      const query = { knowledgeBase, knowledgeEntry: [ ...knowledgeEntries ] }
       await db.addDocument(query);
     }
 

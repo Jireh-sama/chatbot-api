@@ -5,17 +5,20 @@ import KnowledgeRepository from "../persistence/repositories/knowledgeRepository
 import ChatbotClient from "../persistence/chatbot/client.js";
 import AdminRepository from "../persistence/repositories/adminRepository.js";
 import ModelRepository from "../persistence/repositories/modelRepository.js";
+import ArchiveRepository from "../persistence/repositories/archiveRepository.js";
 import { uri, defaultMongoDbConfig, dbName, collectionName } from "../config/db.js";
 import { nlpManagerConfig } from "../config/nlpManagerConfig.js";
 
 const adminDB = MongoDbClient(uri, dbName, 'admin', defaultMongoDbConfig)
 const knowledgeDB = MongoDbClient(uri, dbName, collectionName, defaultMongoDbConfig);
 const modelDB = MongoDbClient(uri, dbName, 'model', defaultMongoDbConfig)
+const archiveDB = MongoDbClient(uri, dbName, 'archive', defaultMongoDbConfig)
 
 const knowledgeRepository = KnowledgeRepository(knowledgeDB);
 const adminRepository = AdminRepository(adminDB)
 const modelRepository = ModelRepository(modelDB)
+const archiveRepository = ArchiveRepository(archiveDB)
 
 const chatbotClient = ChatbotClient(nlpManagerConfig, knowledgeRepository, modelRepository)
 
-export { knowledgeRepository, chatbotClient, adminRepository, modelRepository };
+export { knowledgeRepository, chatbotClient, adminRepository, modelRepository, archiveRepository };

@@ -1,12 +1,12 @@
 import { NlpManager } from "node-nlp";
 import ChatbotService from "#src/domain/services/chatbotService.js";
-
 function chatbotClient(config, knowledgeRepository, modelRepository) {
 
   let chatbotService = null;
   
   const processQuery = async (query) => {
     return await chatbotService.processQuery(query)
+
   }
 
   const initialize = async () => {
