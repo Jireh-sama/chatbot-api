@@ -12,7 +12,7 @@ function deleteKnowledgeEntry(archiveRepository, knowledgeRepository) {
     }
 
     if (targetKnowledgeBase.knowledgeEntry.length === 1) {
-      throw new CustomError(`Unable to delete knowledge entry, because the associated Knowledge Base cannot be empty`, 400)
+      throw new CustomError(`Unable to archive knowledge entry, because the associated knowledge base cannot be empty`, 400)
     }
 
     const targetKnowledgeEntry = targetKnowledgeBase.knowledgeEntry.filter((entry => entry.intent === knowledgeEntryIntent))
