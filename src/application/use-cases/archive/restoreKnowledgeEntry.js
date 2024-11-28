@@ -2,29 +2,37 @@ import { ObjectId } from "mongodb";
 import createKnowledgeEntry from "../../../domain/entities/knowledgeEntry.js";
 
 function restoreKnowledgeEntry(archiveRepository, knowledgeRepository) {
-  const ARCHIVE_TYPE = 'knowledgeEntries'
+  const ARCHIVE_TYPE = "knowledgeEntries";
 
   const execute = async (knowledgeEntryId) => {
-    const knowledgeEntryArchive = await archiveRepository.getArchiveDocument(ARCHIVE_TYPE)
-    const selectedKnowledgeEntry = knowledgeEntryArchive.items.find(
-      item => item._id.equals(ObjectId.createFromHexString(knowledgeEntryId))
+    const knowledgeEntryArchive = await archiveRepository.getArchiveDocument(
+      ARCHIVE_TYPE
+    );
+    const selectedKnowledgeEntry = knowledgeEntryArchive.items.find((item) =>
+      item._id.equals(ObjectId.createFromHexString(knowledgeEntryId))
     );
 
     if (!selectedKnowledgeEntry) {
       throw new CustomError(`Error restoring knowledge entry`, 400);
     }
-    const { knowledgeBase, knowledgeEntry } = selectedKnowledgeEntry
+    const { knowledgeBase, knowledgeEntry } = selectedKnowledgeEntry;
 
     const existingKnowledge = await knowledgeRepository.getKnowledgeBase(
       knowledgeBase
     );
 
     if (existingKnowledge) {
-      const { intent, documents, answer } = knowledgeEntry 
-      const existingIntent = await knowledgeRepository.getKnowledgeEntry(intent);
-      const newIntent = existingIntent ? `${intent}_${Date.now()}` : intent
+      const { intent, documents, answer } = knowledgeEntry;
+      const existingIntent = await knowledgeRepository.getKnowledgeEntry(
+        intent
+      );
+      const newIntent = existingIntent ? `${intent}_${Date.now()}` : intent;
 
-      const newKnowledgeEntry = createKnowledgeEntry(newIntent, documents, answer)
+      const newKnowledgeEntry = createKnowledgeEntry(
+        newIntent,
+        documents,
+        answer
+      );
 
       await Promise.all([
         archiveRepository.removeKnowledgeArchive(
@@ -37,14 +45,23 @@ function restoreKnowledgeEntry(archiveRepository, knowledgeRepository) {
         ),
       ]);
 
-    }else {
-      // Create a knowledge base for the entry tha is being restored
-      const newKnowledgeBaseName = `archive-${Date.now()}`
-      const { intent, documents, answer } = knowledgeEntry 
-      const existingIntent = await knowledgeRepository.getKnowledgeEntry(intent);
-      const newIntent = existingIntent ? `${intent}_${Date.now()}` : intent
-      const newKnowledgeEntry = createKnowledgeEntry(newIntent, documents, answer)
-      
+      return intent === newIntent
+        ? `Knowledge entry "${newIntent}" restored`
+        : `Knowledge entry "${intent}" renamed to "${newIntent}" and restored.`;
+    } else {
+      // Create a knowledge base for the entry that is being restored
+      const newKnowledgeBaseName = `archive-${Date.now()}`;
+      const { intent, documents, answer } = knowledgeEntry;
+      const existingIntent = await knowledgeRepository.getKnowledgeEntry(
+        intent
+      );
+      const newIntent = existingIntent ? `${intent}_${Date.now()}` : intent;
+      const newKnowledgeEntry = createKnowledgeEntry(
+        newIntent,
+        documents,
+        answer
+      );
+
       await Promise.all([
         archiveRepository.removeKnowledgeArchive(
           ARCHIVE_TYPE,
@@ -54,10 +71,14 @@ function restoreKnowledgeEntry(archiveRepository, knowledgeRepository) {
           newKnowledgeEntry.toObject(),
         ]),
       ]);
+
+      return intent === newIntent
+        ? `Knowledge entry "${newIntent}" restored and a new knowledge base created.`
+        : `Knowledge entry "${intent}" renamed to "${newIntent}" and restored, and a new knowledge base created.`;
     }
   };
 
-  return { execute }
+  return { execute };
 }
 
-export default restoreKnowledgeEntry
+export default restoreKnowledgeEntry;

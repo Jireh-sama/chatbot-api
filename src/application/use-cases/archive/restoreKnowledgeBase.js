@@ -60,6 +60,11 @@ function restoreKnowledgeBase(archiveRepository, knowledgeRepository) {
       ),
     ]);
     
+
+    return knowledgeBase === newKnowledgeBaseName
+      ? `Knowledge base "${newKnowledgeBaseName}" restored.`
+      : `Knowledge base "${knowledgeBase}" renamed to "${newKnowledgeBaseName}" and restored.`;
+
   };
 
   return { execute };
