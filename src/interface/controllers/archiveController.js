@@ -18,15 +18,15 @@ function archiveController(
     if (!knowledgeBaseId) {
       throw new CustomError('Id is required', 400)
     }
-    await removeKnowledgeBaseUseCase.execute(knowledgeBaseId)
-    res.status(200).json({success: true, message: `Knoledge base has been permanently removed`})
+    const knowledgeBase = await removeKnowledgeBaseUseCase.execute(knowledgeBaseId)
+    res.status(200).json({success: true, message: `Knoledge base ${knowledgeBase} has been permanently removed`})
   };
 
   const handleRemoveKnowledgeEntry = async (req, res) => {
     const { knowledgeEntryId } = req.params
-    await removeKnowledgeEntryUseCase.execute(knowledgeEntryId)
+    const knowledgeEntryIntent = await removeKnowledgeEntryUseCase.execute(knowledgeEntryId)
 
-    res.status(200).json({success: true, message: `Knoledge entry has been deleted`})
+    res.status(200).json({success: true, message: `Knoledge entry "${knowledgeEntryIntent}" has been permanently removed`})
   }
 
   const handleRestoreKnowledgeBase = async (req, res) => {
@@ -34,14 +34,14 @@ function archiveController(
     if (!knowledgeBaseId) {
       throw new CustomError('Id is required', 400)
     }
-    await restoreKnowledgeBaseUseCase.execute(knowledgeBaseId)
-    res.status(200).json({success: true, message: `Knoledge base has been restored`})
+    const message = await restoreKnowledgeBaseUseCase.execute(knowledgeBaseId)
+    res.status(200).json({success: true, message})
   };
 
   const handleRestoreKnowledgeEntry = async (req, res) => {
     const { knowledgeEntryId } = req.body
-    await restoreKnowledgeEntryUseCase.execute(knowledgeEntryId)
-    res.status(200).json({success: true, message: `Knoledge entry has been restored`})
+    const message = await restoreKnowledgeEntryUseCase.execute(knowledgeEntryId)
+    res.status(200).json({success: true, message})
   };
 
   return {
