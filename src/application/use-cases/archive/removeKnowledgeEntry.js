@@ -10,11 +10,13 @@ function removeKnowledgeEntry(archiveRepository) {
       item => item._id.equals(ObjectId.createFromHexString(knowledgeEntryId))
     );
 
-    if (!selectedKnowledgeEntry) {
-      throw new CustomError(`Error deleting knowledge entry`, 400)
+    if (!selectedKnowledgeEntry || !selectedKnowledgeEntry.knowledgeBase || !selectedKnowledgeEntry.knowledgeEntry)  {
+      throw new CustomError(`Knowledge entry not found or invalid`, 404)
     }
 
     await archiveRepository.removeKnowledgeArchive(ARCHIVE_TYPE, selectedKnowledgeEntry._id)
+
+    return selectedKnowledgeEntry.knowledgeEntry.intent
   };
 
   return { execute }

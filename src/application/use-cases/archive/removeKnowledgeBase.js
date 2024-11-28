@@ -8,11 +8,13 @@ function removeKnowledgeBase(archiveRepository) {
     const selectedKnowledgeBase = knowledgeBaseArchive.items.find(
       item => item._id.equals(ObjectId.createFromHexString(knowledgeBaseId))
     );
-    if (!selectedKnowledgeBase) {
-      throw new CustomError(`Error deleting knowledge base`, 400)
+    if (!selectedKnowledgeBase || !selectedKnowledgeBase._id || !selectedKnowledgeBase.knowledgeBase) {
+      throw new CustomError(`Knowledge base not found or invalid`, 404)
     }
 
     await archiveRepository.removeKnowledgeArchive(ARCHIVE_TYPE, selectedKnowledgeBase._id)
+
+    return selectedKnowledgeBase.knowledgeBase
   };
   return { execute }
 }
