@@ -13,6 +13,7 @@ import DeleteAdmin from "#src/application/use-cases/admin/deleteAdmin.js";
 import GetAllAdmin from "../../application/use-cases/admin/getAllAdmin.js";
 import ResetAdminPassword from "../../application/use-cases/admin/resetAdminPassword.js";
 import UpdateAdminRole from "../../application/use-cases/admin/updateAdminRole.js";
+import { loginRateLimiter } from "../middleware/rateLimitMiddleware.js";
 
 const createAdmin = CreateAdmin(adminRepository);
 const loginAdmin = LoginAdmin(adminRepository);
@@ -43,7 +44,7 @@ router.put("/role", verifyToken, asyncHandler(authController.handleUpdateAdminRo
 router.get("/admins", verifyToken, asyncHandler(authController.handleGetAllAdmin))
 router.post("/logout", verifyToken, asyncHandler(authController.handleAdminLogout));
 router.post("/register", verifyToken, asyncHandler(authController.handleAdminRegister));
-router.post("/login", asyncHandler(authController.handleAdminLogin));
+router.post("/login", loginRateLimiter, asyncHandler(authController.handleAdminLogin));
 router.post("/refresh-token", asyncHandler(authController.handleAdminRefreshToken));
 
 router.delete("/:id", verifyToken, asyncHandler(authController.handleDeleteAdmin));
