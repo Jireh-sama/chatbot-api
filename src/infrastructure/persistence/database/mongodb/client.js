@@ -17,7 +17,7 @@ function mongoDbClient(uri, dbName, collectionName, config) {
       await client.connect();
       const db = client.db(dbName);
 
-      pingStatus = await db.command({ ping: 1 })
+      pingStatus = await db.command({ ping: 1 });
       collection = db.collection(collectionName);
     }
     return collection;
@@ -26,10 +26,10 @@ function mongoDbClient(uri, dbName, collectionName, config) {
   const ping = async () => {
     const collection = await initializeCollection();
     return pingStatus;
-  }
+  };
   const closeConnection = async () => {
     await client.close();
-    console.log('MongoDB connection closed');
+    console.log("MongoDB connection closed");
   };
 
   const addDocument = async (query) => {
@@ -39,37 +39,54 @@ function mongoDbClient(uri, dbName, collectionName, config) {
 
   const readCollection = async (query, projection, isSingle = false) => {
     const collection = await initializeCollection();
-    return isSingle 
+    return isSingle
       ? await collection.findOne(query, { projection })
       : await collection.find(query, { projection }).toArray();
-  }
+  };
 
   const insertDocument = async (filter, updated, options = {}) => {
     const collection = await initializeCollection();
-    return await collection.updateOne(filter, updated, options)
-  }
+    return await collection.updateOne(filter, updated, options);
+  };
 
   const updateDocument = async (filter, updateDocument) => {
     const collection = await initializeCollection();
     const res = await collection.updateOne(filter, updateDocument);
 
     if (res.matchedCount === 0) {
-      throw new Error('No document found matching the filter')
+      throw new Error("No document found matching the filter");
     }
+  };
+
+  const updateDocuments = async (query, updateDocument) => {
+    const collection = await initializeCollection();
+    const result = await collection.updateMany(query, updateDocument);
+
+    return result.modifiedCount;
   };
 
   const deleteDocument = async (filter) => {
     const collection = await initializeCollection();
-    const result = await collection.deleteOne(filter)
-    return result.deletedCount
-  } 
-
-  const aggregateDocuments = async (pipeline) => {
-    const collection = await initializeCollection(); 
-    const result = await collection.aggregate(pipeline).toArray(); 
-    return result; 
+    const result = await collection.deleteOne(filter);
+    return result.deletedCount;
   };
 
-  return { ping, closeConnection, addDocument, readCollection, updateDocument, insertDocument, deleteDocument, aggregateDocuments };
+  const aggregateDocuments = async (pipeline) => {
+    const collection = await initializeCollection();
+    const result = await collection.aggregate(pipeline).toArray();
+    return result;
+  };
+
+  return {
+    ping,
+    closeConnection,
+    addDocument,
+    readCollection,
+    updateDocument,
+    insertDocument,
+    deleteDocument,
+    aggregateDocuments,
+    updateDocuments,
+  };
 }
 export default mongoDbClient;
