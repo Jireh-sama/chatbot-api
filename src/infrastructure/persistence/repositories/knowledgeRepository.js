@@ -11,7 +11,7 @@ function knowledgeRepository(db) {
     }
 
     const getKnowledgeBaseList = async () => {
-      const filter = { _id: 0, knowledgeEntry: 0 }
+      const filter = { _id: 0 }
       return await db.readCollection({}, filter)
     }
 
