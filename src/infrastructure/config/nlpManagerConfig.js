@@ -9,11 +9,10 @@ export const nlpManagerConfig = {
 export const nlpModelFileName = 'model.nlp'
 
 const nlpFallBackResponses = [
-  "I'm sorry, I didn't quite understand that. Could you rephrase your question or try asking in a different way? 😊",
-  "Sorry, I'm a bit confused. Can you try asking differently? I'll do my best to assist!",
-  "Apologies, but I didn't understand your request. Could you try saying it differently?",
+  "I’m sorry, I didn’t catch that. Could you be more specific or clarify your question? 😊",
+  "Hmm, I’m not sure what you mean. Could you provide more details or ask in a clearer way? I’m here to help!",
+  "Apologies, I’m having trouble understanding. Could you try asking more specifically?",
 ];
-
 
 const languageFallBackResponses = [
   "Unfortunately, I can only understand English. If it's okay with you, could you please rephrase your question in English so I can better assist you?",
