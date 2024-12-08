@@ -26,6 +26,7 @@ app.use(
       "http://localhost:3001",
       "https://chatbot-adminpanel.vercel.app",
       "https://www.bacoorchatbot.com",
+      "https://cob-chatbot.onrender.com",
     ],
     credentials: true,
   })
