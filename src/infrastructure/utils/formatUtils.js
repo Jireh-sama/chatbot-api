@@ -27,7 +27,7 @@ export const removeStopWords = (text) => {
   const stopwords = eng;
 
   // Adding exceptions
-  const exceptions = ["get", 'who'];
+  const exceptions = ["get", 'who', 'where'];
   const customStopwords = stopwords.filter(
     (word) => !exceptions.includes(word)
   );
