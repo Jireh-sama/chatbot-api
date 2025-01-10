@@ -1,7 +1,8 @@
 import { Language } from "node-nlp";
-import { getLanguageFallBackResponse, SUPPORTED_LANGUAGES, getFallBackResponse } from "#src/infrastructure/config/nlpManagerConfig.js";
+import { getLanguageFallBackResponse, SUPPORTED_LANGUAGES } from "#src/infrastructure/config/nlpManagerConfig.js";
 import { removeStopWords } from "#src/infrastructure/utils/formatUtils.js";
 import { logMessage } from "#src/infrastructure/utils/loggingUtils.js";
+import { generateDynamicFallbackResponse } from "../../../infrastructure/utils/nlpUtils.js";
 
 const detectLanguage = (sentence) => {
   const language = new Language()
@@ -21,9 +22,9 @@ function processUserQuery(chatbot) {
 
     // Handle None intent
     if (response.intent === 'None') {
-      response.answer = getFallBackResponse();
+      response.answer = generateDynamicFallbackResponse(query);
     }
-
+    
     // Handle if query is not english UnsupportedLanguage
     const detectedQueryLanguage = detectLanguage(query)
     logMessage(`Detected query language: ${detectedQueryLanguage}`);
