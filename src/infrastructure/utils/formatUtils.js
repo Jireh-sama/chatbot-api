@@ -36,3 +36,10 @@ export const removeStopWords = (text) => {
   const newString = removeStopwords(oldString, customStopwords);
   return newString.join(' ')
 }
+
+export const capitalizePhrase = (phrase) => {
+  return phrase
+    .split(' ')
+    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .join(' ');
+};
