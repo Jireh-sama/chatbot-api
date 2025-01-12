@@ -48,8 +48,8 @@ function chatbotClient(config, knowledgeRepository, modelRepository) {
       console.log('Model Training Successful');
       
       // Save model data to model dir
-      // const modelData = await chatbotService.saveModel();
-      // await modelRepository.updateModelData(modelData)
+      const modelData = await chatbotService.saveModel();
+      await modelRepository.updateModelData(modelData)
     } catch (error) {
       console.log("Training error:", error.message || error);
     }
