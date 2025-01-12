@@ -7,7 +7,7 @@ import { initializeCronTasks } from './infrastructure/utils/cronUtils.js';
 global.CustomError = CustomError;
 
 const initialize = async () => {
-    await chatbotClient.train()
+    await chatbotClient.initialize()
     startServer();
     initializeCronTasks();
 }
