@@ -55,15 +55,22 @@ export const FALLBACK_PATTERNS = {
     "schedule",
     "requirements",
     "forms",
+    "form",
     "fees",
+    "fee",
     "services",
+    "service",
     "policies",
-    "office hours",
+    "policy",
+    "office",
+    "hour",
+    "hours",
     "permits",
     "registration",
     "application",
 
     // Phrases
+    "office hours",
     "what is",
     "can you tell me",
     "details about",
@@ -118,6 +125,8 @@ export const FALLBACK_PATTERNS = {
     "who works at",
     "head of",
     "leader of",
+    "secretary of",
+    "president of",
     "responsible for",
     "in charge of",
     "current mayor",
@@ -165,9 +174,9 @@ export const FALLBACK_PATTERNS = {
 
 export const FALLBACK_RESPONSE = {
   direction: (subject) =>
-    `I apologize, but I don't have the exact directions for ${subject}. You can visit the information desk at the main building's entrance, where the staff will gladly assist you with directions to any department or office within or near City Hall.`,
+    `I apologize, but I don't have the exact directions for ${subject}. For further assistance, you can visit the information desk at the main building's entrance, where the staff will gladly assist you with directions to any department or office within or near City Hall or you can check out our official Facebook page for updates and inquiries: <Bacoor City Hall Official Facebook Page>{=https://web.facebook.com/CityGovtBacoor=}.`,
   information: (subject) =>
-    `I’m sorry, but I couldn’t find specific information about ${subject}. For any general inquiries or further details, please visit the information desk near the main building's entrance. The staff will be happy to assist you.`,
+    `I’m sorry, but I couldn’t find specific information about ${subject}. For any general inquiries or further details, please visit the information desk near the main building's entrance. Where the staff will be happy to assist you.`,
   person: (subject) =>
     `I couldn’t find details about ${subject}. If you’re trying to locate someone specific or need information about City Hall’s public officials, you can check the <List of City Officials>{=https://bacoor.gov.ph/city-officials/=} for reference.`,
   social: (subject) =>
