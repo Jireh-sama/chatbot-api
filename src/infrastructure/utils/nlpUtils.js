@@ -1,6 +1,11 @@
-import { DEFAULT_FALLBACK_RESPONSE, EXCLUSION_LIST, FALLBACK_PATTERNS, FALLBACK_RESPONSE } from "../config/nlpManagerConfig.js";
+import {
+  DEFAULT_FALLBACK_RESPONSE,
+  EXCLUSION_LIST,
+  FALLBACK_PATTERNS,
+  FALLBACK_RESPONSE,
+} from "../config/nlpManagerConfig.js";
 import { capitalizePhrase } from "./formatUtils.js";
-import nlp from 'compromise'
+import nlp from "compromise";
 import { logMessage } from "./loggingUtils.js";
 
 export const classifyFallback = (doc) => {
@@ -36,10 +41,8 @@ export const generateDynamicFallbackResponse = (query) => {
 
   // Remove symbols from the query
   const sanitizedQuery = query.replace(/[!?]/g, "");
-
   // Recreate the NLP doc from the sanitized query
   const sanitizedDoc = nlp(sanitizedQuery);
-
 
   // Extract nouns and filter out exclusions
   let nouns = sanitizedDoc
@@ -50,30 +53,37 @@ export const generateDynamicFallbackResponse = (query) => {
         noun.toLowerCase().includes(exclusion.toLowerCase())
       );
     });
-
-  // Capitalize each multi-word noun phrase
+  // Capitalize each multi-word noun phrase\
   nouns = nouns.map(capitalizePhrase);
 
   let mainSubject;
-  let prepositions = sanitizedDoc.match('#Preposition').out('array');
-  let context = sanitizedDoc.match('#Preposition? #Noun+').out('text');
-  const fallback = classifyFallback(sanitizedDoc)
+  let prepositions = sanitizedDoc.match("#Preposition").out("array");
+  let context = sanitizedDoc.match("#Preposition? #Noun+").out("text");
+  const fallback = classifyFallback(sanitizedDoc);
 
   logMessage(`Prepositions: ${prepositions}`);
   logMessage(`Context: ${context}`);
-  console.log(`Nouns: ${nouns}`);
+  logMessage(`Nouns: ${nouns}`);
   logMessage(`Fallback: ${fallback}`);
 
   if (nouns.length === 0) {
-    mainSubject = 'what you are asking about';
+    mainSubject = "what you are asking about";
   } else if (nouns.length === 1) {
-    mainSubject = `the ${nouns[0]}`;
+    const topic = nouns[0].toLowerCase();
+    if (topic === "office" || topic === "offices") {
+      mainSubject = "what you are asking about";
+    } else {
+      mainSubject = `the ${nouns[0]}`;
+    }
   } else {
     let lastNoun = nouns.pop();
-    mainSubject = `the ${nouns.join(', ')} and ${lastNoun}`;
+    mainSubject = `the ${nouns.join(", ")} and ${lastNoun}`;
   }
 
-  const fallbackResponse = fallback !== 'None' ? FALLBACK_RESPONSE[fallback](mainSubject) : DEFAULT_FALLBACK_RESPONSE
+  const fallbackResponse =
+    fallback !== "None"
+      ? FALLBACK_RESPONSE[fallback](mainSubject)
+      : DEFAULT_FALLBACK_RESPONSE;
 
-  return fallbackResponse
+  return fallbackResponse;
 };
