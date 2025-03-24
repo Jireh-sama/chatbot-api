@@ -27,6 +27,7 @@ app.use(
       "https://chatbot-adminpanel.vercel.app",
       "https://www.bacoorchatbot.com",
       "https://cob-chatbot.onrender.com",
+      "https://chatbot-api-hup6.onrender.com",
     ],
     credentials: true,
   })
