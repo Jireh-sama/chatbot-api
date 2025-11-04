@@ -205,22 +205,6 @@ This project follows Clean Architecture principles with clear separation of conc
 - **Infrastructure Layer**: External dependencies and frameworks
 - **Interface Layer**: API routes and controllers
 
-## 🤝 Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
-
-Please ensure your code:
-- Follows the existing code style
-- Includes appropriate tests
-- Updates documentation as needed
-- Passes all existing tests
-
 ## 📝 License
 
 This project is licensed under the ISC License.
@@ -236,9 +220,6 @@ Created by the Chatbot API Team
 - Deployed on Render
 - Frontend hosted on Vercel
 
-## 📞 Support
-
-For issues, questions, or contributions, please open an issue on the GitHub repository.
 
 ---
 
